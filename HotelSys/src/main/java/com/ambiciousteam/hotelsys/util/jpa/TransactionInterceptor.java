@@ -1,6 +1,5 @@
 package com.ambiciousteam.hotelsys.util.jpa;
 
-import com.ambiciousteam.hotelsys.exceptions.HotelSysException;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,7 +36,7 @@ public class TransactionInterceptor implements Serializable {
     /* The annotation @AroundInvoke sign this method for to be called automatically before the 
      method annotated with @Transactional */
     @AroundInvoke
-    public Object invoke(InvocationContext context) throws HotelSysException {
+    public Object invoke(InvocationContext context) {
         EntityTransaction entityTransaction = entityManager.getTransaction();
         boolean owner = false;
 
