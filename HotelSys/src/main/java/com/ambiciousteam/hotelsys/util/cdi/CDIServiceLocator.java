@@ -1,6 +1,6 @@
 package com.ambiciousteam.hotelsys.util.cdi;
 
-import br.com.ambiciousteam.hotelsys.exceptions.HotelSysException;
+import com.ambiciousteam.hotelsys.exceptions.HotelSysException;
 import java.util.Set;
 
 import javax.enterprise.context.spi.CreationalContext;

@@ -1,4 +1,4 @@
-package br.com.ambiciousteam.hotelsys.exceptions;
+package com.ambiciousteam.hotelsys.exceptions;
 
 /**
  *

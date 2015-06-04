@@ -1,6 +1,6 @@
 package com.ambiciousteam.hotelsys.util.jpa;
 
-import br.com.ambiciousteam.hotelsys.exceptions.HotelSysException;
+import com.ambiciousteam.hotelsys.exceptions.HotelSysException;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
