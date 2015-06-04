@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:form id="formMainMenu"> 
+
+        <p:menubar autoDisplay="true" style="font-size: 13px; padding: 0px">
+
+            <p:menuitem icon="ui-icon ui-icon-home" title="Tela incicial" id="homeButton" outcome="/Home.xhtml"/>
+
+            <p:menuitem value="#{localeBR.hotelGuest}" url="/hotelGuest/CadastreIndividualClient.xhtml" icon="ui-icon-person"/>
+
+            <p:menuitem value="#{localeBR.room}" url="/room/CadastreRoom.xhtml" icon="ui-icon-home"/>
+
+            <!--<p:menuitem value="#{localeBR.hosting}" outcome="/hosting/CadastreHosting.xhtml" icon="ui-icon-pencil"/>-->
+
+            <!--<p:menuitem value="#{localeBR.reports}" url="/provider/SearchProvider.xhtml" icon="ui-icon-search"/>-->
+
+<!--            <p:submenu label="#{localeBR.help}" icon="ui-icon ui-icon-help">
+                <p:menuitem value="#{localeBR.credits}" onclick="PF('developers').show();
+                        return false;"
+                            icon="ui-icon-link"/>
+                <p:separator/>
+                <p:menuitem value="#{localeBR.manual}" url="/provider/SearchProvider.xhtml" 
+                            icon="ui-icon-note"/>
+                <p:separator/>
+                <p:menuitem value="#{localeBR.aboutTheSystem}" url="/provider/SearchProvider.xhtml" icon="ui-icon-info"
+                            onclick="PF('about').show();
+                                    return false;"/>
+            </p:submenu>-->
+
+            <p:menuitem icon="ui-icon ui-icon-power" title="Clique para sair" value="#{localeBR.exit}" id="exitButton" outcome="/Login.xhtml"/>
+
+
+        </p:menubar>
+    </h:form>
+
+    <div id="clock" >
+        <p:clock pattern="dd/MM/yyyy HH:mm:ss"/>
+    </div>
+
+    <!-- Dialog informing about the software--> 
+    <p:dialog widgetVar="about" header="#{localeBR.appName} - #{localeBR.appSlogan}" modal="true" 
+              resizable="false" draggable="false" id="aboutSystem">
+        <h:form>
+
+        </h:form>
+    </p:dialog>
+
+    <!-- Dialog informing about the developers and credits --> 
+    <p:dialog widgetVar="developers" header="#{localeBR.appName} - #{localeBR.credits}" modal="true"  resizable="false" 
+              draggable="false" id="developersInformation" width="500px" height="180px">
+        <h:form>
+            <h1 align="center" style="padding-bottom: 10px">#{localeBR.developersGroup}</h1>
+
+            <div style="float: left; text-align: center; padding: 25px 25px 50px 25px; ">
+                <p:graphicImage library="images" name="at-mini.png"/>
+            </div>
+
+            <div style="text-align: center;">
+                <p:outputLabel value="#{localeBR.developers}:"/>
+            </div>
+
+            <div style="text-align: center; padding-top: 10px;">
+                <p:outputLabel value="Cássio Oliveira"  style="font-weight: bold"/>
+                <br/>
+                <p:outputLabel value="cassio@cassioliveira.com.br"/>
+            </div>
+
+            <div style="text-align: center; padding-top: 10px;">
+                <p:outputLabel value="Wilde Arruda"  style="font-weight: bold"/>
+                <br/>
+                <p:outputLabel value="wildearruda@gmail.com"/>
+            </div>
+
+        </h:form>
+    </p:dialog>
+</html>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/templates/HeadFootTemplate.xhtml">
+
+    <f:metadata>
+        <f:event listener="#{lineChartTopHomeBean.preRender}" type="preRenderView"/>
+        <f:event listener="#{barChartBottomHomeBean.preRender}" type="preRenderView"/>
+    </f:metadata>
+
+    <ui:define name="content">
+
+        <!--<div id="main" style="position: relative; border: 0px solid; width: 100%;">-->
+
+        <div id="charts" >
+            <p:lineChart value="#{lineChartTopHomeBean.model}" title="Hospedagens por mês" 
+                         animate="true" minY="0" legendPosition="n" 
+                         style="height: 220px"/>
+            <p:barChart value="#{barChartBottomHomeBean.model}" legendPosition="n" barMargin="5"
+                        title="Hospedagens de  #{dateTimeUtilBean.currentMonthAsString} "
+                        animate="true" style="height: 220px; margin-top: 35px"/>
+        </div>
+
+
+        <div class="home-rooms-border-main">
+            <h:form>
+                <ui:repeat var="statusRoomsGreen" value="#{roomBean.freeRooms}">
+                    <div class="home-rooms-green">
+                        <div class="roomNumber">
+                            <h:outputText value="#{statusRoomsGreen}"/>
+                        </div>
+
+                        <div class="descriptionRoomsHomeGreen">
+                            <p:graphicImage library="images/icon" name="available.png"/>
+                            <p:outputLabel value="Disponível" style="margin-left: 2px"/>
+                        </div>
+
+                        <div class="buttonHomeRoomGreen">
+                            <p:commandButton id="roomDetails" icon="ui-icon-extlink" >
+                                <p:tooltip for="roomDetails" value="Detalhes do quarto"/>
+                            </p:commandButton>
+                            <p:commandButton id="hosting" icon="ui-icon-play" onclick="PF('hostingScreen').show()">
+                                <p:tooltip for="hosting" value="Iniciar hospedagem"/>
+                            </p:commandButton>
+                        </div>
+                    </div>
+                </ui:repeat>
+
+                <ui:repeat var="statusRoomsRed" value="#{roomBean.freeRooms}">
+                    <div class="home-rooms-red">
+                        <div class="roomNumber">
+                            <h:outputText value="10"/>
+                        </div>
+
+                        <div class="descriptionRoomsHomeRed">
+                            <p:graphicImage id="hotelGuestName" library="images/icon" name="miniPerson.png">
+                                <p:tooltip for="hotelGuestName" value="Hóspede"/>
+                            </p:graphicImage>
+                            <p:outputLabel value="Cássio da Silva Oliveira" style="margin-left: 2px"/>
+                            <br/>
+                            <p:graphicImage id="calendarIcon" library="images/icon" name="calendar.png">
+                                <p:tooltip for="calendarIcon" value="Previsão de saída"/>
+                            </p:graphicImage>
+                            <p:outputLabel value="22/06/2015 - 18:00" style="margin-left: 2px"/>
+                        </div>
+
+                        <div class="buttonHomeRoomRed">
+                            <p:commandButton id="hostingDetails" icon="ui-icon-extlink" style="font-size: 10px" onclick="PF('hostingDetails').show()">
+                                <p:tooltip for="hostingDetails" value="Detalhes da hospedagem"/>
+                            </p:commandButton>
+                            <p:commandButton id="shutdownHosting" icon="ui-icon-arrowstop-1-s" style="font-size: 10px">
+                                <p:tooltip for="shutdownHosting" value="Dar baixa na hospedagem"/>
+                            </p:commandButton>
+                        </div>
+
+                    </div>
+                </ui:repeat>
+
+            </h:form>
+
+            <p:dialog widgetVar="hostingScreen" modal="true" header="Cadastro de Hospedagem" closable="true" 
+                      draggable="false" resizable="false" height="380" width="600">
+                <ui:include src="/hosting/CadastreHosting.xhtml"/>
+            </p:dialog>
+
+            <p:dialog widgetVar="hostingDetails" modal="true" header="Detalhes da Hospedagem" closable="true" 
+                      draggable="false" resizable="false" height="380" width="600">
+                <ui:include src="/hosting/ViewDetailsHosting.xhtml"/>
+            </p:dialog>
+
+        </div>
+        <!--</div>-->        
+
+    </ui:define>        
+</ui:composition> 

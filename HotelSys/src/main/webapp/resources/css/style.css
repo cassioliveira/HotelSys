@@ -1,0 +1,300 @@
+html, body{height: 100%;}
+
+body {
+    background-color: #ffffff;
+    font-size: 12px;
+    font-family: Frutlger,Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    color: #000000;  
+    margin: 0px;
+    line-height: 11px;
+}
+
+h1 {
+    font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    font-size:  16px;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+}
+
+a:link, a:visited {
+    color: #045491;
+    //color: #045491;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+a:link:hover, a:visited:hover  {
+    color: #045491;
+    font-weight : bold;
+    text-decoration : underline;
+}
+
+#clock{
+    text-align: right;
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+.upper{
+    text-transform: uppercase;
+}
+
+.lower{
+    text-transform: lowercase;
+}
+
+header{
+    position: relative;
+    color: white;
+    padding-right: 10px;
+    padding-top: 5px;
+    height: 70px;
+    margin: 1px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    background: #347235;
+    box-shadow: 0px 3px 3px slategray;
+}
+
+.logo{
+    width: 100px;
+    height: 50px;
+    margin-left: 5px;
+}
+
+#logged-user-top-message{
+    height: 10px; 
+    text-align: right;
+    font-size: 10px;
+}
+
+footer {
+    position: fixed;
+    padding: 0px;
+    margin: 1px;
+    color: white;
+    height: 20px;
+    /*width: 98.7%;*/
+    width: 100%;
+    bottom: 0;
+    border: 1px;
+    border-radius: 5px;
+    background: #347235;
+}
+
+#bottom{
+    color: #4AA02C;
+    margin: 5px 5px 5px 5px;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+.grid-login{
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-top: 8px;
+}
+
+#lostPassword{
+    font-size: 11px;
+    float: right;
+}
+
+/*.establishmentData{
+    font-size: 7px; 
+    line-height: 20%; 
+    float: left;
+    margin-left: 5px;
+}*/
+
+#logo-login{
+    float: bottom; 
+    padding-top: 50px; 
+    position: relative; 
+    text-align: center;
+}
+
+#clientLogo{
+    float: left;
+    position: relative;
+    padding: 5px;
+}
+
+#systemName{
+
+    float: left;
+    position: relative;
+    padding: 5px 0px 0px 450px;
+    margin: 0px 0px 0px 0px;
+}
+
+#copyright{
+    float: right;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+    text-align: right;
+    padding: 5px;
+    right: 0px;
+}
+
+#left {
+    float: left;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+#right {
+    float: right;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+#content {
+    position: relative;
+    padding: 5px;
+    margin: 10px 10px 0px 10px;
+    padding-bottom: 30px;
+    text-align: justify;
+}
+
+.left_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin-left: 170px;
+}
+
+.right_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin: 0px 170px 0px 170px;
+}
+
+#text-login a{
+    color: white;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+
+#text-login a:link, #text-login a:visited {
+    color: white;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+#text-login a:link:hover, #text-login a:visited:hover  {
+    color: black;
+    font-weight : bold;
+    text-decoration : underline;
+}
+
+/* Menu of top for logged user */
+.user-top-menu {
+    border: 0px !important;
+    padding: 0px !important;
+    background: none !important;
+}
+
+.user-top-menu .ui-menu-parent > a .ui-menuitem-text, .user-top-menu > .ui-menu-list > .ui-menuitem > a > .ui-menuitem-text {
+    color: #ffffff !important;
+}
+
+.home-rooms-border-main{
+    border: 1px solid; 
+    margin-top: 20px;
+    margin-left: 520px;
+    padding: 2px; 
+    height: 460px; 
+    float: right;
+    border-radius:10px; 
+    color: #dddddd;
+    position: fixed;
+    left: auto;
+    margin-right: 5px;
+    overflow: auto;
+    -moz-border-radius:10px; 
+    -webkit-border-radius:10px; 
+}
+
+.buttonHomeRoomGreen{
+    font-size: 10px; 
+    position: relative; 
+    margin-top: 38px;
+    text-align: center;
+}
+
+.buttonHomeRoomRed{
+    font-size: 10px; 
+    position: relative; 
+    margin-top: 25px;
+    text-align: center;
+}
+
+.roomNumber{
+    font-size: 18px; 
+    font-weight: bold; 
+    position: relative;
+    text-align: center;
+    margin-top: 2px;
+    margin-bottom: 10px;
+}
+
+.descriptionRoomsHomeGreen{
+    font-weight: bold; 
+    font-size: 12px; 
+}
+
+.descriptionRoomsHomeRed{
+    font-weight: bold; 
+    font-size: 10px; 
+}
+
+.home-rooms-green{
+    background-color: green;
+    width: 178px; 
+    height: 100px; 
+    margin: 1px; 
+    padding: 1px; 
+    border-radius:10px; 
+    float: left; 
+    position: relative;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px; 
+}
+
+.home-rooms-red{
+    background-color: red;
+    width: 178px; 
+    height: 100px; 
+    margin: 1px; 
+    padding: 1px; 
+    border-radius:10px; 
+    float: left; 
+    position: relative;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;   
+}
+
+/* Field to put charts in home.xhtml */
+#charts{
+    border: 0px solid;  
+    padding: 5px; 
+    width: 515px; 
+    height: 50px; 
+    position: relative; 
+    float: left;
+    margin-top: 0px;
+}
+
+.ui-icon-logoReceita{
+    background-image: url("#{resource['images/receita_logo.png']}") !important;
+    /*background-image: url(../images/receita_logo.png) !important;*/
+}
+
+.extensionNumberLogo{
+    background-image: url("#{resource['images/phone.png']}") !important;
+}

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    
+    <application>
+        
+        <!-- Set the target of file .properties with the strings to the view 
+        (internationalization). -->
+        <resource-bundle>
+            <base-name>i18n.localeBR</base-name>
+            <var>localeBR</var>
+        </resource-bundle>
+        
+        <resource-bundle>
+            <base-name>i18n.establishment</base-name>
+            <var>establishment</var>
+        </resource-bundle>
+        
+        <!-- Set default language for messages of bean Validation and others components 
+        around the system. -->
+        <locale-config>
+            <default-locale>pt_BR</default-locale>
+        </locale-config>
+        
+        <!-- Set file .properties to custom the messages from BeanValidator. -->
+        <message-bundle>PropertiesValidatorMessages.Messages</message-bundle>  
+              
+    </application>
+</faces-config>
