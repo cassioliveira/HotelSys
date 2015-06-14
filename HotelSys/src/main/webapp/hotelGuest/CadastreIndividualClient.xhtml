@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="/WEB-INF/templates/HeadFootTemplate.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="client" value="#{clientBean.client}"/>
+    </f:metadata>
+
+    <ui:define name="content">
+
+        <h:form id="formCadastreClient" enctype="multipart/form-data">
+            <p:fieldset legend="#{clientBean.editing ? localeBR.editCadastreHotelguest : localeBR.newRegisterHotelguest}" >
+
+
+                <!--Show messages on processing pages--> 
+                <!--<p:messages style="line-height: 14px; font-size: 12px"/>-->
+                <p:growl/>
+
+                <!--<p:ajaxStatus onstart="PF('statusDialog').show();" onsuccess="PF('statusDialog').hide();"/>-->
+
+                <p:dialog modal="true" widgetVar="statusDialog" header="Aguarde" draggable="false" closable="false" resizable="false">
+                    <p:graphicImage library="images" name="loading.gif"/>
+                </p:dialog>
+
+                <h:inputHidden value="#{clientBean.client.dateTime}" >
+                    <f:convertDateTime pattern="dd/MM/yyyy hh:MM:ss"/>
+                </h:inputHidden>
+
+                <h:panelGrid columns="2">
+
+                    <h:panelGroup>
+                        <h:panelGrid columns="1">
+                            <!--FUTURAMENTE ADICIONAR FUNÇÃO DE INSERIR FOTO DO HOSPEDE-->
+                            <p:graphicImage library="images" name="avatar.png" style="height: 100px"/>
+                        </h:panelGrid>
+                        <!--<p:fileUpload  mode="simple" />-->
+                    </h:panelGroup>
+
+                    <h:panelGroup>
+                        <!--MAIN CLIENT ATTRIBUTES OUT OF TABVIEW-->
+                        <h:panelGrid columns="2" cellpadding="1" id="formClient">
+
+                            <p:outputLabel for="clientName" value="#{localeBR.name}"/>
+                            <p:inputText id="clientName" value="#{clientBean.client.name}"
+                                         maxlength="100" size="40" styleClass="upper" required="true" 
+                                         validatorMessage="Nome deve conter apenas letras, letras  e/ou espaços"
+                                         requiredMessage="O nome do hóspede deve informado">
+                                <f:validateRegex pattern="^[a-zA-ZéúíóáÉÚÍÓÁèùìòàÈÙÌÒÀõãñÕÃÑêûîôâÊÛÎÔÂëÿüïöäËYÜÏÖÄÇç\s\'\-]+$"/>
+                            </p:inputText>
+
+                            <p:outputLabel for="cpf" value="#{localeBR.cpf}" />
+                            <h:panelGroup id="panelGroupCPF">
+                                <p:inputMask id="cpf" mask="999.999.999-99" size="40" required="true"
+                                             requiredMessage="Um número de CPF deve ser informado.  "
+                                             value="#{clientBean.client.cpf}" converter="cpfConverter" validator="cpfValidator"/>
+                                <p:graphicImage id="receitaImage" library="images" name="receita_logo.png" onclick="PF('siteReceita').show();
+                                        return false;">
+                                    <p:tooltip for="receitaImage" value="Clique para fazer a consulta do CPF na Receita Federal"/>
+                                </p:graphicImage>
+                            </h:panelGroup>
+
+                            <p:outputLabel for="phone1" value="#{localeBR.phone1}" />
+                            <p:inputText id="phone1"  styleClass="phone" required="true"
+                                         requiredMessage="Um número de telefone deve ser informado."
+                                         value="#{clientBean.client.phone1}" size="40"/>
+                        </h:panelGrid>
+                    </h:panelGroup>
+                </h:panelGrid>
+                <!--TABVIEW 1 - PERSONAL DATA-->
+                <p:tabView id="complementaryCadastreData">
+
+                    <p:tab id="tabComplementaryPersonal" title="Pessoal" >
+
+                        <h:panelGrid columns="2" cellpadding="1">
+
+                            <p:outputLabel for="gender" value="#{localeBR.gender}"/>
+                            <p:selectOneMenu id="gender" value="#{clientBean.client.gender}" appendTo="@(body)">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{personBean.genders}" itemLabel="#{gender.description}"
+                                               itemValue="#{gender}" var="gender"/>
+                            </p:selectOneMenu>
+
+                            <p:outputLabel for="birthDate" value="#{localeBR.birthDate}"/>
+                            <p:calendar id="birthDate" navigator="true" pattern="dd/MM/yyyy" 
+                                        yearRange="c-150:c+0" size="15" locale="pt" 
+                                        value="#{clientBean.client.birthDate}" 
+                                        maxdate="#{dateTimeUtilBean.dateToday}">
+                            </p:calendar>
+
+                            <p:outputLabel for="profession" value="#{localeBR.profession}"/>
+                            <p:inputText id="profession" maxlength="50" size="33" 
+                                         value="#{clientBean.client.profession}" styleClass="upper"/>
+
+                            <p:outputLabel for="nickName" value="#{localeBR.nickName}"/>
+                            <p:inputText id="nickName" maxlength="50" size="33" 
+                                         value="#{clientBean.client.nickName}" styleClass="upper"/>
+
+                        </h:panelGrid>
+                    </p:tab>
+
+
+                    <!--TABVIEW 2 - CONTACT DATA-->
+                    <p:tab id="tabComplementaryContact" title="Contato">
+
+                        <h:panelGrid columns="2" cellpadding="1">
+
+                            <p:outputLabel for="email" value="#{localeBR.email}" />
+                            <p:inputText id="email" value="#{clientBean.client.email}"
+                                         maxlength="100" size="40" styleClass="lower" 
+                                         validatorMessage="Email deve ser do tipo usuario@dominio">
+                            </p:inputText>
+
+                            <p:outputLabel for="phone2" value="#{localeBR.phone2}"/>
+                            <p:inputText id="phone2" styleClass="phone" value="#{clientBean.client.phone2}" 
+                                         size="40" />
+                        </h:panelGrid>
+
+                    </p:tab>
+
+                    <!--TABVIEW 3 - ADDRESS DATA-->
+                    <p:tab id="tabComplementaryAddress" title="Endereço">
+
+                        <h:panelGrid columns="4" cellpadding="1">
+
+                            <p:outputLabel for="street" value="#{localeBR.street}"/>
+                            <p:inputText id="street" value="#{clientBean.client.street}" 
+                                         styleClass="upper" maxlength="100" size="40" />
+
+                            <p:outputLabel for="number" value="#{localeBR.number}"/>
+                            <p:inputText id="number" value="#{clientBean.client.number}" 
+                                         styleClass="upper" maxlength="7" size="15"  />
+
+                            <p:outputLabel for="neighborhood" value="#{localeBR.neighborhood}" />
+                            <p:inputText id="neighborhood" value="#{clientBean.client.neighborhood}"
+                                         maxlength="30" size="40" styleClass="upper"/>
+
+                            <p:outputLabel for="postalCode" value="#{localeBR.postalCode}" />
+                            <p:inputMask id="postalCode" value="#{clientBean.client.postalCode}"
+                                         maxlength="10" size="15" mask="99999-999"/>
+
+                            <p:outputLabel for="city" value="#{localeBR.city}" />
+                            <p:inputText id="city" value="#{clientBean.client.city}" styleClass="upper"
+                                         maxlength="50" size="40" />
+
+                            <p:outputLabel for="uf" value="#{localeBR.state}" />
+                            <p:selectOneMenu id="uf" value="#{clientBean.client.uf}" appendTo="@(body)">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{personBean.states}" itemLabel="#{uf.description}" 
+                                               itemValue="#{uf}" var="uf"/>
+                                <f:ajax event="click" listener="#{personBean.states}"/>
+                            </p:selectOneMenu>
+
+                            <p:outputLabel for="country" value="#{localeBR.country}"/>
+                            <p:inputText id="country" value="#{clientBean.client.country}" 
+                                         styleClass="upper" maxlength="50" size="40"/>
+
+                        </h:panelGrid>
+
+                    </p:tab>
+
+                    <!--TABVIEW 4 - DOCUMENTATION DATA-->
+                    <p:tab id="tabComplementaryDocumentation" title="Documentação">
+
+                        <h:panelGrid columns="2" cellpadding="1">
+
+                            <p:outputLabel for="docType" value="#{localeBR.travelDocType}" />
+                            <p:selectOneMenu id="docType" value="#{clientBean.client.travelDocType}">
+                                <f:selectItem itemLabel="Selecione"/>
+                                <f:selectItems value="#{personBean.documentations}" 
+                                               itemLabel="#{docType.description}" 
+                                               itemValue="#{docType.description}" var="docType"/>
+                            </p:selectOneMenu>
+
+                            <p:outputLabel for="docTravelNumber" value="#{localeBR.docTravelNumber}" />
+                            <p:inputText id="docTravelNumber" maxlength="15" size="15"
+                                         value="#{clientBean.client.docTravelNumber}" />
+
+                            <p:outputLabel for="issuingBody" value="#{localeBR.issuingBody}" />
+                            <p:inputText id="issuingBody" maxlength="15" size="15" disabled="#{clientBean.client.travelDocType eq 'Carteira de Identidade'}" 
+                                         styleClass="upper" value="#{clientBean.client.issuingBody}"/>
+
+                        </h:panelGrid>
+
+                    </p:tab>
+
+                </p:tabView>
+
+                <p:toolbar id="panelButtonsConsult" style="margin-top: 10px;">
+                    <f:facet name="left">
+                        <p:commandButton style="font-size: 13px;" value="#{localeBR.save}" 
+                                         action="#{clientBean.save}" id="saveButton" icon="ui-icon ui-icon-disk"
+                                         update="@form" />
+                    </f:facet>
+
+                    <f:facet name="right">
+                        <p:button value="#{localeBR.search}" id="searchRegister" 
+                                  outcome="/hotelGuest/SearchClient" 
+                                  icon="ui-icon ui-icon-pencil"/>
+                    </f:facet>
+                </p:toolbar> 
+            </p:fieldset>
+        </h:form>
+
+        <p:dialog widgetVar="siteReceita" header="Consulta de CPF na Receita Federal" modal="true" 
+                  resizable="false" closable="true" draggable="true" id="siteReceita">
+            <iframe height="500" width="800" 
+                    src="http://www.receita.fazenda.gov.br/aplicacoes/atcta/cpf/consultapublica.asp#theForm"/>
+        </p:dialog>
+
+
+    </ui:define>
+
+</ui:composition>

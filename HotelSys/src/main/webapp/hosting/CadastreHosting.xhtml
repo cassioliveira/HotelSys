@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"> 
+
+    <h:form id="formCadastreHosting">
+
+        <p:growl/>
+
+        <p:ajaxStatus>
+            <f:facet name="start">
+                <h:graphicImage library="images" name="loading.gif"/>
+                <h:outputLabel value="Aguarde..."/>
+            </f:facet>
+            <f:facet name="complete">
+                <h:outputText value=""/>
+            </f:facet>
+        </p:ajaxStatus>
+
+        <h:inputHidden id="dateTime" value="#{hostingBean.hosting.dateTime}" >
+            <f:convertDateTime pattern="dd/MM/yyyy hh:MM:ss" locale="pt_BR"/>
+        </h:inputHidden>
+
+        <h:panelGroup id="itemsOutGrid">
+
+            <h:panelGrid columns="4" border="0">
+
+
+                <p:outputLabel for="availableRoom" value="#{localeBR.roomNumber}" style="margin-right: 30px"/>
+                <p:selectOneMenu id="availableRoom" value="#{hostingBean.hosting.roomFK}"
+                                 required="true" requiredMessage="Um quarto precisa ser selecionado.">
+                    <f:selectItems value="#{hostingBean.roomServices.freeRooms}" var="room" 
+                                   itemLabel="#{room}" itemValue="#{room}"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="hotelGuest" value="#{localeBR.hotelGuest} " />
+                <p:autoComplete id="hotelGuest" value="#{hostingBean.client}" forceSelection="true"
+                                completeMethod="#{hostingBean.autoCompleteClients}" var="client" size="36"
+                                itemValue="#{client}" class="upper" 
+                                itemLabel="#{client.name}" />
+                <!--required="true" requiredMessage="Um hospede precisa ser selecionado."-->
+            </h:panelGrid>
+            <p:watermark value="Pesquise por um cliente cadastrado" for="hotelGuest"/>
+
+
+            <h:panelGrid columns="5" border="0">
+
+                <p:outputLabel for="adultDependents" value="#{localeBR.adultDependents} " style="margin-right: 11px"/>
+                <p:inputText id="adultDependents" value="#{hostingBean.hosting.quantityDependent}"
+                             size="3" validatorMessage="Apenas números inteiros positivos" >
+                    <f:convertNumber type="number"/>
+                    <p:clientValidator event="keyup"/>
+                </p:inputText>
+
+                <p:outputLabel for="transport" value="#{localeBR.transport} "  style="margin-right: 11px"/>
+                <p:selectOneMenu id="transport" value="#{hostingBean.hosting.transport}" >
+                    <f:selectItem itemLabel="Selecione..."/>
+                    <f:selectItems value="#{hostingBean.transports}" var="transports" itemLabel="#{transports.description}"
+                                   itemValue="#{transports}"/>
+                </p:selectOneMenu>
+                <h:outputLabel/>
+
+
+                <p:outputLabel for="childrenDependents" value="#{localeBR.childrenDependents} "/>
+                <p:inputText id="childrenDependents" value="#{hostingBean.hosting.quantityChild}"
+                             size="3" />
+
+                <p:outputLabel for="reasonTravel" value="#{localeBR.reasonTravel} "/>
+                <p:selectOneMenu id="reasonTravel" value="#{hostingBean.hosting.reasonTravel}">
+                    <f:selectItem itemLabel="Selecione..."/>
+                    <f:selectItems value="#{hostingBean.reasonsTravel}" var="reason" itemLabel="#{reason.description}"
+                                   itemValue="#{transports}"/>
+                </p:selectOneMenu>
+
+                <h:panelGroup>
+                    <p:selectBooleanCheckbox id="wantFood" value="#{hostingBean.hosting.food}"
+                                             style="padding-right: 5px"/>
+                    <p:outputLabel for="wantFood" value="#{localeBR.wantFood}"/>
+                </h:panelGroup>
+
+            </h:panelGrid>
+
+        </h:panelGroup>
+
+        <h:panelGrid columns="2"  border="0">
+
+            <p:outputLabel for="forecastOutput" value="#{localeBR.forecastOutput}"/>
+            <p:calendar id="forecastOutput" value="#{hostingBean.hosting.forecastOutput}"
+                        navigator="true" pattern="dd/MM/yyyy HH:mm:ss" locale="pt"
+                        mindate="#{dateTimeUtilBean.dateToday}"   />
+            <!--required="true" requiredMessage="É necessário informar uma data."-->
+
+            <p:outputLabel for="guestSource" value="#{localeBR.guestSource}"/>
+            <p:inputText id="guestSource" value="#{hostingBean.hosting.source}"
+                         size="60" maxlength="50" styleClass="upper"/>
+
+            <p:outputLabel for="guestDestination" value="#{localeBR.guestDestination}"/>
+            <p:inputText id="guestDestination" value="#{hostingBean.hosting.nextDestination}"
+                         size="60" maxlength="50" styleClass="upper"/>
+
+            <p:outputLabel for="description" value="#{localeBR.observations}"/>
+            <p:inputTextarea id="description" rows="5" cols="58" maxlength="255" 
+                             value="#{hostingBean.hosting.observations}" styleClass="upper"
+                             autoResize="false" counter="counterDescription" 
+                             counterTemplate="{0} caracteres restantes"/>
+            <h:outputLabel/>
+            <p:outputLabel id="counterDescription" style="font-size: 12px"/>
+        </h:panelGrid>
+
+        <p:toolbar id="panelButtonsConsult" style="margin-top: 10px;">
+            <f:facet name="left">
+                <p:commandButton style="font-size: 13px;" value="#{localeBR.save}" 
+                                 action="#{hostingBean.save}"  id="saveButton" 
+                                 update="@form" icon="ui-icon ui-icon-disk">
+                    <!--, :tabViewHosting:searchHostingForm:datatableSearchHosting-->
+                </p:commandButton>
+            </f:facet>
+        </p:toolbar> 
+    </h:form>
+
+</ui:composition>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="/WEB-INF/templates/HeadFootTemplate.xhtml"> 
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="title">Cadastro de Quarto - HotelSys</ui:insert></title>
+    </h:head>
+
+    <ui:define name="content">
+        <p:tabView id="tabViewHosting" dynamic="true" cache="false">
+
+            <p:tab id="tabCadastreHosting" title="Cadastrar Hospedagem" >
+                <ui:include src="CadastreHosting.xhtml"/>    
+            </p:tab>
+
+            <p:tab title="Buscar Hospedagem" id="tabSearchHosting">
+                <ui:include src="SearchHosting.xhtml"/>
+            </p:tab>
+
+        </p:tabView>
+    </ui:define>
+</ui:composition>
