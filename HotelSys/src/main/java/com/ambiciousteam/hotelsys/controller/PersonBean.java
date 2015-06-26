@@ -3,10 +3,12 @@ package com.ambiciousteam.hotelsys.controller;
 import com.ambiciousteam.hotelsys.enumerations.Documentation;
 import com.ambiciousteam.hotelsys.enumerations.Gender;
 import com.ambiciousteam.hotelsys.enumerations.States;
+import com.ambiciousteam.hotelsys.services.PersonServices;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.enterprise.inject.Model;
+import javax.inject.Inject;
 
 /**
  *
@@ -14,6 +16,9 @@ import javax.enterprise.inject.Model;
  */
 @Model
 public class PersonBean {
+    
+    @Inject
+    private PersonServices personServices;
 
     private final List<States> states;
     private final List<Gender> genders;
@@ -25,6 +30,10 @@ public class PersonBean {
         states = Arrays.asList(States.values());
         genders = Arrays.asList(Gender.values());
         documentations = Arrays.asList(Documentation.values());
+    }
+    
+    public List<String> getReturnCountries() {
+        return personServices.returnCountries();
     }
     
     public List<States> getStates() {
@@ -39,7 +48,11 @@ public class PersonBean {
         return documentations;
     }
 
-    public static List<String> getCities() {
+    public List<String> getCities() {
         return cities;
+    }
+
+    public PersonServices getPersonServices() {
+        return personServices;
     }
 }

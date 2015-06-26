@@ -21,6 +21,13 @@ public class PersonDao extends AbstractDao<Individual> implements Serializable {
         return createQuery.getResultList();
     }
 
+     public List<String> returnCountries() {
+        Query createQuery;
+        createQuery = getEntityManager().createNativeQuery("SELECT nome FROM paises");
+        return createQuery.getResultList();
+    }
+    
+    
     public List<Individual> findByNameLike(String query) {
 
         Query createQuery = null;

@@ -46,6 +46,7 @@ public class IndividualBean implements Serializable {
             FacesUtil.redirectTo("SearchIndividual.xhtml");
         } else {
             FacesUtil.sucessMessage("Cadastro efetuado com sucesso!");
+            FacesUtil.redirectTo("CadastreIndividual.xhtml");
         }
         individual = new Individual();
     }

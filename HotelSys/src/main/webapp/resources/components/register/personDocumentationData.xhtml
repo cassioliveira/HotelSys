@@ -21,6 +21,7 @@
                 <f:selectItems value="#{personBean.documentations}" 
                                itemLabel="#{docType.description}" 
                                itemValue="#{docType}" var="docType"/>
+                <f:ajax execute="docType" render="issuingBody"/>
             </p:selectOneMenu>
 
             <p:outputLabel for="docTravelNumber" value="#{msg.docTravelNumber}: " />
@@ -28,7 +29,8 @@
                          value="#{cc.attrs.docNumber}" />
 
             <p:outputLabel for="issuingBody" value="#{msg.issuingBody}: " />
-            <p:inputText id="issuingBody" maxlength="15" size="15" value="#{cc.attrs.issuingBody}"/>
+            <p:inputText id="issuingBody" maxlength="15" size="15" value="#{cc.attrs.issuingBody}"
+                         disabled="#{cc.attrs.docType ne 'RG'}" placeholder="#{msg.issuingBodyPlaceholder}"/>
         </h:panelGrid>
 
     </composite:implementation>

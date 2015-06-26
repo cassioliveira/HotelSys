@@ -55,15 +55,15 @@
                         <h:panelGrid id="gridEndereco" columns="4">
                             <p:outputLabel for="uf" value="#{msg.state}:" />
                             <p:selectOneMenu id="uf" value="#{individualBean.individual.uf}" >
-                                <p:ajax process="@this" event="change" update="city" listener="#{individualBean.loadCities}"/>
                                 <f:selectItem itemLabel="#{msg.selectIt}..." noSelectionOption="true"/>
                                 <f:selectItems value="#{personBean.states}" itemValue="#{uf}" itemLabel="#{uf.description}" var="uf"/>
+                                <p:ajax process="@this" event="change" update="city" listener="#{individualBean.loadCities}"/>
                             </p:selectOneMenu>
 
                             <p:outputLabel for="city" value="#{msg.city}:" style="margin-left: 15px"/>
                             <p:selectOneMenu id="city" value="#{individualBean.individual.city}" filter="true" filterMatchMode="startsWith">
                                 <f:selectItem itemLabel="#{msg.selectIt}..." noSelectionOption="true"/>
-                                <f:selectItem itemLabel="FALTA FAZER"/>
+                                <f:selectItems value="#{personBean.cities}" var="city" itemLabel="#{city}" itemValue="#{city}"/>
                             </p:selectOneMenu>
                         </h:panelGrid>
 
@@ -84,14 +84,12 @@
 
                 <p:toolbar id="panelButtonsConsult" style="margin-top: 10px;">
                     <f:facet name="left">
-                        <p:commandButton style="font-size: 13px;" value="#{msg.save}" 
-                                         action="#{individualBean.save}" id="saveButton" icon="ui-icon ui-icon-disk"
-                                         update="@form" />
+                        <p:commandButton style="font-size: 13px;" value="#{msg.save}" icon="ui-icon ui-icon-disk" 
+                                         action="#{individualBean.save}" id="saveButton" update="@form"/>
                     </f:facet>
 
                     <f:facet name="right">
-                        <p:button value="#{msg.search}" id="searchRegister" 
-                                  outcome="/hotelGuest/SearchIndividual" 
+                        <p:button value="#{msg.search}" id="searchRegister" outcome="/hotelGuest/SearchIndividual" 
                                   icon="ui-icon ui-icon-pencil"/>
                     </f:facet>
                 </p:toolbar> 

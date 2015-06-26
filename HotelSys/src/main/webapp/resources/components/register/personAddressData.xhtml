@@ -34,8 +34,15 @@
             <h:outputLabel/>
 
             <p:outputLabel for="country" value="#{msg.country}: "/>
-            <p:inputText id="country" value="#{cc.attrs.country}" 
-                         maxlength="50" size="34"/>
+            <p:selectOneMenu id="country" value="#{cc.attrs.country}" style="width: 270px">
+                <f:selectItem itemLabel="#{msg.selectIt}..."/>
+                <f:selectItems value="#{personBean.returnCountries}" 
+                               itemLabel="#{countries}" 
+                               itemValue="#{countries}" var="countries"/>
+            </p:selectOneMenu>
+            
+<!--            <p:inputText id="country" value="#{cc.attrs.country}" 
+                         maxlength="50" size="34"/>-->
         </h:panelGrid>
 
     </composite:implementation>

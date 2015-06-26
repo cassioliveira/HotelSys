@@ -19,6 +19,10 @@ public class PersonServices implements Serializable {
         return personDao.returnCities(ufCode);
     }
 
+    public List<String> returnCountries() {
+        return personDao.returnCountries();
+    }
+    
     public List<Individual> completeMethod(String query) {
         return personDao.findByNameLike(query);
     }

@@ -5,6 +5,7 @@ import com.ambiciousteam.hotelsys.enumerations.Gender;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+import javax.annotation.PostConstruct;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -51,6 +52,14 @@ public class Individual extends Person implements Serializable {
 //    @ManyToOne
 //    @JoinColumn(name = "hosting_fk", referencedColumnName = "id")
 //    private Hosting hostingFK;
+    /**
+     * Este método anotado com @PostConstruct é executado na inicialização da
+     * entidade e seta o país padrão para o Brasil.
+     */
+    @PostConstruct
+    public void init() {
+        setCountry("Brasil");
+    }
 
     public String getCpfIndividual() {
         return cpfIndividual;
