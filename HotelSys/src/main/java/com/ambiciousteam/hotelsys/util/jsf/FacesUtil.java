@@ -1,7 +1,10 @@
 package com.ambiciousteam.hotelsys.util.jsf;
 
+import java.io.IOException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  * Classe com métodos utilitários para adicionar mensagens às telas, geralmente,
@@ -10,6 +13,8 @@ import javax.faces.context.FacesContext;
  * @author cassio
  */
 public class FacesUtil {
+
+    private static final Log LOGGER = LogFactory.getLog(FacesUtil.class);
 
     private FacesUtil() {
     }
@@ -58,6 +63,26 @@ public class FacesUtil {
             errorMessage(msg);
         } else {
             errorMessage(mensagemPadrao);
+        }
+    }
+
+    /**
+     * Método que recebe uma pagina com extensão (.xhtml, .jsf, .jsp, etc) como
+     * parâmetro e, usando o contexto do JSF, faz o redirecionamento para a
+     * página informada. Por padrão, uma mensagem passada pelo FacesMessage, não
+     * é mantida quando um 'redirect' é feito, a menos que o escopo do Bean seja
+     * de sessão (o que não é muito legal a menos que seja em casos
+     * especificos). Para resolver isso, é usado o, não tão conhecido, escopo
+     * 'Flash' que mantém a mensagem mesmo após o redirecionamto de página.
+     *
+     * @param pagina
+     */
+    public static void redirectTo(String pagina) {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
+            FacesContext.getCurrentInstance().getExternalContext().redirect(pagina);
+        } catch (IOException ex) {
+            LOGGER.error(FacesUtil.class.getName() + ex);
         }
     }
 

@@ -10,7 +10,7 @@
         (internationalization). -->
         <resource-bundle>
             <base-name>i18n.localeBR</base-name>
-            <var>localeBR</var>
+            <var>msg</var>
         </resource-bundle>
         
         <resource-bundle>

@@ -10,39 +10,39 @@
 
             <p:menuitem icon="ui-icon ui-icon-home" title="Tela incicial" id="homeButton" outcome="/Home.xhtml"/>
 
-            <p:menuitem value="#{localeBR.hotelGuest}" url="/hotelGuest/CadastreIndividualClient.xhtml" icon="ui-icon-person"/>
+            <p:menuitem value="#{msg.hotelGuest}" url="/hotelGuest/CadastreIndividual.xhtml" icon="ui-icon-person"/>
 
-            <p:menuitem value="#{localeBR.room}" url="/room/CadastreRoom.xhtml" icon="ui-icon-home"/>
+            <p:menuitem value="#{msg.room}" url="/room/CadastreRoom.xhtml" icon="ui-icon-home"/>
 
-            <!--<p:menuitem value="#{localeBR.hosting}" outcome="/hosting/CadastreHosting.xhtml" icon="ui-icon-pencil"/>-->
+            <!--<p:menuitem value="#{msg.hosting}" outcome="/hosting/CadastreHosting.xhtml" icon="ui-icon-pencil"/>-->
 
-            <!--<p:menuitem value="#{localeBR.reports}" url="/provider/SearchProvider.xhtml" icon="ui-icon-search"/>-->
+            <!--<p:menuitem value="#{msg.reports}" url="/provider/SearchProvider.xhtml" icon="ui-icon-search"/>-->
 
-<!--            <p:submenu label="#{localeBR.help}" icon="ui-icon ui-icon-help">
-                <p:menuitem value="#{localeBR.credits}" onclick="PF('developers').show();
+<!--            <p:submenu label="#{msg.help}" icon="ui-icon ui-icon-help">
+                <p:menuitem value="#{msg.credits}" onclick="PF('developers').show();
                         return false;"
                             icon="ui-icon-link"/>
                 <p:separator/>
-                <p:menuitem value="#{localeBR.manual}" url="/provider/SearchProvider.xhtml" 
+                <p:menuitem value="#{msg.manual}" url="/provider/SearchProvider.xhtml" 
                             icon="ui-icon-note"/>
                 <p:separator/>
-                <p:menuitem value="#{localeBR.aboutTheSystem}" url="/provider/SearchProvider.xhtml" icon="ui-icon-info"
+                <p:menuitem value="#{msg.aboutTheSystem}" url="/provider/SearchProvider.xhtml" icon="ui-icon-info"
                             onclick="PF('about').show();
                                     return false;"/>
             </p:submenu>-->
 
-            <p:menuitem icon="ui-icon ui-icon-power" title="Clique para sair" value="#{localeBR.exit}" id="exitButton" outcome="/Login.xhtml"/>
+            <p:menuitem icon="ui-icon ui-icon-power" title="Clique para sair" value="#{msg.exit}" id="exitButton" outcome="/Login.xhtml"/>
 
 
         </p:menubar>
     </h:form>
 
-    <div id="clock" >
+<!--    <div id="clock" >
         <p:clock pattern="dd/MM/yyyy HH:mm:ss"/>
-    </div>
+    </div>-->
 
     <!-- Dialog informing about the software--> 
-    <p:dialog widgetVar="about" header="#{localeBR.appName} - #{localeBR.appSlogan}" modal="true" 
+    <p:dialog widgetVar="about" header="#{msg.appName} - #{msg.appSlogan}" modal="true" 
               resizable="false" draggable="false" id="aboutSystem">
         <h:form>
 
@@ -50,17 +50,17 @@
     </p:dialog>
 
     <!-- Dialog informing about the developers and credits --> 
-    <p:dialog widgetVar="developers" header="#{localeBR.appName} - #{localeBR.credits}" modal="true"  resizable="false" 
+    <p:dialog widgetVar="developers" header="#{msg.appName} - #{msg.credits}" modal="true"  resizable="false" 
               draggable="false" id="developersInformation" width="500px" height="180px">
         <h:form>
-            <h1 align="center" style="padding-bottom: 10px">#{localeBR.developersGroup}</h1>
+            <h1 align="center" style="padding-bottom: 10px">#{msg.developersGroup}</h1>
 
             <div style="float: left; text-align: center; padding: 25px 25px 50px 25px; ">
                 <p:graphicImage library="images" name="at-mini.png"/>
             </div>
 
             <div style="text-align: center;">
-                <p:outputLabel value="#{localeBR.developers}:"/>
+                <p:outputLabel value="#{msg.developers}:"/>
             </div>
 
             <div style="text-align: center; padding-top: 10px;">

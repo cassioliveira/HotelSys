@@ -81,12 +81,12 @@ public class Room implements Serializable {
     private Date dateTime;
 
     /* Attibutes to relationship of Entities */
-    @ManyToOne
-    @JoinColumn(name = "employee_fk", referencedColumnName = "id")
-    private Employee employeeFK;
-
-    @OneToMany(mappedBy = "roomFK", cascade = CascadeType.ALL)
-    private List<Hosting> hostings;
+//    @ManyToOne
+//    @JoinColumn(name = "employee_fk", referencedColumnName = "id")
+//    private Employee employeeFK;
+//
+//    @OneToMany(mappedBy = "roomFK", cascade = CascadeType.ALL)
+//    private List<Hosting> hostings;
 
     public Long getId() {
         return id;
@@ -216,22 +216,6 @@ public class Room implements Serializable {
         this.dateTime = new DateTimeUtilBean().dateHour();
     }
 
-    public Employee getEmployeeFK() {
-        return employeeFK;
-    }
-
-    public void setEmployeeFK(Employee employeeFK) {
-        this.employeeFK = employeeFK;
-    }
-
-    public List<Hosting> getHostings() {
-        return hostings;
-    }
-
-    public void setHostings(List<Hosting> hostings) {
-        this.hostings = hostings;
-    }
-
     @Override
     public int hashCode() {
         int hash = 3;
@@ -252,10 +236,7 @@ public class Room implements Serializable {
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
-        if (!Objects.equals(this.number, other.number)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.number, other.number);
     }
 
 }

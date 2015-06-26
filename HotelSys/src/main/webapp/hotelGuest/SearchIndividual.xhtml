@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/templates/HeadFootTemplate.xhtml"> 
+
+    <ui:define name="content">
+
+        <h:form id="searchIndividualForm">
+
+            <p:growl/>
+
+            <p:fieldset legend="#{msg.searchCadastreHotelguest}" >
+                <p:toolbar>
+                    <f:facet name="right">
+                        <p:button outcome="/hotelGuest/CadastreIndividual" value="#{msg.newRegister}" style="text-align: right"/>
+                    </f:facet>
+                </p:toolbar>    
+
+                <p:dataTable id="datatableIndividual" var="individual" value="#{individualBean.individuals}"
+                             paginatorAlwaysVisible="false" style="margin-top: 1px; " rows="10" widgetVar="individualSearch"
+                             emptyMessage="#{msg.noRegistersFound}" paginator="true" paginatorPosition="bottom"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20,50,100"
+                             scrollable="true" scrollRows="10" scrollHeight="210">
+
+                    <f:facet name="header">
+                        <p:outputPanel>
+                            <p:inputText id="globalFilter" onkeyup="PF('individualSearch').filter()" style="width:300px" placeholder="#{msg.searchAnyField}"/>
+                        </p:outputPanel>
+                    </f:facet>
+
+                    <p:column headerText="#{msg.id}" filterMatchMode="contains" width="1%" filterStyle="display:none"
+                              filterBy="#{individual.id}">
+                        <h:outputText value="#{individual.id}"  style="text-align: left"/>
+                    </p:column>
+
+                    <p:column headerText="#{msg.name}" filterMatchMode="contains" width="100" filterStyle="display:none"
+                              filterBy="#{individual.name}">
+                        <h:outputText value="#{individual.name}"  style="text-align: left"/>
+                    </p:column>
+
+                    <p:column headerText="#{msg.cpf}" style="text-align: center" width="30" filterMatchMode="startsWith" 
+                              filterStyle="display:none" filterBy="#{individual.cpfIndividual}">
+                        <h:outputText value="#{individual.cpfIndividual}" converter="cpfConverter"/>
+                    </p:column>
+
+                    <p:column headerText="#{msg.phone1}" style="text-align: center" width="30" filterMatchMode="contains" 
+                              filterStyle="display:none" filterBy="#{individual.phone1}">
+                        <h:outputText value="#{individual.phone1}"/>
+                    </p:column>
+
+                    <p:column headerText="#{msg.birthDate}" style="text-align: center" filterMatchMode="contains"
+                              width="40" filterStyle="display:none" filterBy="#{individual.birthDate}">
+                        <h:outputText value="#{individual.birthDate}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" type="date" locale="pt_BR"/>
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column headerText="#{msg.actions}" style="text-align: center" width="25">
+                        <p:commandButton id="viewButton" title="#{msg.view}" icon="ui-icon ui-icon-extlink" style="font-size: 10px">
+                            <p:tooltip for="viewButton" value="Visualiza detalhes da linha selecionada"/>
+                        </p:commandButton>   
+
+                        <p:button id="editButton" title="#{msg.edit}" icon="ui-icon ui-icon-pencil" style="font-size: 10px" outcome="/hotelGuest/CadastreIndividual">
+                            <f:param  name="individual" value="#{individual.id}"/>
+                            <p:tooltip for="editButton" value="Edita dados da linha selecionada"/>
+                        </p:button>
+
+                        <p:commandButton id="deleteButton" title="#{msg.delete}" icon="ui-icon ui-icon-trash" style="font-size: 10px" 
+                                         action="#{individualBean.remove}" process="@this" update="datatableIndividual">
+                            <f:setPropertyActionListener target="#{individualBean.selectedIndividual}" value="#{individual}"/>
+                            <p:tooltip for="deleteButton" value="Excluir a linha selecionada"/>
+                            <p:confirm icon="ui-icon-alert" header="#{msg.exclusionCadastreHosting}" message="#{msg.realyExcludeHotelguest}"/>
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+
+            </p:fieldset>
+
+        </h:form>
+    </ui:define>
+</ui:composition>

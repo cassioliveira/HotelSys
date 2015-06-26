@@ -99,12 +99,12 @@ public class Hosting implements Serializable {
     private boolean checkout;
 
     /* Attibutes to relationship of Entities */
-    @ManyToOne
-    @JoinColumn(name = "roomfk_id", nullable = false)
-    private Room roomFK;
-
-    @OneToMany(mappedBy = "hostingFK", targetEntity = Client.class)
-    private List<Client> clients;
+//    @ManyToOne
+//    @JoinColumn(name = "roomfk_id", nullable = false)
+//    private Room roomFK;
+//
+//    @OneToMany(mappedBy = "hostingFK", targetEntity = Individual.class)
+//    private List<Individual> clients;
 
 //    @ManyToOne
 //    @JoinColumn(name = "employee_fk", referencedColumnName = "id") //TEM QUE FAZER QUE PEGUE O USUÁRIO LOGADO E NÃO O FUNCIONÁRIO!!
@@ -266,22 +266,6 @@ public class Hosting implements Serializable {
         this.checkout = checkout;
     }
 
-    public Room getRoomFK() {
-        return roomFK;
-    }
-
-    public void setRoomFK(Room roomFK) {
-        this.roomFK = roomFK;
-    }
-
-    public List<Client> getClients() {
-        return clients;
-    }
-
-    public void setClients(List<Client> clients) {
-        this.clients = clients;
-    }
-
     @Override
     public int hashCode() {
         int hash = 7;
@@ -298,10 +282,7 @@ public class Hosting implements Serializable {
             return false;
         }
         final Hosting other = (Hosting) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.id, other.id);
     }
 
 }

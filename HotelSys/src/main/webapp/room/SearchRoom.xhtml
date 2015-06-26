@@ -10,83 +10,83 @@
     <h:form id="searchRoom">
 
         <p:dataTable id="datatableSearchRoom" var="room" value="#{roomBean.rooms}"
-                     paginatorAlwaysVisible="false" style="margin-top: 1px; text-transform: uppercase" 
+                     paginatorAlwaysVisible="false" style="margin-top: 1px; " 
                      rows="10" paginatorPosition="bottom"
-                     emptyMessage="#{localeBR.noRegistersFound}" paginator="true" widgetVar="roomSearch"
+                     emptyMessage="#{msg.noRegistersFound}" paginator="true" widgetVar="roomSearch"
                      paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
                      {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20,50,100"
                      scrollable="true" scrollRows="10" scrollHeight="210">
 
             <f:facet name="header">
                 <p:outputPanel>
-                    <p:outputLabel id="globalFilterMsg" value="#{localeBR.searchAllFieldsMsg}: "/>
+                    <p:outputLabel id="globalFilterMsg" value="#{msg.searchAllFieldsMsg}: "/>
                     <p:inputText id="globalFilter" size="80" onkeyup="PF('roomSearch').filter()" style="width:150px"/>
                 </p:outputPanel>
             </f:facet>
 
-            <p:column headerText="#{localeBR.room}" style="text-align: center" width="40" filterStyle="max-width:30px"
+            <p:column headerText="#{msg.room}" style="text-align: center" width="40" filterStyle="max-width:30px"
                       filterBy="#{room.number}" filterMatchMode="exact">
                 <h:outputText value="#{room.number}"/>
             </p:column>
 
-            <p:column headerText="#{localeBR.description}"  filterMatchMode="contains" 
+            <p:column headerText="#{msg.description}"  filterMatchMode="contains" 
                       filterBy="#{room.description}" width="250">
                 <h:outputText value="#{room.description}"  style="text-align: left"/>
             </p:column>
 
-            <p:column headerText="#{localeBR.extensionNumber}" style="text-align: center" width="30" filterStyle="max-width:30px"
+            <p:column headerText="#{msg.extensionNumber}" style="text-align: center" width="30" filterStyle="max-width:30px"
                        filterBy="#{room.extensionNumber}" filterMatchMode="contains">
                 <h:outputText value="#{room.extensionNumber}"/>
             </p:column>
 
-            <p:column headerText="#{localeBR.tv}" style="text-align: center" width="30" filterStyle="max-width:30px"
+            <p:column headerText="#{msg.tv}" style="text-align: center" width="30" filterStyle="max-width:30px"
                       filterBy="#{room.tv}" filterMatchMode="contains">
                 <h:outputText value="#{room.tv ? 'Sim':'Não'}"/>
             </p:column>
 
-            <p:column headerText="#{localeBR.cableTv}" style="text-align: center" width="30" filterStyle="max-width:30px"
+            <p:column headerText="#{msg.cableTv}" style="text-align: center" width="30" filterStyle="max-width:30px"
                       filterBy="#{room.cableTv}" filterMatchMode="contains" >
                 <h:outputText value="#{room.cableTv ? 'Sim':'Não'}"/>
             </p:column>
 
-            <p:column headerText="#{localeBR.fridge}" style="text-align: center" width="30" filterStyle="max-width:30px"
+            <p:column headerText="#{msg.fridge}" style="text-align: center" width="30" filterStyle="max-width:30px"
                       filterBy="#{room.fridge}" filterMatchMode="contains" >
                 <h:outputText value="#{room.fridge ? 'Sim':'Não'}"/>
             </p:column>
 
-            <p:column headerText="#{localeBR.bunk}" style="text-align: center" width="30" filterStyle="max-width:30px"
+            <p:column headerText="#{msg.bunk}" style="text-align: center" width="30" filterStyle="max-width:30px"
                       filterBy="#{room.bunk}" filterMatchMode="contains" >
                 <h:outputText value="#{room.bunk ? 'Sim':'Não'}"/>
             </p:column>
 
-            <p:column headerText="#{localeBR.doubleBed}" style="text-align: center" width="30" filterStyle="max-width:30px"
+            <p:column headerText="#{msg.doubleBed}" style="text-align: center" width="30" filterStyle="max-width:30px"
                       filterBy="#{room.doubleBed}" filterMatchMode="contains" >
                 <h:outputText value="#{room.doubleBed ? 'Sim':'Não'}"/>
             </p:column>
 
-            <p:column headerText="#{localeBR.singleBed}" style="text-align: center" width="30" filterStyle="max-width:30px"
+            <p:column headerText="#{msg.singleBed}" style="text-align: center" width="30" filterStyle="max-width:30px"
                       filterBy="#{room.singleBed}" filterMatchMode="contains" >
                 <h:outputText value="#{room.singleBed ? 'Sim':'Não'}"/>
             </p:column>
 
-            <p:column headerText="#{localeBR.dvd}" style="text-align: center" width="30" filterStyle="max-width:30px"
+            <p:column headerText="#{msg.dvd}" style="text-align: center" width="30" filterStyle="max-width:30px"
                       filterBy="#{room.dvd}" filterMatchMode="contains" >
                 <h:outputText value="#{room.dvd ? 'Sim':'Não'}"/>
             </p:column>
 
-            <p:column headerText="#{localeBR.airConditioning}" style="text-align: center" width="30" filterStyle="max-width:30px"
+            <p:column headerText="#{msg.airConditioning}" style="text-align: center" width="30" filterStyle="max-width:30px"
                      filterBy="#{room.airConditioning}" filterMatchMode="contains" >
                 <h:outputText value="#{room.airConditioning ? 'Sim':'Não'}"/>
             </p:column>
 
-            <p:column headerText="#{localeBR.actions}" style="text-align: center" width="80">
-                <p:commandButton id="viewButton" title="#{localeBR.view}" icon="ui-icon ui-icon-extlink" style="font-size: 10px">
+            <p:column headerText="#{msg.actions}" style="text-align: center" width="80">
+                <p:commandButton id="viewButton" title="#{msg.view}" icon="ui-icon ui-icon-extlink" style="font-size: 10px">
                     <p:tooltip for="viewButton" value="Visualiza detalhes da linha selecionada"/>
                 </p:commandButton>                
-                <p:commandButton id="editButton" title="#{localeBR.edit}" icon="ui-icon ui-icon-pencil" style="font-size: 10px">
+                <p:commandButton id="editButton" title="#{msg.edit}" icon="ui-icon ui-icon-pencil" style="font-size: 10px">
                     <p:tooltip for="editButton" value="Edita dados da linha selecionada"/>
                 </p:commandButton>
-                <p:commandButton id="deleteButton" title="#{localeBR.delete}" icon="ui-icon ui-icon-trash" style="font-size: 10px">
+                <p:commandButton id="deleteButton" title="#{msg.delete}" icon="ui-icon ui-icon-trash" style="font-size: 10px">
                     <p:tooltip for="deleteButton" value="Excluir a linha selecionada"/>
                 </p:commandButton>
             </p:column>

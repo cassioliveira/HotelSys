@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:hotelsys="http://xmlns.jcp.org/jsf/composite/components/register"
+                template="/WEB-INF/templates/HeadFootTemplate.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="individual" value="#{individualBean.individual}"/>
+    </f:metadata>
+
+    <ui:define name="content">
+
+        <h:form id="formCadastreIndividual" enctype="multipart/form-data">
+
+            <p:growl/>
+
+            <p:fieldset legend="#{individualBean.editing ? msg.editCadastreHotelguest : msg.newRegisterHotelguest}" >
+
+                <p:dialog modal="true" widgetVar="statusDialog" header="Aguarde" draggable="false" closable="false" resizable="false">
+                    <p:graphicImage library="images" name="loading.gif"/>
+                </p:dialog>
+
+                <h:inputHidden value="#{individualBean.individual.date}" >
+                    <f:convertDateTime type="both" locale="pt_BR" pattern="dd/MM/yyyy HH:mm:ss"/>
+                </h:inputHidden>
+
+                <h:panelGrid columns="2">
+
+                    <p:graphicImage library="images" name="avatar.png" style="height: 100px; margin-bottom: 5px"/>
+
+                    <hotelsys:personRequiredFields cpf="#{individualBean.individual.cpfIndividual}" 
+                                                   name="#{individualBean.individual.name}" 
+                                                   phone1="#{individualBean.individual.phone1}"/>
+
+                </h:panelGrid>
+                <p:tabView id="complementaryCadastreData">
+
+                    <p:tab id="tabComplementaryPersonal" title="Pessoal" >
+                        <hotelsys:personPersonalData birthDate="#{individualBean.individual.birthDate}" 
+                                                     gender="#{individualBean.individual.gender}"
+                                                     nickName="#{individualBean.individual.nickName}"
+                                                     profession="#{individualBean.individual.profession}"/>
+                    </p:tab>
+
+                    <p:tab id="tabComplementaryContact" title="Contato">
+                        <hotelsys:personContactData email="#{individualBean.individual.email}" 
+                                                    phone2="#{individualBean.individual.phone2}"/>
+                    </p:tab>
+
+                    <p:tab id="tabComplementaryAddress" title="Endereço">
+                        <h:panelGrid id="gridEndereco" columns="4">
+                            <p:outputLabel for="uf" value="#{msg.state}:" />
+                            <p:selectOneMenu id="uf" value="#{individualBean.individual.uf}" >
+                                <p:ajax process="@this" event="change" update="city" listener="#{individualBean.loadCities}"/>
+                                <f:selectItem itemLabel="#{msg.selectIt}..." noSelectionOption="true"/>
+                                <f:selectItems value="#{personBean.states}" itemValue="#{uf}" itemLabel="#{uf.description}" var="uf"/>
+                            </p:selectOneMenu>
+
+                            <p:outputLabel for="city" value="#{msg.city}:" style="margin-left: 15px"/>
+                            <p:selectOneMenu id="city" value="#{individualBean.individual.city}" filter="true" filterMatchMode="startsWith">
+                                <f:selectItem itemLabel="#{msg.selectIt}..." noSelectionOption="true"/>
+                                <f:selectItem itemLabel="FALTA FAZER"/>
+                            </p:selectOneMenu>
+                        </h:panelGrid>
+
+                        <hotelsys:personAddressData country="#{individualBean.individual.country}" 
+                                                    neighborhood="#{individualBean.individual.neighborhood}" 
+                                                    number="#{individualBean.individual.number}" 
+                                                    postalCode="#{individualBean.individual.postalCode}" 
+                                                    street="#{individualBean.individual.street}"/>
+                    </p:tab>
+
+                    <p:tab id="tabComplementaryDocumentation" title="Documentação">
+                        <hotelsys:personDocumentationData docNumber="#{individualBean.individual.docTravelNumber}" 
+                                                          docType="#{individualBean.individual.travelDocType}" 
+                                                          issuingBody="#{individualBean.individual.issuingBody}"/>
+                    </p:tab>
+
+                </p:tabView>
+
+                <p:toolbar id="panelButtonsConsult" style="margin-top: 10px;">
+                    <f:facet name="left">
+                        <p:commandButton style="font-size: 13px;" value="#{msg.save}" 
+                                         action="#{individualBean.save}" id="saveButton" icon="ui-icon ui-icon-disk"
+                                         update="@form" />
+                    </f:facet>
+
+                    <f:facet name="right">
+                        <p:button value="#{msg.search}" id="searchRegister" 
+                                  outcome="/hotelGuest/SearchIndividual" 
+                                  icon="ui-icon ui-icon-pencil"/>
+                    </f:facet>
+                </p:toolbar> 
+            </p:fieldset>
+            <p:blockUI block="formCadastreIndividual" trigger="saveButton"/>
+        </h:form>
+
+        <p:dialog widgetVar="siteReceita" header="Consulta de CPF na Receita Federal" modal="true" 
+                  resizable="false" closable="true" draggable="true" id="siteReceita">
+            <iframe height="500" width="800" 
+                    src="http://www.receita.fazenda.gov.br/aplicacoes/atcta/cpf/consultapublica.asp#theForm"/>
+        </p:dialog>
+
+
+    </ui:define>
+
+</ui:composition>

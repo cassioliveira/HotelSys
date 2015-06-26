@@ -1,17 +1,11 @@
 html, body{height: 100%;}
 
 body {
-    background-color: #ffffff;
     font-size: 12px;
-    font-family: Frutlger,Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
-    color: #000000;  
-    margin: 0px;
-    line-height: 11px;
 }
 
 h1 {
     font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
-    font-size:  16px;
     font-weight: bold;
     margin: 0px;
     padding: 0px;
@@ -37,7 +31,7 @@ a:link:hover, a:visited:hover  {
 }
 
 .upper{
-    text-transform: uppercase;
+    ;
 }
 
 .lower{

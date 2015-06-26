@@ -1,8 +1,5 @@
 package com.ambiciousteam.hotelsys.model;
 
-import com.ambiciousteam.hotelsys.controller.DateTimeUtilBean;
-import com.ambiciousteam.hotelsys.enumerations.Documentation;
-import com.ambiciousteam.hotelsys.enumerations.Gender;
 import com.ambiciousteam.hotelsys.enumerations.States;
 import java.io.Serializable;
 import java.util.Date;
@@ -14,11 +11,12 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 /**
@@ -26,7 +24,8 @@ import javax.validation.constraints.Size;
  * @author cassio
  */
 @Entity
-public class Client implements Serializable {
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -42,6 +41,8 @@ public class Client implements Serializable {
     @Column(name = "client_nick_name", length = 100)
     private String nickName;
 
+    @Pattern(regexp = "^$|^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})$",
+            message = "E-mail com formato incorreto")
     @Size(min = 0, max = 100)
     @Column(name = "client_email", length = 100)
     private String email;
@@ -81,37 +82,12 @@ public class Client implements Serializable {
     @Column(name = "client_phone2")
     private String phone2;
 
+    @Column(name = "client_nationality")
+    private String nationality;
+
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "client_date_time")
-    private Date dateTime;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "client_gender")
-    private Gender gender;
-
-    @Column(name = "client_cpf", length = 11, unique = true)
-    private String cpf;
-
-    @Column(name = "client_doc_travel_number", length = 15)
-    private String docTravelNumber;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "client_travel_doc_type", length = 50)
-    private Documentation travelDocType;
-
-    @Column(name = "client_issuing_body", length = 15)
-    private String issuingBody;
-
-    @Column(name = "client_profession", length = 100)
-    private String profession;
-
-    @Temporal(TemporalType.DATE)
-    @Column(name = "client_birthdate")
-    private Date birthDate;
-
-    @ManyToOne
-    @JoinColumn(name = "hosting_fk", referencedColumnName = "id")
-    private Hosting hostingFK;
+    @Column(name = "client_date")
+    private Date date;
 
     public Long getId() {
         return id;
@@ -217,83 +193,27 @@ public class Client implements Serializable {
         this.phone2 = phone2;
     }
 
-    public Date getDateTime() {
-        return dateTime;
+    public String getNationality() {
+        return nationality;
     }
 
-    public void setDateTime(Date dateTime) {
-        this.dateTime = new DateTimeUtilBean().dateHour();
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
     }
 
-    public Gender getGender() {
-        return gender;
+    public Date getDate() {
+        return date;
     }
 
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getDocTravelNumber() {
-        return docTravelNumber;
-    }
-
-    public void setDocTravelNumber(String docTravelNumber) {
-        this.docTravelNumber = docTravelNumber;
-    }
-
-    public Documentation getTravelDocType() {
-        return travelDocType;
-    }
-
-    public void setTravelDocType(Documentation travelDocType) {
-        this.travelDocType = travelDocType;
-    }
-
-    public String getIssuingBody() {
-        return issuingBody;
-    }
-
-    public void setIssuingBody(String issuingBody) {
-        this.issuingBody = issuingBody;
-    }
-
-    public String getProfession() {
-        return profession;
-    }
-
-    public void setProfession(String profession) {
-        this.profession = profession;
-    }
-
-    public Date getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public Hosting getHostingFK() {
-        return hostingFK;
-    }
-
-    public void setHostingFK(Hosting hostingFK) {
-        this.hostingFK = hostingFK;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 79 * hash + Objects.hashCode(this.id);
-        return hash;
+        int hashPerson = 7;
+        hashPerson = 53 * hashPerson + Objects.hashCode(this.id);
+        return hashPerson;
     }
 
     @Override
@@ -304,11 +224,8 @@ public class Client implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Client other = (Client) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
+        final Person other = (Person) obj;
+        return Objects.equals(this.id, other.id);
     }
 
 }

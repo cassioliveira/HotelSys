@@ -33,47 +33,47 @@
                     </h:inputHidden>
 
                     <h:panelGrid columns="3" cellpadding="1">
-                        <p:outputLabel value="#{localeBR.items}" style="margin-right: 35px"/>
+                        <p:outputLabel value="#{msg.items}" style="margin-right: 35px"/>
                         <h:panelGroup>
                             <h:panelGrid columns="3" cellpadding="1">
-                                <p:selectBooleanCheckbox id="doubleBed" itemLabel="#{localeBR.doubleBed}" value="#{roomBean.room.doubleBed}"/>
-                                <p:selectBooleanCheckbox id="singleBed" itemLabel="#{localeBR.singleBed}" value="#{roomBean.room.singleBed}"/>
-                                <p:selectBooleanCheckbox id="air" itemLabel="#{localeBR.airConditioning}" value="#{roomBean.room.airConditioning}"/>
-                                <p:selectBooleanCheckbox id="dvd" itemLabel="#{localeBR.dvd}" value="#{roomBean.room.dvd}"/>
-                                <p:selectBooleanCheckbox id="tv" itemLabel="#{localeBR.tv}" value="#{roomBean.room.tv}">
+                                <p:selectBooleanCheckbox id="doubleBed" itemLabel="#{msg.doubleBed}" value="#{roomBean.room.doubleBed}"/>
+                                <p:selectBooleanCheckbox id="singleBed" itemLabel="#{msg.singleBed}" value="#{roomBean.room.singleBed}"/>
+                                <p:selectBooleanCheckbox id="air" itemLabel="#{msg.airConditioning}" value="#{roomBean.room.airConditioning}"/>
+                                <p:selectBooleanCheckbox id="dvd" itemLabel="#{msg.dvd}" value="#{roomBean.room.dvd}"/>
+                                <p:selectBooleanCheckbox id="tv" itemLabel="#{msg.tv}" value="#{roomBean.room.tv}">
                                     <f:ajax render="cableTv"/>
                                 </p:selectBooleanCheckbox>
-                                <p:selectBooleanCheckbox id="cableTv" itemLabel="#{localeBR.cableTv}" value="#{roomBean.room.cableTv}"/>
-                                <p:selectBooleanCheckbox id="fridge" itemLabel="#{localeBR.fridge}" value="#{roomBean.room.fridge}"/>
-                                <p:selectBooleanCheckbox id="bunk" itemLabel="#{localeBR.bunk}" value="#{roomBean.room.bunk}"/>
+                                <p:selectBooleanCheckbox id="cableTv" itemLabel="#{msg.cableTv}" value="#{roomBean.room.cableTv}"/>
+                                <p:selectBooleanCheckbox id="fridge" itemLabel="#{msg.fridge}" value="#{roomBean.room.fridge}"/>
+                                <p:selectBooleanCheckbox id="bunk" itemLabel="#{msg.bunk}" value="#{roomBean.room.bunk}"/>
                             </h:panelGrid>
                         </h:panelGroup>
                         <h:outputLabel/>
 
                     </h:panelGrid>
 
-                    <p:outputLabel for="number" value="#{localeBR.number}" style="margin-left: 3px; margin-right: 15px"/>
+                    <p:outputLabel for="number" value="#{msg.number}" style="margin-left: 3px; margin-right: 15px"/>
                     <p:inputText id="number" value="#{roomBean.room.number}" style="margin-right: 10px"
-                                 required="true" maxlength="7" size="13" styleClass="upper"
+                                 required="true" maxlength="7" size="13" 
                                  requiredMessage="O número do quarto deve ser informado"/>
 
-                    <p:outputLabel for="extensionNumber" value="#{localeBR.extensionNumber}"  style="margin-right: 10px; margin-left: 5px"/>
+                    <p:outputLabel for="extensionNumber" value="#{msg.extensionNumber}"  style="margin-right: 10px; margin-left: 5px"/>
                     <p:inputText id="extensionNumber" value="#{roomBean.room.extensionNumber}"
                                  maxlength="7" size="15" />
 
                     <h:panelGrid columns="4" cellpadding="1" border="0">
 
-                        <p:outputLabel for="category" value="#{localeBR.category}" />
-                        <p:inputText id="category" value="#{roomBean.room.category}" styleClass="upper"
+                        <p:outputLabel for="category" value="#{msg.category}" />
+                        <p:inputText id="category" value="#{roomBean.room.category}" 
                                      required="true" maxlength="50" size="42" 
                                      requiredMessage="Uma categoria deve ser informada"/>
                         <h:outputLabel/>
                         <h:outputLabel/>
 
-                        <p:outputLabel for="description" value="#{localeBR.description}"/>
+                        <p:outputLabel for="description" value="#{msg.description}"/>
                         <p:inputTextarea id="description" rows="5" cols="40" maxlength="255" value="#{roomBean.room.description}"
                                          autoResize="false" counter="counterDescription" counterTemplate="{0} caracteres restantes"
-                                         styleClass="upper"/>
+                                         />
                         <h:outputLabel/>
                         <h:outputLabel/>
                         <p:outputLabel/>
@@ -83,13 +83,13 @@
 
                     <p:toolbar id="panelButtonsConsult" style="margin-top: 10px;">
                         <f:facet name="left">
-                            <p:commandButton style="font-size: 13px;" value="#{localeBR.save}" action="#{roomBean.save}"  
+                            <p:commandButton style="font-size: 13px;" value="#{msg.save}" action="#{roomBean.save}"  
                                              id="saveButton" update="@form" icon="ui-icon ui-icon-disk"/>
                             <!--, :tabRoom:searchRoom:datatableSearchRoom-->
                         </f:facet>    
 
                         <f:facet name="right">
-                            <p:button value="#{localeBR.clearFields}" id="newRegister" outcome="/room/CadastreRoom" 
+                            <p:button value="#{msg.clearFields}" id="newRegister" outcome="/room/CadastreRoom" 
                                       icon="ui-icon ui-icon-pencil"/>
                         </f:facet>
                     </p:toolbar> 

@@ -10,45 +10,45 @@
 
         <p:panelGrid columns="2">
 
-            <p:outputLabel for="id" value="#{localeBR.id}" style="margin-right: 30px"/>
+            <p:outputLabel for="id" value="#{msg.id}" style="margin-right: 30px"/>
             <p:outputLabel id="id" value="#{hostingBean.hosting.id}" />
 
-            <p:outputLabel for="dateTime" value="#{localeBR.date}" style="margin-right: 30px"/>
+            <p:outputLabel for="dateTime" value="#{msg.date}" style="margin-right: 30px"/>
             <p:outputLabel id="dateTime" value="#{hostingBean.hosting.dateTime}" >
                 <f:convertDateTime pattern="dd/MM/yyyy hh:MM:ss" locale="pt_BR"/>
             </p:outputLabel>
 
-            <p:outputLabel for="availableRoom" value="#{localeBR.roomNumber}" style="margin-right: 30px"/>
+            <p:outputLabel for="availableRoom" value="#{msg.roomNumber}" style="margin-right: 30px"/>
             <p:outputLabel id="availableRoom" value="#{hostingBean.hosting.roomFK}"/>
 
-            <p:outputLabel for="hotelGuest" value="#{localeBR.hotelGuest} " />
+            <p:outputLabel for="hotelGuest" value="#{msg.hotelGuest} " />
             <p:outputLabel id="hotelGuest" value="#{hostingBean.client}" />
 
-            <p:outputLabel for="adultDependents" value="#{localeBR.adultDependents} " style="margin-right: 11px"/>
+            <p:outputLabel for="adultDependents" value="#{msg.adultDependents} " style="margin-right: 11px"/>
             <p:outputLabel id="adultDependents" value="#{hostingBean.hosting.quantityDependent}"/>
 
-            <p:outputLabel for="transport" value="#{localeBR.transport} "  style="margin-right: 11px"/>
+            <p:outputLabel for="transport" value="#{msg.transport} "  style="margin-right: 11px"/>
             <p:outputLabel id="transport" value="#{hostingBean.hosting.transport}"/>
 
-            <p:outputLabel for="childrenDependents" value="#{localeBR.childrenDependents} "/>
+            <p:outputLabel for="childrenDependents" value="#{msg.childrenDependents} "/>
             <p:outputLabel id="childrenDependents" value="#{hostingBean.hosting.quantityChild}"/>
 
-            <p:outputLabel for="reasonTravel" value="#{localeBR.reasonTravel} "/>
+            <p:outputLabel for="reasonTravel" value="#{msg.reasonTravel} "/>
             <p:outputLabel id="reasonTravel" value="#{hostingBean.hosting.reasonTravel}"/>
 
-            <p:outputLabel for="wantFood" value="#{localeBR.wantFood}"/>
+            <p:outputLabel for="wantFood" value="#{msg.wantFood}"/>
             <p:outputLabel id="wantFood" value="#{hostingBean.hosting.food}"/>
 
-            <p:outputLabel for="forecastOutput" value="#{localeBR.forecastOutput}"/>
+            <p:outputLabel for="forecastOutput" value="#{msg.forecastOutput}"/>
             <p:outputLabel id="forecastOutput" value="#{hostingBean.hosting.forecastOutput}"/>
 
-            <p:outputLabel for="guestSource" value="#{localeBR.guestSource}"/>
+            <p:outputLabel for="guestSource" value="#{msg.guestSource}"/>
             <p:outputLabel id="guestSource" value="#{hostingBean.hosting.source}"/>
 
-            <p:outputLabel for="guestDestination" value="#{localeBR.guestDestination}"/>
+            <p:outputLabel for="guestDestination" value="#{msg.guestDestination}"/>
             <p:outputLabel id="guestDestination" value="#{hostingBean.hosting.nextDestination}"/>
 
-            <p:outputLabel for="description" value="#{localeBR.observations}"/>
+            <p:outputLabel for="description" value="#{msg.observations}"/>
             <p:outputLabel id="description" value="#{hostingBean.hosting.observations}"/>
 
         </p:panelGrid>

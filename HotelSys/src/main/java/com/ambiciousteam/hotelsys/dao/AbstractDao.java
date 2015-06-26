@@ -18,7 +18,7 @@ public abstract class AbstractDao<T> implements Serializable {
     @Inject
     private EntityManager entityManager;
 
-    private Class<T> entity;
+    private final Class<T> entity;
 
     /**
      * Construtor da classe que captura a entidade que chamar esta classe.
@@ -80,23 +80,4 @@ public abstract class AbstractDao<T> implements Serializable {
     public T findById(Long id) {
         return entityManager.find(entity, id);
     }
-
-    /**
-     * Método get para a instância da entidade que usar esta classe
-     *
-     * @return
-     */
-    public Class<T> getEntity() {
-        return entity;
-    }
-
-    /**
-     * Método set para a instância da entidade que usar esta classe
-     *
-     * @param entity
-     */
-    public void setEntity(Class<T> entity) {
-        this.entity = entity;
-    }
-
 }

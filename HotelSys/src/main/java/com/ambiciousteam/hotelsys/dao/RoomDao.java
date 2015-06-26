@@ -16,14 +16,14 @@ public class RoomDao extends AbstractDao<Room> implements Serializable {
     }
 
     public List<Room> busyRooms() {
-        Query createQuery = null;
+        Query createQuery;
 
         createQuery = getEntityManager().createNativeQuery("select r.room_number from room as r, hosting as h where h.roomfk_id=r.id and h.hosting_checkout='false'");
         return createQuery.getResultList();
     }
 
     public List<Room> freeRooms() {
-        Query createQuery = null;
+        Query createQuery;
 
         createQuery = getEntityManager().createNativeQuery("SELECT r.room_number FROM room AS r WHERE r.room_status='LIVRE';");
         return createQuery.getResultList();
@@ -31,7 +31,7 @@ public class RoomDao extends AbstractDao<Room> implements Serializable {
     }
 
     public List<Room> freeHostingRooms() {
-        Query createQuery = null;
+        Query createQuery;
 
         createQuery = getEntityManager().createNativeQuery("select r.room_number from room as r, hosting as h where h.roomfk_id=r.id and h.hosting_checkout!='false'");
         return createQuery.getResultList();

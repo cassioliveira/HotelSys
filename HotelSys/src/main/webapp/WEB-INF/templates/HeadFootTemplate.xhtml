@@ -18,9 +18,9 @@
     <h:body>
         <header>
             <div id="logged-user-top-message" >
-                <h:outputLabel value="#{localeBR.welcome} "/>  
+                <h:outputLabel value="#{msg.welcome} "/>  
                 <h:link title="Editar configurações do usuário" style="color: #ffffff;">
-                    <h:outputLabel value="#{localeBR.user}"/>
+                    <h:outputLabel value="#{msg.user}"/>
                 </h:link>
             </div>
             <p:graphicImage library="images" name="hotel_sys_transp.png" styleClass="logo"/>
@@ -37,10 +37,20 @@
 
         <footer>
             <div id="bottom" >
-                <p:outputLabel value="#{localeBR.AppName}" style="float: left;"/>
-                <p:outputLabel value="#{localeBR.TeamSignature}" style="float: right;"/>
+                <p:outputLabel value="#{msg.AppName}" style="float: left;"/>
+                <p:outputLabel value="#{msg.TeamSignature}" style="float: right;"/>
             </div>
         </footer>
+        
+        <h:form>
+            <p:confirmDialog global="true">
+                <p:commandButton value="#{msg.no}" type="button" styleClass="ui-confirmdialog-no" 
+                                 icon="ui-icon-close"/>
+
+                <p:commandButton value="#{msg.yes}" type="button" styleClass="ui-confirmdialog-yes" 
+                                 icon="ui-icon-check"/>
+            </p:confirmDialog>
+        </h:form>
 
         <!--This script changes the mask of money format-->
         <script>
