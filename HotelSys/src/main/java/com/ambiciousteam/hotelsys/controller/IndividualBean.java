@@ -1,6 +1,5 @@
 package com.ambiciousteam.hotelsys.controller;
 
-import com.ambiciousteam.hotelsys.enumerations.Documentation;
 import com.ambiciousteam.hotelsys.exceptions.HotelSysException;
 import com.ambiciousteam.hotelsys.model.Individual;
 import com.ambiciousteam.hotelsys.services.IndividualServices;
@@ -11,8 +10,6 @@ import java.util.List;
 import javax.enterprise.inject.Model;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  *
@@ -22,8 +19,6 @@ import org.apache.commons.logging.LogFactory;
 public class IndividualBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    private static final Log LOGGER = LogFactory.getLog(IndividualBean.class);
 
     @Inject
     private IndividualServices individualServices;
@@ -38,7 +33,7 @@ public class IndividualBean implements Serializable {
     private Individual selectedIndividual;
 
     private List<Individual> individuals;
-
+    
     public void save() throws HotelSysException {
         this.individualServices.save(individual);
         if (getEditing()) {
@@ -71,7 +66,7 @@ public class IndividualBean implements Serializable {
     public boolean getEditing() {
         return this.individual.getId() != null;
     }
-
+    
     /**
      * @return the individuals
      */
@@ -106,5 +101,4 @@ public class IndividualBean implements Serializable {
     public void setSelectedIndividual(Individual selectedIndividual) {
         this.selectedIndividual = selectedIndividual;
     }
-
 }

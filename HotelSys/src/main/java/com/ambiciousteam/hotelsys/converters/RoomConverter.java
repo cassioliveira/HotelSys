@@ -28,7 +28,7 @@ public class RoomConverter implements Converter {
         Object objectToReturn = null;
 
         if (value != null) {
-            objectToReturn = this.roomServices.findByNumber(value);
+            objectToReturn = this.roomServices.findById(new Long(value));
         }
         return objectToReturn;
     }
@@ -37,9 +37,8 @@ public class RoomConverter implements Converter {
     public String getAsString(FacesContext context, UIComponent component, Object value) {
 
         if (value != null) {
-            String code = ((Room) value).getNumber();
-            String valueToReturn = (code == null ? null : code);
-            return valueToReturn;
+            Long code = ((Room) value).getId();
+            return code == null ? null : code.toString();
         }
         return "";
     }

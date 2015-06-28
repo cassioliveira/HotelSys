@@ -17,11 +17,8 @@ public class RoomServices implements Serializable {
     @Inject
     private RoomDao roomDao;
 
-    private List<Room> freeRooms;
-
     public List<Room> getFreeRooms() {
-        this.freeRooms = roomDao.freeRooms();
-        return freeRooms;
+        return roomDao.freeRooms();
     }
 
     @Transactional
@@ -30,8 +27,7 @@ public class RoomServices implements Serializable {
     }
 
     public void delete(Room room) throws HotelSysException {
-        room = findById(room.getId());
-        roomDao.delete(room);
+        roomDao.delete(findById(room.getId()));
     }
 
     public Room findById(Long id) {

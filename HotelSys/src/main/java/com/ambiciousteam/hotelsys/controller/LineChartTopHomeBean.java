@@ -1,8 +1,8 @@
-package br.com.ambiciousteam.hotelsys.controller;
+package com.ambiciousteam.hotelsys.controller;
 
 import javax.enterprise.inject.Model;
-import org.primefaces.model.chart.CartesianChartModel;
-import org.primefaces.model.chart.ChartSeries;
+import org.primefaces.model.chart.LineChartModel;
+import org.primefaces.model.chart.LineChartSeries;
 
 /**
  *
@@ -11,10 +11,10 @@ import org.primefaces.model.chart.ChartSeries;
 @Model
 public class LineChartTopHomeBean {
 
-    private CartesianChartModel model;
+    private LineChartModel model;
 
     public void preRender() {
-        this.model = new CartesianChartModel();
+        this.model = new LineChartModel();
 
         addSerie("Meses");
     }
@@ -22,12 +22,12 @@ public class LineChartTopHomeBean {
     /**
      * @return the model
      */
-    public CartesianChartModel getModel() {
+    public LineChartModel getModel() {
         return model;
     }
 
     private void addSerie(String label) {
-        ChartSeries series = new ChartSeries(label);
+        LineChartSeries series = new LineChartSeries(label);
 
         series.set("Jan", Math.random() * 1000);
         series.set("Fev", Math.random() * 1000);

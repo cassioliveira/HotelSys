@@ -1,7 +1,7 @@
-package br.com.ambiciousteam.hotelsys.controller;
+package com.ambiciousteam.hotelsys.controller;
 
 import javax.enterprise.inject.Model;
-import org.primefaces.model.chart.CartesianChartModel;
+import org.primefaces.model.chart.BarChartModel;
 import org.primefaces.model.chart.ChartSeries;
 
 /**
@@ -11,10 +11,10 @@ import org.primefaces.model.chart.ChartSeries;
 @Model
 public class BarChartBottomHomeBean {
 
-    private CartesianChartModel model;
+    private BarChartModel model;
 
     public void preRender() {
-        this.model = new CartesianChartModel();
+        this.model = new BarChartModel();
 
         addSerie("Dias");
     }
@@ -22,7 +22,7 @@ public class BarChartBottomHomeBean {
     /**
      * @return the model
      */
-    public CartesianChartModel getModel() {
+    public BarChartModel getModel() {
         return model;
     }
 

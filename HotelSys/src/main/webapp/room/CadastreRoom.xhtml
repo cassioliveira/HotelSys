@@ -7,101 +7,84 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 template="/WEB-INF/templates/HeadFootTemplate.xhtml"> 
 
-    <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title><ui:insert name="title">Cadastro de Quarto - HotelSys</ui:insert></title>
-    </h:head>
+    <f:metadata>
+        <f:viewParam name="room" value="#{roomBean.room}"/>
+    </f:metadata>
 
     <ui:define name="content">
 
-        <p:tabView id="tabRoom">
+        <h:form>
 
-            <p:tab id="tabCadastreRoom" title="Cadastro de quarto">
+            <p:growl/>
 
-                <h:form>
-                    <!-- Show a gif image to loading ajax user requests -->
-                    <p:ajaxStatus onstart="PF('statusDialog').show();" onsuccess="PF('statusDialog').hide();"/>
-                    <p:dialog modal="true" widgetVar="statusDialog" header="Aguarde" draggable="false" closable="false" resizable="false">
-                        <p:graphicImage library="images" name="loading.gif"/>
-                    </p:dialog>
+            <p:fieldset legend="#{roomBean.editing ? msg.editCadastreRoom : msg.newRegisterRoom}" >
 
+                <h:inputHidden value="#{roomBean.room.dateTime}" >
+                    <f:convertDateTime pattern="dd/MM/yyyy hh:MM:ss" locale="pt_BR"/>
+                </h:inputHidden>
 
-                    <p:growl/>
+                <h:inputHidden value="#{roomBean.room.id}" />
 
-                    <h:inputHidden value="#{roomBean.room.dateTime}" >
-                        <f:convertDateTime pattern="dd/MM/yyyy hh:MM:ss" locale="pt_BR"/>
-                    </h:inputHidden>
-
-                    <h:panelGrid columns="3" cellpadding="1">
-                        <p:outputLabel value="#{msg.items}" style="margin-right: 35px"/>
-                        <h:panelGroup>
-                            <h:panelGrid columns="3" cellpadding="1">
-                                <p:selectBooleanCheckbox id="doubleBed" itemLabel="#{msg.doubleBed}" value="#{roomBean.room.doubleBed}"/>
-                                <p:selectBooleanCheckbox id="singleBed" itemLabel="#{msg.singleBed}" value="#{roomBean.room.singleBed}"/>
-                                <p:selectBooleanCheckbox id="air" itemLabel="#{msg.airConditioning}" value="#{roomBean.room.airConditioning}"/>
-                                <p:selectBooleanCheckbox id="dvd" itemLabel="#{msg.dvd}" value="#{roomBean.room.dvd}"/>
-                                <p:selectBooleanCheckbox id="tv" itemLabel="#{msg.tv}" value="#{roomBean.room.tv}">
-                                    <f:ajax render="cableTv"/>
-                                </p:selectBooleanCheckbox>
-                                <p:selectBooleanCheckbox id="cableTv" itemLabel="#{msg.cableTv}" value="#{roomBean.room.cableTv}"/>
-                                <p:selectBooleanCheckbox id="fridge" itemLabel="#{msg.fridge}" value="#{roomBean.room.fridge}"/>
+                <h:panelGrid columns="2" cellpadding="1" >
+                    <h:panelGroup>
+                        <h:panelGrid columns="3" cellpadding="1">
+                            <h:panelGroup>
+                                <p:selectBooleanCheckbox id="fridge" itemLabel="#{msg.fridge}" value="#{roomBean.room.fridge}" style="margin-right: 5px"/>
+                                <p:selectBooleanCheckbox id="tv" itemLabel="#{msg.tv}" value="#{roomBean.room.tv}"/>
+                            </h:panelGroup>
+                            <h:panelGroup>
+                                <p:selectBooleanCheckbox id="dvd" itemLabel="#{msg.dvd}" value="#{roomBean.room.dvd}" style="margin-right: 5px"/>
                                 <p:selectBooleanCheckbox id="bunk" itemLabel="#{msg.bunk}" value="#{roomBean.room.bunk}"/>
-                            </h:panelGrid>
-                        </h:panelGroup>
-                        <h:outputLabel/>
+                            </h:panelGroup>
+                            <p:selectBooleanCheckbox id="cableTv" itemLabel="#{msg.cableTv}" value="#{roomBean.room.cableTv}"/>
+                            <p:selectBooleanCheckbox id="doubleBed" itemLabel="#{msg.doubleBed}" value="#{roomBean.room.doubleBed}"/>
+                            <p:selectBooleanCheckbox id="singleBed" itemLabel="#{msg.singleBed}" value="#{roomBean.room.singleBed}"/>
+                            <p:selectBooleanCheckbox id="air" itemLabel="#{msg.airConditioning}" value="#{roomBean.room.airConditioning}"/>
+                        </h:panelGrid>
+                    </h:panelGroup>
 
-                    </h:panelGrid>
+                </h:panelGrid>
 
-                    <p:outputLabel for="number" value="#{msg.number}" style="margin-left: 3px; margin-right: 15px"/>
-                    <p:inputText id="number" value="#{roomBean.room.number}" style="margin-right: 10px"
-                                 required="true" maxlength="7" size="13" 
-                                 requiredMessage="O número do quarto deve ser informado"/>
+                <h:panelGrid columns="4" cellpadding="1">
+                    <p:outputLabel for="category" value="#{msg.category}: " style="margin-right: 1px"/>
+                    <p:inputText id="category" value="#{roomBean.room.category}" 
+                                 required="true" maxlength="50" size="43" 
+                                 requiredMessage="Uma categoria deve ser informada"/>
+                    <h:outputLabel/>
+                    <h:outputLabel/>
+                </h:panelGrid>
 
-                    <p:outputLabel for="extensionNumber" value="#{msg.extensionNumber}"  style="margin-right: 10px; margin-left: 5px"/>
-                    <p:inputText id="extensionNumber" value="#{roomBean.room.extensionNumber}"
-                                 maxlength="7" size="15" />
+                <p:outputLabel for="number" value="#{msg.number}: " style="margin-left: 3px; margin-right: 15px"/>
+                <p:inputText id="number" value="#{roomBean.room.number}" style="margin-right: 12px" size="13"
+                             required="true" maxlength="7" requiredMessage="O número do quarto deve ser informado"/>
 
-                    <h:panelGrid columns="4" cellpadding="1" border="0">
+                <p:outputLabel for="extensionNumber" value="#{msg.extensionNumber}: "  style="margin-right: 10px; margin-left: 5px"/>
+                <p:inputText id="extensionNumber" value="#{roomBean.room.extensionNumber}" maxlength="7" size="13" />
 
-                        <p:outputLabel for="category" value="#{msg.category}" />
-                        <p:inputText id="category" value="#{roomBean.room.category}" 
-                                     required="true" maxlength="50" size="42" 
-                                     requiredMessage="Uma categoria deve ser informada"/>
-                        <h:outputLabel/>
-                        <h:outputLabel/>
+                <h:panelGrid columns="4" cellpadding="1">
+                    <p:outputLabel for="description" value="#{msg.description}: " style="margin-right: 13px"/>
+                    <p:inputTextarea id="description" rows="5" cols="33" maxlength="255" value="#{roomBean.room.description}"
+                                     autoResize="false" counter="counterDescription" counterTemplate="{0} caracteres restantes"/>
+                    <h:outputLabel/>
+                    <h:outputLabel/>
+                    <p:outputLabel/>
+                    <p:outputLabel id="counterDescription" style="font-size: 12px;"/>
+                </h:panelGrid>
 
-                        <p:outputLabel for="description" value="#{msg.description}"/>
-                        <p:inputTextarea id="description" rows="5" cols="40" maxlength="255" value="#{roomBean.room.description}"
-                                         autoResize="false" counter="counterDescription" counterTemplate="{0} caracteres restantes"
-                                         />
-                        <h:outputLabel/>
-                        <h:outputLabel/>
-                        <p:outputLabel/>
-                        <p:outputLabel id="counterDescription" style="font-size: 12px;"/>
+                <p:toolbar id="panelButtonsConsult" style="margin-top: 10px;">
+                    <f:facet name="left">
+                        <p:commandButton style="font-size: 13px;" value="#{msg.save}" action="#{roomBean.save}"  
+                                         id="saveButton" update="@form" icon="ui-icon ui-icon-disk"/>
+                        <!--, :tabRoom:searchRoom:datatableSearchRoom-->
+                    </f:facet>    
 
-                    </h:panelGrid>
-
-                    <p:toolbar id="panelButtonsConsult" style="margin-top: 10px;">
-                        <f:facet name="left">
-                            <p:commandButton style="font-size: 13px;" value="#{msg.save}" action="#{roomBean.save}"  
-                                             id="saveButton" update="@form" icon="ui-icon ui-icon-disk"/>
-                            <!--, :tabRoom:searchRoom:datatableSearchRoom-->
-                        </f:facet>    
-
-                        <f:facet name="right">
-                            <p:button value="#{msg.clearFields}" id="newRegister" outcome="/room/CadastreRoom" 
-                                      icon="ui-icon ui-icon-pencil"/>
-                        </f:facet>
-                    </p:toolbar> 
-
-                </h:form>
-            </p:tab>
-
-            <p:tab id="tabSearchRoom" title="Busca de quarto">
-                <ui:include src="SearchRoom.xhtml"/>
-            </p:tab>
-
-        </p:tabView>
+                    <f:facet name="right">
+                        <p:button value="#{msg.search}" id="newRegister" outcome="/room/SearchRoom" 
+                                  icon="ui-icon ui-icon-pencil"/>
+                    </f:facet>
+                </p:toolbar> 
+            </p:fieldset>
+        </h:form>
 
     </ui:define>
 

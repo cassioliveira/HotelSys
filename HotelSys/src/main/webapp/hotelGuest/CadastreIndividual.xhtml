@@ -60,8 +60,9 @@
                                 <p:ajax process="@this" event="change" update="city" listener="#{individualBean.loadCities}"/>
                             </p:selectOneMenu>
 
-                            <p:outputLabel for="city" value="#{msg.city}:" style="margin-left: 15px"/>
-                            <p:selectOneMenu id="city" value="#{individualBean.individual.city}" filter="true" filterMatchMode="startsWith">
+                            <p:outputLabel for="city" value="#{msg.city}:" style="margin-left: 32px"/>
+                            <p:selectOneMenu id="city" value="#{individualBean.individual.city}" filter="true" 
+                                             filterMatchMode="startsWith" style="width: 100px">
                                 <f:selectItem itemLabel="#{msg.selectIt}..." noSelectionOption="true"/>
                                 <f:selectItems value="#{personBean.cities}" var="city" itemLabel="#{city}" itemValue="#{city}"/>
                             </p:selectOneMenu>
@@ -99,10 +100,9 @@
 
         <p:dialog widgetVar="siteReceita" header="Consulta de CPF na Receita Federal" modal="true" 
                   resizable="false" closable="true" draggable="true" id="siteReceita">
-            <iframe height="500" width="800" 
+            <iframe height="500" width="800"  
                     src="http://www.receita.fazenda.gov.br/aplicacoes/atcta/cpf/consultapublica.asp#theForm"/>
         </p:dialog>
-
 
     </ui:define>
 

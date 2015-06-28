@@ -61,9 +61,10 @@
                     </p:column>
 
                     <p:column headerText="#{msg.actions}" style="text-align: center" width="25">
-                        <p:commandButton id="viewButton" title="#{msg.view}" icon="ui-icon ui-icon-extlink" style="font-size: 10px">
+                        <p:button id="viewButton" title="#{msg.view}" icon="ui-icon ui-icon-extlink" style="font-size: 10px" outcome="/hotelGuest/CadastreIndividual">
+                            <f:param  name="individual" value="#{individual.id}"/>
                             <p:tooltip for="viewButton" value="Visualiza detalhes da linha selecionada"/>
-                        </p:commandButton>   
+                        </p:button>   
 
                         <p:button id="editButton" title="#{msg.edit}" icon="ui-icon ui-icon-pencil" style="font-size: 10px" outcome="/hotelGuest/CadastreIndividual">
                             <f:param  name="individual" value="#{individual.id}"/>
