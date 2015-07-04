@@ -35,7 +35,7 @@ public class FacesUtil {
      *
      * @param mensagem
      */
-    public static void mensagemAviso(String mensagem) {
+    public static void warningMessage(String mensagem) {
         FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_WARN, mensagem, mensagem);
         FacesContext.getCurrentInstance().addMessage("warningInfo", facesMsg);
     }
