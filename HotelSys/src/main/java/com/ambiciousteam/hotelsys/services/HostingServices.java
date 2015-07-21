@@ -1,8 +1,10 @@
-package br.com.ambiciousteam.hotelsys.services;
+package com.ambiciousteam.hotelsys.services;
 
 import com.ambiciousteam.hotelsys.dao.HostingDao;
+import com.ambiciousteam.hotelsys.dao.RoomDao;
 import com.ambiciousteam.hotelsys.exceptions.HotelSysException;
 import com.ambiciousteam.hotelsys.model.Hosting;
+import com.ambiciousteam.hotelsys.model.Room;
 import com.ambiciousteam.hotelsys.util.jpa.Transactional;
 import java.util.List;
 import javax.inject.Inject;
@@ -16,8 +18,17 @@ public class HostingServices {
     @Inject
     private HostingDao hostingDao;
 
+//    @Inject
+//    private Room room;
+//    
+    @Inject
+    private RoomDao roomDao;
+
     @Transactional
     public void save(Hosting hosting) throws HotelSysException {
+        Room room = hosting.getRoomFK();
+        room.setStatus("OCUPADO");
+        roomDao.save(room);
         this.hostingDao.save(hosting);
     }
 

@@ -11,7 +11,7 @@
 
         <h:form id="searchRoom">
 
-            <p:fieldset legend="#{msg.searchCadastreRoom}" >
+            <p:fieldset legend="#{(msg.searchCadastre).concat(msg.room)}" >
                 <p:toolbar>
                     <f:facet name="right">
                         <p:button outcome="/room/CadastreRoom" value="#{msg.newRegister}" style="text-align: right"/>
@@ -128,11 +128,12 @@
                                          action="#{roomBean.remove}" process="@this" update="datatableRoom">
                             <f:setPropertyActionListener target="#{roomBean.selectedRoom}" value="#{room}"/>
                             <p:tooltip for="deleteButton" value="Excluir a linha selecionada"/>
-                            <p:confirm icon="ui-icon-alert" header="#{msg.exclusionCadastreRoom}" message="#{msg.realyExcludeRoom}?"/>
+                            <p:confirm icon="ui-icon-alert" header="#{msg.exclusionConfirmHeader}" message="#{msg.realyExclude}?"/>
                         </p:commandButton>
                     </p:column>
                 </p:dataTable>
             </p:fieldset>
+            
         </h:form>
     </ui:define>
 </ui:composition>

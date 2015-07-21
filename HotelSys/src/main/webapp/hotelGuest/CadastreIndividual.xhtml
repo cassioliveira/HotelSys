@@ -62,7 +62,7 @@
 
                             <p:outputLabel for="city" value="#{msg.city}:" style="margin-left: 32px"/>
                             <p:selectOneMenu id="city" value="#{individualBean.individual.city}" filter="true" 
-                                             filterMatchMode="startsWith" style="width: 100px">
+                                             filterMatchMode="startsWith" style="width: 100px" disabled="#{individualBean.individual.uf eq null}">
                                 <f:selectItem itemLabel="#{msg.selectIt}..." noSelectionOption="true"/>
                                 <f:selectItems value="#{personBean.cities}" var="city" itemLabel="#{city}" itemValue="#{city}"/>
                             </p:selectOneMenu>
@@ -95,7 +95,11 @@
                     </f:facet>
                 </p:toolbar> 
             </p:fieldset>
-            <p:blockUI block="formCadastreIndividual" trigger="saveButton"/>
+            <p:blockUI block="formCadastreIndividual" trigger="saveButton">
+                <p:graphicImage library="images" name="loading.gif"/>
+                <br/>
+                #{msg.wait}...
+            </p:blockUI>
         </h:form>
 
         <p:dialog widgetVar="siteReceita" header="Consulta de CPF na Receita Federal" modal="true" 

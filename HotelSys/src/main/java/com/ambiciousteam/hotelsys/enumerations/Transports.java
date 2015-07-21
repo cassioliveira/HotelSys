@@ -8,7 +8,7 @@ public enum Transports {
 
     CARRO("Carro"),
     MOTO("Moto"),
-    VAN("Alternativo");
+    VAN("Van");
 
     private final String description;
 

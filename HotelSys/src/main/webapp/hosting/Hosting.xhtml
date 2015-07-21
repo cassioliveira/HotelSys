@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"> 
+
+    <h:form id="formCadastreHosting">
+        <p:growl autoUpdate="true"/>
+
+        <h:panelGroup id="itemsOutGrid">
+
+            <h:panelGrid columns="4" border="0">
+
+                <p:outputLabel for="availableRoom" value="#{msg.roomNumber}" style="margin-right: 30px"/>
+                <p:selectOneMenu id="availableRoom" value="#{hostingBean.hosting.roomFK}"
+                                 required="true" requiredMessage="Um quarto precisa ser selecionado.">
+                    <f:selectItems value="#{hostingBean.roomServices.freeRooms}" var="room" 
+                                   itemLabel="#{room.number}" itemValue="#{room}"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel for="hotelGuest" value="#{msg.hotelGuest} " />
+                <p:autoComplete id="hotelGuest" value="#{hostingBean.individual}" forceSelection="true"
+                                completeMethod="#{hostingBean.autoCompleteClients}" var="client" size="36"
+                                itemValue="#{client}" class="upper" 
+                                itemLabel="#{client.name}" />
+            </h:panelGrid>
+            <p:watermark value="Pesquise por um cliente cadastrado" for="hotelGuest"/>
+
+            <h:panelGrid columns="5" border="0">
+
+                <p:outputLabel for="adultDependents" value="#{msg.adultDependents} " style="margin-right: 11px"/>
+                <p:spinner id="adultDependents" value="#{hostingBean.hosting.quantityDependent}" title="#{msg.typeOrClickButtons}"
+                           converterMessage="#{msg.fieldOnlyAcceptsNumber}" size="3" min="0" >
+                    <f:convertNumber integerOnly="true" type="number"/>
+                </p:spinner>
+
+                <p:outputLabel for="transport" value="#{msg.transport} "  style="margin-right: 11px"/>
+                <p:selectOneMenu id="transport" value="#{hostingBean.hosting.transport}" >
+                    <f:selectItem itemLabel="Selecione..."/>
+                    <f:selectItems value="#{hostingBean.transports}" var="transports" itemLabel="#{transports.description}"
+                                   itemValue="#{transports}"/>
+                </p:selectOneMenu>
+                <h:outputLabel/>
+
+                <p:outputLabel for="childrenDependents" value="#{msg.childrenDependents} "/>
+                <p:spinner id="childrenDependents" value="#{hostingBean.hosting.quantityChild}" title="#{msg.typeOrClickButtons}"
+                           converterMessage="#{msg.fieldOnlyAcceptsNumber}" size="3" min="0" >
+                    <f:convertNumber integerOnly="true" type="number"/>
+                </p:spinner>
+
+                <p:outputLabel for="reasonTravel" value="#{msg.reasonTravel} "/>
+                <p:selectOneMenu id="reasonTravel" value="#{hostingBean.hosting.reasonTravel}">
+                    <f:selectItem itemLabel="Selecione..."/>
+                    <f:selectItems value="#{hostingBean.reasonsTravel}" var="reason" itemLabel="#{reason.description}"
+                                   itemValue="#{transports}"/>
+                </p:selectOneMenu>
+
+                <h:panelGroup>
+                    <p:selectBooleanCheckbox id="wantFood" value="#{hostingBean.hosting.food}"
+                                             style="padding-right: 5px"/>
+                    <p:outputLabel for="wantFood" value="#{msg.wantFood}"/>
+                </h:panelGroup>
+
+            </h:panelGrid>
+
+        </h:panelGroup>
+
+        <h:panelGrid columns="2"  border="0">
+
+            <p:outputLabel for="forecastOutput" value="#{msg.forecastOutput}"/>
+            <p:calendar id="forecastOutput" value="#{hostingBean.hosting.forecastOutput}"
+                        navigator="true" pattern="dd/MM/yyyy HH:mm" locale="pt"
+                        mindate="#{dateTimeUtilBean.dateToday}"   />
+
+            <p:outputLabel for="guestSource" value="#{msg.guestSource}"/>
+            <p:inputText id="guestSource" value="#{hostingBean.hosting.source}"
+                         size="60" maxlength="50" />
+
+            <p:outputLabel for="guestDestination" value="#{msg.guestDestination}"/>
+            <p:inputText id="guestDestination" value="#{hostingBean.hosting.nextDestination}"
+                         size="60" maxlength="50" />
+
+            <p:outputLabel for="description" value="#{msg.observations}"/>
+            <p:inputTextarea id="description" rows="5" cols="58" maxlength="500" 
+                             value="#{hostingBean.hosting.observations}" 
+                             autoResize="false" counter="counterDescription" 
+                             counterTemplate="{0} caracteres restantes"/>
+            <h:outputLabel/>
+            <p:outputLabel id="counterDescription" style="font-size: 12px"/>
+        </h:panelGrid>
+
+        <p:toolbar id="panelButtonsConsult" style="margin-top: 10px;">
+            <f:facet name="left">
+                <p:commandButton style="font-size: 13px;" value="#{msg.save}" 
+                                 action="#{hostingBean.save}"  id="saveButton" 
+                                 update="@form" icon="ui-icon ui-icon-disk">
+                </p:commandButton>
+            </f:facet>
+
+            <f:facet name="right">
+                <p:button value="#{msg.search}" id="searchButton" outcome="/hosting/SearchHosting.xhtml" 
+                          icon="ui-icon ui-icon-pencil"/>
+            </f:facet>
+        </p:toolbar> 
+
+        <p:blockUI block="formCadastreHosting" trigger="saveButton">
+            <p:graphicImage library="images" name="loading.gif"/>
+            <br/>
+            #{msg.wait}...
+        </p:blockUI>
+    </h:form>
+</html>

@@ -1,6 +1,6 @@
 package com.ambiciousteam.hotelsys.converters;
 
-import br.com.ambiciousteam.hotelsys.services.HostingServices;
+import com.ambiciousteam.hotelsys.services.HostingServices;
 import com.ambiciousteam.hotelsys.exceptions.HotelSysException;
 import com.ambiciousteam.hotelsys.model.Hosting;
 import com.ambiciousteam.hotelsys.util.cdi.CDIServiceLocator;
@@ -38,8 +38,7 @@ public class HostingConverter implements Converter {
 
         if (value != null) {
             Long code = ((Hosting) value).getId();
-            String objectToReturn = (code == null ? null : code.toString());
-            return objectToReturn;
+            return code == null ? null : code.toString();
         }
         return "";
     }

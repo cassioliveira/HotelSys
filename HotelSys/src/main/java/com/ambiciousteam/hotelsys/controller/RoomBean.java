@@ -6,30 +6,45 @@ import com.ambiciousteam.hotelsys.services.RoomServices;
 import com.ambiciousteam.hotelsys.util.jsf.FacesUtil;
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
  * @author cassio
  */
 @Model
-public class roomBean implements Serializable {
+public class RoomBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Inject
+    @Getter
+    @Setter
     private RoomServices roomServices;
 
     @Inject
+    @Getter
+    @Setter
     private Room room;
 
     @Inject
+    @Getter
+    @Setter
     private Room selectedRoom;
 
+    @Getter
+    private List<Room> rooms;
+
+    @PostConstruct
+    public void init() {
+        this.rooms = roomServices.findAll();
+    }
+
     public void save() throws HotelSysException {
-        this.room.setStatus("LIVRE");
         this.roomServices.save(room);
         if (getEditing()) {
             FacesUtil.sucessMessage("Cadastro do quarto nº " + room.getNumber() + " atualizado com sucesso!");
@@ -55,44 +70,12 @@ public class roomBean implements Serializable {
     }
 
     /**
-     * @return the room
-     */
-    public Room getRoom() {
-        return room;
-    }
-
-    /**
-     * @param room the room to set
-     */
-    public void setRoom(Room room) {
-        this.room = room;
-    }
-
-    public List<Room> getRooms() {
-        return roomServices.findAll();
-    }
-
-    /*
-     * Metodo que verifica se o objeto esta nulo quando for recuperado.
-     * Se sim, refere-se a um novo cadastro, senao refere-se a um produto a ser editado
+     * Metodo que verifica se o objeto esta nulo quando for recuperado. Se sim,
+     * refere-se a um novo cadastro, senao refere-se a um produto a ser editado
+     *
+     * @return
      */
     public boolean getEditing() {
         return this.room.getId() != null;
-    }
-
-    public RoomServices getRoomServices() {
-        return roomServices;
-    }
-
-    public void setRoomServices(RoomServices roomServices) {
-        this.roomServices = roomServices;
-    }
-
-    public Room getSelectedRoom() {
-        return selectedRoom;
-    }
-
-    public void setSelectedRoom(Room selectedRoom) {
-        this.selectedRoom = selectedRoom;
     }
 }

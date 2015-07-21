@@ -8,8 +8,9 @@ import com.ambiciousteam.hotelsys.util.jsf.FacesUtil;
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.inject.Model;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
@@ -21,19 +22,25 @@ public class IndividualBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Inject
+    @Getter
+    @Setter
     private IndividualServices individualServices;
-    
+
     @Inject
     private PersonServices personServices;
 
     @Inject
+    @Getter
+    @Setter
     private Individual individual;
 
     @Inject
+    @Getter
+    @Setter
     private Individual selectedIndividual;
 
     private List<Individual> individuals;
-    
+
     public void save() throws HotelSysException {
         this.individualServices.save(individual);
         if (getEditing()) {
@@ -48,14 +55,15 @@ public class IndividualBean implements Serializable {
 
     public void remove() throws HotelSysException {
         this.individualServices.delete(selectedIndividual);
-        FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
         FacesUtil.sucessMessage("Exclusão efetuada com sucesso!");
     }
 
     public void loadCities() {
         PersonBean.cities.clear();
-        for (String filteredCities : personServices.returnCities(individual.getUf().getCode())) {
-            PersonBean.cities.add(filteredCities);
+        if (individual.getUf() != null) {
+            for (String filteredCities : personServices.returnCities(individual.getUf().getCode())) {
+                PersonBean.cities.add(filteredCities);
+            }
         }
     }
 
@@ -66,39 +74,12 @@ public class IndividualBean implements Serializable {
     public boolean getEditing() {
         return this.individual.getId() != null;
     }
-    
+
     /**
      * @return the individuals
      */
     public List<Individual> getIndividuals() {
         this.individuals = individualServices.findAll();
         return individuals;
-    }
-
-    /**
-     * @return the individual
-     */
-    public Individual getIndividual() {
-        return individual;
-    }
-
-    public void setIndividual(Individual individual) {
-        this.individual = individual;
-    }
-
-    public IndividualServices getIndividualServices() {
-        return individualServices;
-    }
-
-    public void setIndividualServices(IndividualServices individualServices) {
-        this.individualServices = individualServices;
-    }
-
-    public Individual getSelectedIndividual() {
-        return selectedIndividual;
-    }
-
-    public void setSelectedIndividual(Individual selectedIndividual) {
-        this.selectedIndividual = selectedIndividual;
     }
 }

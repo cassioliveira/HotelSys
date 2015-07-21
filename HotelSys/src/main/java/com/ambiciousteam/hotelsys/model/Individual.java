@@ -13,6 +13,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Pattern;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
@@ -23,28 +25,42 @@ public class Individual extends Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Getter
+    @Setter
     @Column(name = "client_cpf_client", length = 11, unique = true)
     private String cpfIndividual;
 
+    @Getter
+    @Setter
     @Enumerated(EnumType.STRING)
     @Column(name = "client_gender")
     private Gender gender;
 
+    @Getter
+    @Setter
     @Pattern(regexp = "^$|[a-zA-Z\\d/.-]{1,}",
             message = "Apenas letras números ou os caracteres a seguir são aceitos para o RG: / . -")
     @Column(name = "client_doc_travel_number", length = 15)
     private String docTravelNumber;
 
+    @Getter
+    @Setter
     @Enumerated(EnumType.STRING)
     @Column(name = "client_travel_doc_type", length = 50)
     private Documentation travelDocType;
 
+    @Getter
+    @Setter
     @Column(name = "client_issuing_body", length = 15)
     private String issuingBody;
 
+    @Getter
+    @Setter
     @Column(name = "client_profession", length = 100)
     private String profession;
 
+    @Getter
+    @Setter
     @Temporal(TemporalType.DATE)
     @Column(name = "client_birthdate")
     private Date birthDate;
@@ -59,62 +75,6 @@ public class Individual extends Person implements Serializable {
     @PostConstruct
     public void init() {
         setCountry("Brasil");
-    }
-
-    public String getCpfIndividual() {
-        return cpfIndividual;
-    }
-
-    public void setCpfIndividual(String cpfIndividual) {
-        this.cpfIndividual = cpfIndividual;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
-    public String getDocTravelNumber() {
-        return docTravelNumber;
-    }
-
-    public void setDocTravelNumber(String docTravelNumber) {
-        this.docTravelNumber = docTravelNumber;
-    }
-
-    public Documentation getTravelDocType() {
-        return travelDocType;
-    }
-
-    public void setTravelDocType(Documentation travelDocType) {
-        this.travelDocType = travelDocType;
-    }
-
-    public String getIssuingBody() {
-        return issuingBody;
-    }
-
-    public void setIssuingBody(String issuingBody) {
-        this.issuingBody = issuingBody;
-    }
-
-    public String getProfession() {
-        return profession;
-    }
-
-    public void setProfession(String profession) {
-        this.profession = profession;
-    }
-
-    public Date getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
     }
 
     @Override

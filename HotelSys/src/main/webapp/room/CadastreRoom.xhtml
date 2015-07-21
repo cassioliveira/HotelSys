@@ -17,7 +17,7 @@
 
             <p:growl autoUpdate="true"/>
 
-            <p:fieldset legend="#{roomBean.editing ? msg.editCadastreRoom : msg.newRegisterRoom}" >
+            <p:fieldset legend="#{roomBean.editing ? (msg.editCadastre).concat(msg.room) : (msg.newRegister).concat(msg.room)}" >
 
                 <h:inputHidden value="#{roomBean.room.dateTime}" >
                     <f:convertDateTime pattern="dd/MM/yyyy hh:MM:ss" locale="pt_BR"/>
@@ -84,6 +84,11 @@
                     </f:facet>
                 </p:toolbar> 
             </p:fieldset>
+            <p:blockUI block="" trigger="saveButton">
+                <p:graphicImage library="images" name="loading.gif"/>
+                <br/>
+                #{msg.wait}...
+            </p:blockUI>
         </h:form>
 
     </ui:define>

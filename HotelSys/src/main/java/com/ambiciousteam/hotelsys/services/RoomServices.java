@@ -5,6 +5,7 @@ import com.ambiciousteam.hotelsys.exceptions.HotelSysException;
 import com.ambiciousteam.hotelsys.model.Room;
 import com.ambiciousteam.hotelsys.util.jpa.Transactional;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -18,12 +19,23 @@ public class RoomServices implements Serializable {
     private RoomDao roomDao;
 
     public List<Room> getFreeRooms() {
-        return roomDao.freeRooms();
+        List<Room> freeRooms = new ArrayList<>();
+        for (Room freeRoom : roomDao.findAll()) {
+            if (freeRoom.getStatus().equals("LIVRE")) {
+                freeRooms.add(freeRoom);
+            }
+        }
+        return freeRooms;
     }
 
     @Transactional
     public void save(Room room) throws HotelSysException {
-        this.roomDao.save(room);
+        if (room.getId() == null && isRoomDuplicated(room.getNumber())) {
+            throw new HotelSysException("Um quarto com esse número já existe. Por favor informe outro número");
+        } else {
+            room.setStatus("LIVRE");
+            this.roomDao.save(room);
+        }
     }
 
     public void delete(Room room) throws HotelSysException {
@@ -42,14 +54,19 @@ public class RoomServices implements Serializable {
         return roomDao.busyRooms();
     }
 
-    public Long findByNumber(String number) {
-        List<Room> rooms = roomDao.findAll();
-        Long roomId = null;
-        for (Room room : rooms) {
-            if (room.getNumber().equals(number)) {
-                roomId = room.getId();
+    /**
+     * Metodo que verifica se o quarto que está sendo informado já existe no
+     * sistema baseada no número do mesmo, que não pode ser repetido.
+     *
+     * @param room
+     * @return
+     */
+    public boolean isRoomDuplicated(String room) {
+        for (String selectedRoom : roomDao.roomsNumbers()) {
+            if (selectedRoom.equals(room)) {
+                return true;
             }
         }
-        return roomId;
+        return false;
     }
 }

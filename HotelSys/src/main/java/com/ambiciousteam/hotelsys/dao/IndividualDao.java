@@ -17,7 +17,7 @@ public class IndividualDao extends AbstractDao<Individual> implements Serializab
 
     public List<Individual> findByNameLike(String query) {
 
-        Query createQuery = null;
+        Query createQuery;
 
 //        if (StringUtils.isNotBlank(query)) {
         createQuery = getEntityManager().createQuery("from Individual c where c.name like :name");

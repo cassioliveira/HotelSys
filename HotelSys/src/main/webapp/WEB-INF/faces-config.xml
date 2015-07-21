@@ -6,6 +6,12 @@
     
     <application>
         
+        <factory>
+            <exception-handler-factory>
+                com.ambiciousteam.hotelsys.util.jsf.JsfExceptionHandlerFactory
+            </exception-handler-factory>
+        </factory>
+        
         <!-- Set the target of file .properties with the strings to the view 
         (internationalization). -->
         <resource-bundle>

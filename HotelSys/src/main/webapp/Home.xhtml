@@ -28,7 +28,7 @@
                 <ui:repeat var="statusRoomsGreen" value="#{roomBean.freeRooms}">
                     <div class="home-rooms-green">
                         <div class="roomNumber">
-                            <h:outputText value="#{statusRoomsGreen}"/>
+                            <h:outputText value="#{statusRoomsGreen.number}"/>
                         </div>
 
                         <div class="descriptionRoomsHomeGreen">
@@ -57,7 +57,7 @@
                             <p:graphicImage id="hotelGuestName" library="images/icon" name="miniPerson.png">
                                 <p:tooltip for="hotelGuestName" value="Hóspede"/>
                             </p:graphicImage>
-                            <p:outputLabel value="Cássio da Silva Oliveira" style="margin-left: 2px"/>
+                            <p:outputLabel value="Maria Dapaz da Silva Oliveira Pedrosa" style="margin-left: 2px"/>
                             <br/>
                             <p:graphicImage id="calendarIcon" library="images/icon" name="calendar.png">
                                 <p:tooltip for="calendarIcon" value="Previsão de saída"/>
@@ -66,9 +66,9 @@
                         </div>
 
                         <div class="buttonHomeRoomRed">
-                            <p:commandButton id="hostingDetails" icon="ui-icon-extlink" style="font-size: 10px" onclick="PF('hostingDetails').show()">
+<!--                            <p:commandButton id="hostingDetails" icon="ui-icon-extlink" style="font-size: 10px" onclick="PF('hostingDetails').show()">
                                 <p:tooltip for="hostingDetails" value="Detalhes da hospedagem"/>
-                            </p:commandButton>
+                            </p:commandButton>-->
                             <p:commandButton id="shutdownHosting" icon="ui-icon-arrowstop-1-s" style="font-size: 10px">
                                 <p:tooltip for="shutdownHosting" value="Dar baixa na hospedagem"/>
                             </p:commandButton>
@@ -79,17 +79,17 @@
 
             </h:form>
 
-            <p:dialog widgetVar="hostingScreen" modal="true" header="Cadastro de Hospedagem" closable="true" 
-                      draggable="false" resizable="false" height="380" width="600">
-                <ui:include src="/hosting/CadastreHosting.xhtml"/>
-            </p:dialog>
-
-            <p:dialog widgetVar="hostingDetails" modal="true" header="Detalhes da Hospedagem" closable="true" 
-                      draggable="false" resizable="false" height="380" width="600">
-                <ui:include src="/hosting/ViewDetailsHosting.xhtml"/>
-            </p:dialog>
 
         </div>
+        <p:dialog widgetVar="hostingScreen" modal="true" header="Cadastro de Hospedagem" closable="true" 
+                  draggable="false" resizable="false" height="345" width="650">
+            <ui:include src="/hosting/Hosting.xhtml"/>
+        </p:dialog>
+
+        <!--            <p:dialog widgetVar="hostingDetails" modal="true" header="Detalhes da Hospedagem" closable="true" 
+                              draggable="false" resizable="false" height="380" width="600">
+                        <ui:include src="/hosting/ViewDetailsHosting.xhtml"/>
+                    </p:dialog>-->
         <!--</div>-->        
 
     </ui:define>        

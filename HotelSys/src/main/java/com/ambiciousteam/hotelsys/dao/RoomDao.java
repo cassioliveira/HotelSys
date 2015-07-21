@@ -14,6 +14,17 @@ public class RoomDao extends AbstractDao<Room> implements Serializable {
     public RoomDao() {
         super(Room.class);
     }
+    
+    /**
+     * Método que retorna o número de todos os quartos cadastrados no sistema.
+     * @return 
+     */
+     public List<String> roomsNumbers() {
+        Query createQuery;
+
+        createQuery = getEntityManager().createQuery("SELECT r.number FROM Room as r");
+        return createQuery.getResultList();
+    }
 
     public List<Room> busyRooms() {
         Query createQuery;
@@ -26,6 +37,7 @@ public class RoomDao extends AbstractDao<Room> implements Serializable {
         Query createQuery;
 
         createQuery = getEntityManager().createNativeQuery("SELECT r.room_number FROM room AS r WHERE r.room_status='LIVRE';");
+        System.err.println("LISTA DE QUARTOS DO DAO: " + createQuery.getResultList());
         return createQuery.getResultList();
 
     }
