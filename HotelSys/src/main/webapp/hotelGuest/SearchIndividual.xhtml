@@ -13,10 +13,10 @@
 
             <p:growl autoUpdate="true"/>
 
-            <p:fieldset legend="#{msg.searchCadastreHotelguest}" >
+            <p:fieldset legend="#{(msg.searchCadastre).concat(msg.hotelGuest)}" >
                 <p:toolbar>
                     <f:facet name="right">
-                        <p:button outcome="/hotelGuest/CadastreIndividual" value="#{msg.newRegister}" style="text-align: right"/>
+                        <p:button outcome="/hotelGuest/CadastreIndividual" value="#{msg.newRegisterButton}" style="text-align: right"/>
                     </f:facet>
                 </p:toolbar>    
 
@@ -75,7 +75,7 @@
                                          action="#{individualBean.remove}" process="@this" update="datatableIndividual">
                             <f:setPropertyActionListener target="#{individualBean.selectedIndividual}" value="#{individual}"/>
                             <p:tooltip for="deleteButton" value="Excluir a linha selecionada"/>
-                            <p:confirm icon="ui-icon-alert" header="#{msg.exclusionCadastreHosting}" message="#{msg.realyExcludeHotelguest}"/>
+                            <p:confirm icon="ui-icon-alert" header="#{msg.exclusionConfirmHeader}" message="#{msg.realyExclude}?"/>
                         </p:commandButton>
                     </p:column>
                 </p:dataTable>

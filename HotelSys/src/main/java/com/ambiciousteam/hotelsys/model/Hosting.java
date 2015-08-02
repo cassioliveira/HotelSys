@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import lombok.Data;
@@ -102,15 +103,14 @@ public class Hosting implements Serializable {
     @ManyToOne
     @JoinColumn(name = "roomfk_id", nullable = false)
     private Room roomFK;
-//
-//    @OneToMany(mappedBy = "hostingFK", targetEntity = Individual.class)
-//    private List<Individual> clients;
+
+    @OneToOne
+    @JoinColumn(name = "individualfk_id", nullable = false)
+    private Individual individualFK;
+
 //    @ManyToOne
 //    @JoinColumn(name = "employee_fk", referencedColumnName = "id") //TEM QUE FAZER QUE PEGUE O USUÁRIO LOGADO E NÃO O FUNCIONÁRIO!!
 //    private Employee employeeFK;
 //    @ManyToMany(mappedBy = "hostings", targetEntity = Service.class) //TEM QUE ESTAR NA TELA DE HOSPEDAGEM E NA TELA DE EDIÇÃO DE HOSPEDAGEM
 //    private List<Service> services;
-//
-//    @OneToOne
-//    private Person client; //INVESTIGAR: PORQUE TEM 'client' e 'clients'?
 }

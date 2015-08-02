@@ -66,7 +66,7 @@ public class RoomBean implements Serializable {
     }
 
     public List<Room> getBusyRooms() {
-        return roomServices.busyRooms();
+        return roomServices.getBusyRooms();
     }
 
     /**

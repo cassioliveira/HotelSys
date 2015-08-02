@@ -27,17 +27,30 @@ public class RoomServices implements Serializable {
         }
         return freeRooms;
     }
+    
+    public List<Room> getBusyRooms() {
+        List<Room> busyRooms = new ArrayList<>();
+        for (Room busyRoom : roomDao.findAll()) {
+            if (busyRoom.getStatus().equals("OCUPADO")) {
+                busyRooms.add(busyRoom);
+            }
+        }
+        return busyRooms;
+    }
 
     @Transactional
     public void save(Room room) throws HotelSysException {
         if (room.getId() == null && isRoomDuplicated(room.getNumber())) {
             throw new HotelSysException("Um quarto com esse número já existe. Por favor informe outro número");
         } else {
+            // SE FOR PERMITIDO EDIÇÃO DO QUARTO ALOCADO PARA UMA HOSPEDAGEM, DEVE SER FEITA UMA CONSULTA QUE 
+            // QUANDO O ID DO QUARTO FOR IGUAL AO ID DO ROOOMFK DA HOSPEDAGEM, SETAR O STATUS PARA 'OCUPADO', SENAO, PARA 'LIVRE'.
             room.setStatus("LIVRE");
             this.roomDao.save(room);
         }
     }
 
+    @Transactional
     public void delete(Room room) throws HotelSysException {
         roomDao.delete(findById(room.getId()));
     }
@@ -50,9 +63,9 @@ public class RoomServices implements Serializable {
         return roomDao.findAll();
     }
 
-    public List<Room> busyRooms() {
-        return roomDao.busyRooms();
-    }
+//    public List<Room> busyRooms() {
+//        return roomDao.busyRooms();
+//    }
 
     /**
      * Metodo que verifica se o quarto que está sendo informado já existe no

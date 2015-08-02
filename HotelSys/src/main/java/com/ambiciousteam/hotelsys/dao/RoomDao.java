@@ -26,27 +26,53 @@ public class RoomDao extends AbstractDao<Room> implements Serializable {
         return createQuery.getResultList();
     }
 
+    /**
+     * Retorna os números dos quartos que estão com status 'OCUPADO'
+     * @return 
+     */
     public List<Room> busyRooms() {
         Query createQuery;
 
-        createQuery = getEntityManager().createNativeQuery("select r.room_number from room as r, hosting as h where h.roomfk_id=r.id and h.hosting_checkout='false'");
+        createQuery = getEntityManager().createQuery("SELECT r.number FROM Room AS r WHERE r.status='OCUPADO' ORDER BY r.number ASC");
         return createQuery.getResultList();
     }
+   
+//    /**
+//     * Retorna os números dos quartos que estão com status 'OCUPADO'
+//     * @return 
+//     */
+//    public List<Room> busyRooms() {
+//        Query createQuery;
+//
+//        createQuery = getEntityManager().createNativeQuery("SELECT r.room_number FROM room AS r WHERE r.room_status='OCUPADO' ORDER BY 'r.room_number' ASC;");
+//        return createQuery.getResultList();
+//    }
 
+    /**
+     * Retorna os números dos quartos que estão com status 'LIVRE'
+     * @return 
+     */
     public List<Room> freeRooms() {
         Query createQuery;
 
-        createQuery = getEntityManager().createNativeQuery("SELECT r.room_number FROM room AS r WHERE r.room_status='LIVRE';");
+        createQuery = getEntityManager().createNativeQuery("SELECT r.room_number FROM room AS r WHERE r.room_status='LIVRE' ORDER BY 'r.room_number' ASC;");
         System.err.println("LISTA DE QUARTOS DO DAO: " + createQuery.getResultList());
         return createQuery.getResultList();
 
     }
 
-    public List<Room> freeHostingRooms() {
-        Query createQuery;
-
-        createQuery = getEntityManager().createNativeQuery("select r.room_number from room as r, hosting as h where h.roomfk_id=r.id and h.hosting_checkout!='false'");
-        return createQuery.getResultList();
-    }
+//    public List<Room> freeHostingRooms() {
+//        Query createQuery;
+//
+//        createQuery = getEntityManager().createNativeQuery("select r.room_number from room as r, hosting as h where h.roomfk_id=r.id and h.hosting_checkout!='false'");
+//        return createQuery.getResultList();
+//    }
+    
+//    public List<Room> busyRooms() {
+//        Query createQuery;
+//
+//        createQuery = getEntityManager().createNativeQuery("SELECT r.room_number FROM room AS r, hosting AS h WHERE h.roomfk_id=r.id and h.hosting_checkout='false'");
+//        return createQuery.getResultList();
+//    }
 
 }

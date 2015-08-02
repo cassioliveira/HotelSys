@@ -14,6 +14,13 @@ public class IndividualDao extends AbstractDao<Individual> implements Serializab
     public IndividualDao() {
         super(Individual.class);
     }
+    
+    public List<Individual> hostedNames(){
+        Query createQuery;
+
+        createQuery = getEntityManager().createQuery("SELECT i.name FROM Individual AS i, Hosting AS h WHERE h.individualFK=i.id");
+        return createQuery.getResultList();
+    }
 
     public List<Individual> findByNameLike(String query) {
 

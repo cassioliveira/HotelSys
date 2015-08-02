@@ -15,28 +15,31 @@ import javax.inject.Inject;
 public class IndividualServices implements Serializable {
 
     @Inject
-    private IndividualDao clientDao;
+    private IndividualDao individualDao;
 
     @Transactional
     public void save(Individual client) throws HotelSysException {
-        this.clientDao.save(client);
+        this.individualDao.save(client);
     }
     
     @Transactional
     public void delete(Individual client) throws HotelSysException {
-        clientDao.delete(findById(client.getId()));
+        individualDao.delete(findById(client.getId()));
     }
 
     public Individual findById(Long id) {
-        return clientDao.findById(id);
+        return individualDao.findById(id);
     }
 
     public List<Individual> findAll() {
-        return clientDao.findAll();
+        return individualDao.findAll();
     }
 
     public List<Individual> completeMethod(String query) {
-        return clientDao.findByNameLike(query);
+        return individualDao.findByNameLike(query);
     }
 
+    public List<Individual> hostedNames(){
+        return individualDao.hostedNames();
+    }
 }

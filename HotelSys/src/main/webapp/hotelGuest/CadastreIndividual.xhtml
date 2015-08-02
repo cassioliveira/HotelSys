@@ -18,7 +18,7 @@
 
             <p:growl autoUpdate="true"/>
 
-            <p:fieldset legend="#{individualBean.editing ? msg.editCadastreHotelguest : msg.newRegisterHotelguest}" >
+            <p:fieldset legend="#{individualBean.editing ? (msg.editCadastre).concat(msg.hotelGuest) : (msg.newRegister).concat(msg.hotelGuest)}" >
 
                 <p:dialog modal="true" widgetVar="statusDialog" header="Aguarde" draggable="false" closable="false" resizable="false">
                     <p:graphicImage library="images" name="loading.gif"/>

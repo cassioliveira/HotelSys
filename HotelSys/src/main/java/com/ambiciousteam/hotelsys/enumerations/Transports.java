@@ -6,7 +6,7 @@ package com.ambiciousteam.hotelsys.enumerations;
  */
 public enum Transports {
 
-    CARRO("Carro"),
+    CARRO("Carro próprio"),
     MOTO("Moto"),
     VAN("Van");
 

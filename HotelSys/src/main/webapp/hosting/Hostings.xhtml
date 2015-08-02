@@ -6,9 +6,14 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html"> 
 
-    <ui:define name="content">
+    <h:form id="searchHostingForm">
 
-        <h:form id="searchHostingForm">
+        <p:fieldset legend="#{(msg.searchCadastre).concat(msg.room)}" >
+            <p:toolbar>
+                <f:facet name="right">
+                    <p:button outcome="/hosting/CadastreHosting" value="#{msg.newRegisterButton}" style="text-align: right"/>
+                </f:facet>
+            </p:toolbar> 
 
             <p:dataTable id="datatableSearchHosting" var="hosting" value="#{hostingBean.hostings}"
                          paginatorAlwaysVisible="false" style="margin-top: 1px; " rows="1" paginatorPosition="bottom"
@@ -24,23 +29,23 @@
                     </p:outputPanel>
                 </f:facet>
 
-                <p:column headerText="#{msg.room}" style="text-align: center" width="3" filterStyle="max-width:30px"
+                <p:column headerText="#{msg.room}" style="text-align: center" width="3" filterStyle="max-width:30px; display:none"
                           sortBy="#{hosting.roomFK}" filterBy="#{hosting.roomFK}" filterMatchMode="exact">
                     <h:outputText value="#{hosting.roomFK}"/>
                 </p:column>
 
-                <p:column headerText="#{msg.hotelGuest}" style="text-align: center" width="120"
-                          sortBy="#{hosting.clients}" filterBy="#{hosting.clients}" filterMatchMode="exact">
-                    <h:outputText value="#{hosting.clients}"/>
+                <p:column headerText="#{msg.hotelGuest}" style="text-align: center" width="120" filterStyle="display:none"
+                          sortBy="#{hosting.individualFK}" filterBy="#{hosting.individualFK}" filterMatchMode="exact">
+                    <h:outputText value="#{hosting.individualFK}"/>
                 </p:column>
 
                 <p:column headerText="#{msg.checkout}" sortBy="#{hosting.checkout}" filterMatchMode="contains" 
-                          filterBy="#{hosting.checkout}" width="20" filterStyle="max-width:40px">
+                          filterBy="#{hosting.checkout}" width="20" filterStyle="max-width:40px; display:none">
                     <h:outputText value="#{hosting.checkout}"  style="text-align: center"/>
                 </p:column>
 
                 <p:column headerText="#{msg.wantFood}" sortBy="#{hosting.food}" filterMatchMode="contains" 
-                          filterBy="#{hosting.food}" width="40" filterStyle="max-width:40px">
+                          filterBy="#{hosting.food}" width="40" filterStyle="max-width:40px; display:none">
                     <h:outputText value="#{hosting.food}"  style="text-align: center"/>
                 </p:column>
 
@@ -68,21 +73,21 @@
                         <p:tooltip for="editButton" value="Edita dados da linha selecionada"/>
                     </p:button>
 
-                    <p:commandButton id="deleteButton" title="#{msg.delete}" icon="ui-icon ui-icon-trash" style="font-size: 10px">
+                    <p:commandButton id="deleteButton" title="#{msg.delete}" icon="ui-icon ui-icon-trash" 
+                                     style="font-size: 10px" oncomplete="PF('hostingSearch').clearFilters();">
                         <p:tooltip for="deleteButton" value="Excluir a linha selecionada"/>
                     </p:commandButton>
                 </p:column>
 
             </p:dataTable>
 
-            <p:blockUI block="datatableSearchHosting" trigger="datatableSearchHosting">
-                <p:graphicImage library="images" name="loading.gif"/>
-                <br/>
-                #{msg.wait}...
-            </p:blockUI>
+        </p:fieldset>
 
-        </h:form>
+        <p:blockUI block="datatableSearchHosting" trigger="datatableSearchHosting">
+            <p:graphicImage library="images" name="loading.gif"/>
+            <br/>
+            #{msg.wait}...
+        </p:blockUI>
 
-    </ui:define>
-
+    </h:form>
 </html>

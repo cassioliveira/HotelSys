@@ -8,13 +8,15 @@
 
         <p:menubar autoDisplay="true" style="font-size: 13px; padding: 0px">
 
-            <p:menuitem icon="ui-icon ui-icon-home" title="Tela incicial" id="homeButton" outcome="/Home.xhtml"/>
+            <p:menuitem icon="fa fa-home" title="Tela incicial" id="homeButton" outcome="/Home.xhtml"/>
 
-            <p:menuitem value="#{msg.hotelGuest}" url="/hotelGuest/CadastreIndividual.xhtml" icon="ui-icon-person"/>
+            <p:menuitem value="#{msg.hotelGuest}" url="/hotelGuest/CadastreIndividual.xhtml" icon="fa fa-users"/>
 
-            <p:menuitem value="#{msg.room}" url="/room/CadastreRoom.xhtml" icon="ui-icon-home"/>
+            <p:menuitem value="#{msg.room}" url="/room/CadastreRoom.xhtml" icon="fa fa-key"/>
 
-            <p:menuitem value="#{msg.hosting}" outcome="/hosting/CadastreHosting.xhtml" icon="ui-icon-pencil"/>
+            <p:menuitem value="#{msg.hosting}" outcome="/hosting/CadastreHosting.xhtml" icon="fa fa-edit"/>
+            
+            <p:menuitem value="#{msg.user}s" outcome="/login/CadastreLogin.xhtml" icon="fa fa-unlock"/>
 
             <!--<p:menuitem value="#{msg.reports}" url="/provider/SearchProvider.xhtml" icon="ui-icon-search"/>-->
 
@@ -31,7 +33,7 @@
                                     return false;"/>
             </p:submenu>-->
 
-            <p:menuitem icon="ui-icon ui-icon-power" title="Clique para sair" value="#{msg.exit}" id="exitButton" outcome="/Login.xhtml"/>
+            <p:menuitem icon="fa fa-sign-out" title="Clique para sair" value="#{msg.exit}" id="exitButton" outcome="/Login.xhtml"/>
 
 
         </p:menubar>

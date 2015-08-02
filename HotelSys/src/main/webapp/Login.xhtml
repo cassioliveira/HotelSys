@@ -19,11 +19,10 @@
             <h:graphicImage library="images" name="logo200x145.png"/>
         </div>
 
+        <p:messages id="loginMessages"/>
         <p:dialog header="Login HotelSys" closable="false" visible="true" resizable="false" 
                   draggable="false" id="loginDialog">
             <h:form id="loginForm">
-                <p:messages id="loginMessages"/>
-
 
                 <h:panelGrid columns="2" cellpadding="4" id="loginPanelGrid">
                     <h:panelGroup>
@@ -37,15 +36,16 @@
                         <h:panelGrid columns="2" cellpadding="4">
 
 
-                            <p:outputLabel for="username" value="Usuário:"/>
+                            <p:outputLabel for="username" value="#{msg.user}: "/>
                             <p:inputText id="username" required="true" requiredMessage="Nome de usuário é obrigatório." 
-                                         size="20"/>
+                                         size="20" value="#{loginBean.login.userName}"/>
 
-                            <p:outputLabel for="password" value="Senha:"/>
-                            <p:password id="password" size="20" required="true" requiredMessage="Senha é obrigatória."/>
+                            <p:outputLabel for="password" value="#{msg.password}: "/>
+                            <p:password id="password" required="true" requiredMessage=""
+                                        size="20" value="#{loginBean.login.password}"/>
 
                             <p:commandButton value="Entrar" id="loginEnterButton" icon="ui-icon ui-icon-key"
-                                             action="Home.xhtml" update="@form" process="username"/>
+                                             action="#{loginBean.submit}" update="@form" process="@this"/>
                             <p:commandButton id="lostPasswordLink" onclick="PF('loginPasswordRecover').show();
                                     return false;" icon="ui-icon ui-icon-help" style="float: right;"/>
 
@@ -56,8 +56,8 @@
                 </h:panelGrid>
 
                 <p:button icon="ui-icon ui-icon-unlocked" style="float: right" outcome="Home"/>
-                
-                
+
+
             </h:form>
         </p:dialog>
 
@@ -94,6 +94,6 @@
                 <p:commandButton id="okButton" value="Ok" onclick="PF('msgEmailConfirm').hide();"/>
             </h:form>
         </p:dialog>
-        
+
     </h:body>
 </html>

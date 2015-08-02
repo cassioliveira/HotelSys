@@ -80,7 +80,8 @@ public class HostingBean implements Serializable {
 
     @Getter
     private final List<ReasonTravel> reasonsTravel;
-    
+
+    private List<Individual> hostedNames;
 
     public HostingBean() {
         this.individuals = new ArrayList<>();
@@ -92,6 +93,7 @@ public class HostingBean implements Serializable {
     @PostConstruct
     public void init() {
         this.hostings = hostingServices.findAll();
+
     }
 
     public void save() throws HotelSysException {
@@ -100,7 +102,7 @@ public class HostingBean implements Serializable {
             FacesUtil.sucessMessage("Cadastro de '" + hosting.getCode() + "' atualizado com sucesso!");
             FacesUtil.redirectTo("SearchHosting.xhtml");
         } else {
-            FacesUtil.sucessMessage("Cadastro efetuado com sucesso!");
+            FacesUtil.sucessMessage("Hospedagem do quarto " + hosting.getRoomFK().getNumber() + " realizada com sucesso!");
             FacesUtil.redirectTo("/HotelSys/Home.xhtml");
         }
         hosting = new Hosting();
@@ -112,9 +114,10 @@ public class HostingBean implements Serializable {
     }
 
     /**
-     * Metodo que verifica se o objeto esta nulo quando for recuperado.
-     * Se sim, refere-se a um novo cadastro, senao refere-se a um produto a ser editado
-     * @return 
+     * Metodo que verifica se o objeto esta nulo quando for recuperado. Se sim,
+     * refere-se a um novo cadastro, senao refere-se a um produto a ser editado
+     *
+     * @return
      */
     public boolean getEditing() {
         return this.hosting.getId() != null;
@@ -122,5 +125,14 @@ public class HostingBean implements Serializable {
 
     public List<Individual> autoCompleteClients(String name) {
         return individualServices.completeMethod(name);
+    }
+
+//    public List<Individual> getHostedNames() {
+//        hostedNames = hostingServices.getHostedNames();
+//        return hostedNames;
+//    }
+
+    public void hostingDown() {
+        this.hostingServices.getHostingDown(hosting);
     }
 }

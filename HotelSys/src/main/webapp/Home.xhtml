@@ -16,12 +16,13 @@
 
         <!--<div id="main" style="position: relative; border: 0px solid; width: 100%;">-->
 
-        <div id="charts" >
-            <p:chart type="line" model="#{lineChartTopHomeBean.model}" style="height: 220px" />
-            <p:chart type="bar" model="#{barChartBottomHomeBean.model}" style="height: 220px; margin-top: 35px"/>
-            <!--title="Hospedagens de  #{dateTimeUtilBean.currentMonthAsString} "-->
+        <div id="charts">
+            <p:panel style="width: 500px; height: 505px">
+                <p:chart type="line" model="#{lineChartTopHomeBean.model}" style="height: 220px" />
+                <p:chart type="bar" model="#{barChartBottomHomeBean.model}" style="height: 220px; margin-top: 35px"/>
+                <!--title="Hospedagens de  #{dateTimeUtilBean.currentMonthAsString} "-->
+            </p:panel>
         </div>
-
 
         <div class="home-rooms-border-main">
             <h:form>
@@ -47,17 +48,17 @@
                     </div>
                 </ui:repeat>
 
-                <ui:repeat var="statusRoomsRed" value="#{roomBean.freeRooms}">
+                <ui:repeat var="statusRoomsRed" value="#{roomBean.busyRooms}">
                     <div class="home-rooms-red">
                         <div class="roomNumber">
-                            <h:outputText value="10"/>
+                            <h:outputText value="#{statusRoomsRed.number}"/>
                         </div>
 
                         <div class="descriptionRoomsHomeRed">
                             <p:graphicImage id="hotelGuestName" library="images/icon" name="miniPerson.png">
                                 <p:tooltip for="hotelGuestName" value="Hóspede"/>
                             </p:graphicImage>
-                            <p:outputLabel value="Maria Dapaz da Silva Oliveira Pedrosa" style="margin-left: 2px"/>
+                            <p:outputLabel value="Nome do hóspede" style="margin-left: 2px"/>
                             <br/>
                             <p:graphicImage id="calendarIcon" library="images/icon" name="calendar.png">
                                 <p:tooltip for="calendarIcon" value="Previsão de saída"/>
@@ -66,10 +67,10 @@
                         </div>
 
                         <div class="buttonHomeRoomRed">
-<!--                            <p:commandButton id="hostingDetails" icon="ui-icon-extlink" style="font-size: 10px" onclick="PF('hostingDetails').show()">
-                                <p:tooltip for="hostingDetails" value="Detalhes da hospedagem"/>
-                            </p:commandButton>-->
-                            <p:commandButton id="shutdownHosting" icon="ui-icon-arrowstop-1-s" style="font-size: 10px">
+                            <!--                            <p:commandButton id="hostingDetails" icon="ui-icon-extlink" style="font-size: 10px" onclick="PF('hostingDetails').show()">
+                                                            <p:tooltip for="hostingDetails" value="Detalhes da hospedagem"/>
+                                                        </p:commandButton>-->
+                            <p:commandButton id="shutdownHosting" icon="ui-icon-arrowstop-1-s" style="font-size: 10px" action="#{hostingBean.hostingDown}">
                                 <p:tooltip for="shutdownHosting" value="Dar baixa na hospedagem"/>
                             </p:commandButton>
                         </div>
@@ -82,7 +83,7 @@
 
         </div>
         <p:dialog widgetVar="hostingScreen" modal="true" header="Cadastro de Hospedagem" closable="true" 
-                  draggable="false" resizable="false" height="345" width="650">
+                  draggable="false" resizable="false" height="375" width="500">
             <ui:include src="/hosting/Hosting.xhtml"/>
         </p:dialog>
 
