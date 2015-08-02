@@ -12,7 +12,6 @@ import com.ambiciousteam.hotelsys.services.IndividualServices;
 import com.ambiciousteam.hotelsys.services.RoomServices;
 import com.ambiciousteam.hotelsys.util.jsf.FacesUtil;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -46,7 +45,9 @@ public class HostingBean implements Serializable {
     private Hosting selectedHosting;
 
     @Inject
-    IndividualServices individualServices;
+    @Getter
+    @Setter
+    private IndividualServices individualServices;
 
     @Inject
     @Getter
@@ -64,7 +65,7 @@ public class HostingBean implements Serializable {
     private Room room;
 
     @Getter
-    private final List<Individual> individuals;
+    private List<Individual> individuals;
 
     @Getter
     private List<Room> availableRooms;
@@ -81,10 +82,7 @@ public class HostingBean implements Serializable {
     @Getter
     private final List<ReasonTravel> reasonsTravel;
 
-    private List<Individual> hostedNames;
-
     public HostingBean() {
-        this.individuals = new ArrayList<>();
         statusRooms = Arrays.asList(RoomStatus.values());
         transports = Arrays.asList(Transports.values());
         reasonsTravel = Arrays.asList(ReasonTravel.values());
@@ -93,6 +91,7 @@ public class HostingBean implements Serializable {
     @PostConstruct
     public void init() {
         this.hostings = hostingServices.findAll();
+        this.individuals = individualServices.findAll();
 
     }
 
@@ -123,9 +122,12 @@ public class HostingBean implements Serializable {
         return this.hosting.getId() != null;
     }
 
-    public List<Individual> autoCompleteClients(String name) {
-        return individualServices.completeMethod(name);
-    }
+    /**
+     * Método de autocomplete. FUNCIONANDO MAS FOI SUBSTITUÍDO POR UM SELECTONEMENU.
+     */
+//    public List<Individual> autoCompleteClients(String name) {
+//        return individualServices.completeMethod(name);
+//    }
 
 //    public List<Individual> getHostedNames() {
 //        hostedNames = hostingServices.getHostedNames();
@@ -134,5 +136,13 @@ public class HostingBean implements Serializable {
 
     public void hostingDown() {
         this.hostingServices.getHostingDown(hosting);
+    }
+    
+    public List<Room> getRoomChange(){
+        if(getEditing()){
+            return hostingServices.roomChange(hosting);
+        } else{
+            return roomServices.getFreeRooms();
+        }
     }
 }

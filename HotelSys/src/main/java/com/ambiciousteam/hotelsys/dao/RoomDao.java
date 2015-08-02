@@ -33,7 +33,7 @@ public class RoomDao extends AbstractDao<Room> implements Serializable {
     public List<Room> busyRooms() {
         Query createQuery;
 
-        createQuery = getEntityManager().createQuery("SELECT r.number FROM Room AS r WHERE r.status='OCUPADO' ORDER BY r.number ASC");
+        createQuery = getEntityManager().createQuery("SELECT r.number FROM Room AS r WHERE r.status='OCUPADO'");
         return createQuery.getResultList();
     }
    
@@ -55,11 +55,20 @@ public class RoomDao extends AbstractDao<Room> implements Serializable {
     public List<Room> freeRooms() {
         Query createQuery;
 
-        createQuery = getEntityManager().createNativeQuery("SELECT r.room_number FROM room AS r WHERE r.room_status='LIVRE' ORDER BY 'r.room_number' ASC;");
-        System.err.println("LISTA DE QUARTOS DO DAO: " + createQuery.getResultList());
+        createQuery = getEntityManager().createQuery("SELECT r FROM Room AS r WHERE r.status='LIVRE'");
         return createQuery.getResultList();
-
     }
+//    /**
+//     * Retorna os números dos quartos que estão com status 'LIVRE'
+//     * @return 
+//     */
+//    public List<Room> freeRooms() {
+//        Query createQuery;
+//
+//        createQuery = getEntityManager().createNativeQuery("SELECT r.room_number FROM room AS r WHERE r.room_status='LIVRE'");
+//        System.err.println("LISTA DE QUARTOS DO DAO: " + createQuery.getResultList());
+//        return createQuery.getResultList();
+//    }
 
 //    public List<Room> freeHostingRooms() {
 //        Query createQuery;

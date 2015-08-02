@@ -41,9 +41,9 @@
                             <p:commandButton id="roomDetails" icon="ui-icon-extlink" >
                                 <p:tooltip for="roomDetails" value="Detalhes do quarto"/>
                             </p:commandButton>
-                            <p:commandButton id="hosting" icon="ui-icon-play" onclick="PF('hostingScreen').show()">
+                            <p:button id="hosting" icon="ui-icon-play" outcome="/hosting/CadastreHosting">
                                 <p:tooltip for="hosting" value="Iniciar hospedagem"/>
-                            </p:commandButton>
+                            </p:button>
                         </div>
                     </div>
                 </ui:repeat>
@@ -82,10 +82,6 @@
 
 
         </div>
-        <p:dialog widgetVar="hostingScreen" modal="true" header="Cadastro de Hospedagem" closable="true" 
-                  draggable="false" resizable="false" height="375" width="500">
-            <ui:include src="/hosting/Hosting.xhtml"/>
-        </p:dialog>
 
         <!--            <p:dialog widgetVar="hostingDetails" modal="true" header="Detalhes da Hospedagem" closable="true" 
                               draggable="false" resizable="false" height="380" width="600">
@@ -93,5 +89,9 @@
                     </p:dialog>-->
         <!--</div>-->        
 
+        <!--        <p:dialog widgetVar="hostingScreen" modal="true" header="Cadastro de Hospedagem" closable="true" 
+                          draggable="false" resizable="false" height="375" width="500">
+                    <ui:include src="/hosting/Hosting.xhtml"/>
+                </p:dialog>-->
     </ui:define>        
 </ui:composition> 

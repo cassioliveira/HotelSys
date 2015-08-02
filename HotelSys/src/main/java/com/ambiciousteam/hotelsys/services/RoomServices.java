@@ -7,7 +7,9 @@ import com.ambiciousteam.hotelsys.util.jpa.Transactional;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import lombok.Getter;
 
 /**
  *
@@ -17,7 +19,15 @@ public class RoomServices implements Serializable {
 
     @Inject
     private RoomDao roomDao;
+    
+    @Getter
+    private List<Room> rooms;
 
+    @PostConstruct
+    public void init() {
+        this.rooms = roomDao.findAll();
+    }
+    
     public List<Room> getFreeRooms() {
         List<Room> freeRooms = new ArrayList<>();
         for (Room freeRoom : roomDao.findAll()) {
