@@ -48,39 +48,37 @@
                     </div>
                 </ui:repeat>
 
-                <ui:repeat var="statusRoomsRed" value="#{roomBean.busyRooms}">
+                <ui:repeat var="statusRoomsRed" value="#{hostingBean.activeHostings}">
                     <div class="home-rooms-red">
                         <div class="roomNumber">
-                            <h:outputText value="#{statusRoomsRed.number}"/>
+                            <h:outputText value="#{statusRoomsRed.roomFK.number}"/>
                         </div>
 
                         <div class="descriptionRoomsHomeRed">
                             <p:graphicImage id="hotelGuestName" library="images/icon" name="miniPerson.png">
                                 <p:tooltip for="hotelGuestName" value="Hóspede"/>
                             </p:graphicImage>
-                            <p:outputLabel value="Nome do hóspede" style="margin-left: 2px"/>
+                            <p:outputLabel value="#{statusRoomsRed.individualFK.name}" style="margin-left: 2px"/>
                             <br/>
                             <p:graphicImage id="calendarIcon" library="images/icon" name="calendar.png">
                                 <p:tooltip for="calendarIcon" value="Previsão de saída"/>
                             </p:graphicImage>
-                            <p:outputLabel value="22/06/2015 - 18:00" style="margin-left: 2px"/>
+                            <p:outputLabel value="#{statusRoomsRed.forecastOutput}" style="margin-left: 2px"/>
                         </div>
 
                         <div class="buttonHomeRoomRed">
-                            <!--                            <p:commandButton id="hostingDetails" icon="ui-icon-extlink" style="font-size: 10px" onclick="PF('hostingDetails').show()">
-                                                            <p:tooltip for="hostingDetails" value="Detalhes da hospedagem"/>
-                                                        </p:commandButton>-->
-                            <p:commandButton id="shutdownHosting" icon="ui-icon-arrowstop-1-s" style="font-size: 10px" action="#{hostingBean.hostingDown}">
-                                <p:tooltip for="shutdownHosting" value="Dar baixa na hospedagem"/>
+                            <p:commandButton id="hostingDetails" icon="ui-icon-extlink" style="font-size: 10px" onclick="PF('hostingDetails').show()">
+                                <p:tooltip for="hostingDetails" value="Detalhes da hospedagem"/>
                             </p:commandButton>
+                            <p:button id="shutdownHosting" icon="ui-icon-arrowstop-1-s" style="font-size: 10px" outcome="/hosting/CadastreHosting">
+                                <f:param name="hosting" value="#{hostingBean.hosting.id}"/>
+                                <p:tooltip for="shutdownHosting" value="Dar baixa na hospedagem"/>
+                            </p:button>
                         </div>
-
                     </div>
                 </ui:repeat>
 
             </h:form>
-
-
         </div>
 
         <!--            <p:dialog widgetVar="hostingDetails" modal="true" header="Detalhes da Hospedagem" closable="true" 

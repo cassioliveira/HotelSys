@@ -21,7 +21,7 @@ public class LoginServices implements Serializable {
     public void save(Login client) throws HotelSysException {
         this.loginDao.save(client);
     }
-    
+
     @Transactional
     public void delete(Login client) throws HotelSysException {
         loginDao.delete(findById(client.getId()));
@@ -34,4 +34,5 @@ public class LoginServices implements Serializable {
     public List<Login> findAll() {
         return loginDao.findAll();
     }
+
 }

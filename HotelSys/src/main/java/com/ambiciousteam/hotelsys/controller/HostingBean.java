@@ -90,17 +90,17 @@ public class HostingBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        this.hostings = hostingServices.findAll();
+        this.hostings = hostingServices.activeHostings();
         this.individuals = individualServices.findAll();
-
     }
 
     public void save() throws HotelSysException {
-        this.hostingServices.save(hosting);
         if (getEditing()) {
+            this.hostingServices.save(hosting);
             FacesUtil.sucessMessage("Cadastro de '" + hosting.getCode() + "' atualizado com sucesso!");
             FacesUtil.redirectTo("SearchHosting.xhtml");
         } else {
+            this.hostingServices.save(hosting);
             FacesUtil.sucessMessage("Hospedagem do quarto " + hosting.getRoomFK().getNumber() + " realizada com sucesso!");
             FacesUtil.redirectTo("/HotelSys/Home.xhtml");
         }
@@ -122,26 +122,20 @@ public class HostingBean implements Serializable {
         return this.hosting.getId() != null;
     }
 
-    /**
-     * Método de autocomplete. FUNCIONANDO MAS FOI SUBSTITUÍDO POR UM SELECTONEMENU.
-     */
-//    public List<Individual> autoCompleteClients(String name) {
-//        return individualServices.completeMethod(name);
-//    }
-
-//    public List<Individual> getHostedNames() {
-//        hostedNames = hostingServices.getHostedNames();
-//        return hostedNames;
-//    }
-
     public void hostingDown() {
-        this.hostingServices.getHostingDown(hosting);
+        this.hostingServices.hostingDown(hosting);
     }
-    
-    public List<Room> getRoomChange(){
-        if(getEditing()){
+
+    public List<Hosting> getActiveHostings() {
+        return hostingServices.activeHostings();
+    }
+
+    public List<Room> getRoomChange() {
+        // TODO Falta fazer com que o quarto antigo seja setado para 'LIVRE' 
+        // antes de transferir a hospedagem para o novo quarto
+        if (getEditing()) {
             return hostingServices.roomChange(hosting);
-        } else{
+        } else {
             return roomServices.getFreeRooms();
         }
     }

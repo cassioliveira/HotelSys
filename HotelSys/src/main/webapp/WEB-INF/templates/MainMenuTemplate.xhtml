@@ -15,8 +15,10 @@
             <p:menuitem value="#{msg.room}" url="/room/CadastreRoom.xhtml" icon="fa fa-key"/>
 
             <p:menuitem value="#{msg.hosting}" outcome="/hosting/CadastreHosting.xhtml" icon="fa fa-edit"/>
-            
+
             <p:menuitem value="#{msg.user}s" outcome="/login/CadastreLogin.xhtml" icon="fa fa-unlock"/>
+            
+            <p:menuitem value="Criptografar senha" outcome="/HashText.xhtml" icon="fa fa-lock"/>
 
             <!--<p:menuitem value="#{msg.reports}" url="/provider/SearchProvider.xhtml" icon="ui-icon-search"/>-->
 
@@ -33,17 +35,17 @@
                                     return false;"/>
             </p:submenu>-->
 
-            <p:menuitem icon="fa fa-sign-out" title="Clique para sair" value="#{msg.exit}" id="exitButton" outcome="/Login.xhtml"/>
+            <p:menuitem icon="fa fa-sign-out" title="Clique para sair" value="#{msg.exit}" id="exitButton" action="#{loginBean.logout}"/>
 
 
         </p:menubar>
     </h:form>
 
-<!--    <div id="clock" >
-        <p:clock pattern="dd/MM/yyyy HH:mm:ss"/>
-    </div>-->
+    <!--    <div id="clock" >
+            <p:clock pattern="dd/MM/yyyy HH:mm:ss"/>
+        </div>-->
 
-    <!-- Dialog informing about the software--> 
+<!--     Dialog informing about the software 
     <p:dialog widgetVar="about" header="#{msg.appName} - #{msg.appSlogan}" modal="true" 
               resizable="false" draggable="false" id="aboutSystem">
         <h:form>
@@ -51,7 +53,7 @@
         </h:form>
     </p:dialog>
 
-    <!-- Dialog informing about the developers and credits --> 
+     Dialog informing about the developers and credits  
     <p:dialog widgetVar="developers" header="#{msg.appName} - #{msg.credits}" modal="true"  resizable="false" 
               draggable="false" id="developersInformation" width="500px" height="180px">
         <h:form>
@@ -75,8 +77,8 @@
                 <p:outputLabel value="Wilde Arruda"  style="font-weight: bold"/>
                 <br/>
                 <p:outputLabel value="wildearruda@gmail.com"/>
-            </div>
+            </div>-->
 
-        </h:form>
-    </p:dialog>
+        <!--</h:form>-->
+    <!--</p:dialog>-->
 </html>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
@@ -19,14 +19,6 @@
             <p:growl autoUpdate="true"/>
 
             <p:fieldset legend="#{individualBean.editing ? (msg.editCadastre).concat(msg.hotelGuest) : (msg.newRegister).concat(msg.hotelGuest)}" >
-
-                <p:dialog modal="true" widgetVar="statusDialog" header="Aguarde" draggable="false" closable="false" resizable="false">
-                    <p:graphicImage library="images" name="loading.gif"/>
-                </p:dialog>
-
-                <h:inputHidden value="#{individualBean.individual.date}" >
-                    <f:convertDateTime type="both" locale="pt_BR" pattern="dd/MM/yyyy HH:mm:ss"/>
-                </h:inputHidden>
 
                 <h:panelGrid columns="2">
 

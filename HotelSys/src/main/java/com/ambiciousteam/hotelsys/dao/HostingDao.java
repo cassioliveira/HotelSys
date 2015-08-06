@@ -13,10 +13,11 @@ public class HostingDao extends AbstractDao<Hosting> implements Serializable {
         super(Hosting.class);
     }
 
-//    public List<Individual> hostedName() {
+//    public List<Hosting> activeHostings() {
+//
 //        Query createQuery;
 //
-//        createQuery = getEntityManager().createQuery("SELECT i.name FROM Individual AS i, Hosting AS h, Room AS r WHERE i.id=h.individualFK AND r.status='OCUPADO'");
+//        createQuery = getEntityManager().createNativeQuery("SELECT h FROM hosting  AS h, room AS r WHERE h.roomfk_id=r.id AND r.room_status='OCUPADO' AND h.hosting_checkout='false';");
 //        return createQuery.getResultList();
 //    }
 

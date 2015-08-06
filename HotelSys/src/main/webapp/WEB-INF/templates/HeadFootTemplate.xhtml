@@ -18,10 +18,14 @@
     <h:body>
         <header>
             <div id="logged-user-top-message" >
+                <h:form>
                 <h:outputLabel value="#{msg.welcome} "/>  
-                <h:link title="Editar configurações do usuário" style="color: #ffffff;">
-                    <h:outputLabel value="#{msg.user}"/>
-                </h:link>
+                <!--<h:link title="Editar configurações do usuário" style="color: #ffffff;">-->
+                <p:menuButton value="#{loginBean.loggedUser}" styleClass="logged-user">
+                    <p:menuitem id="menuItemSettings" value="#{msg.settings}" icon="fa fa-gear"/>
+                </p:menuButton>
+                <!--</h:link>-->
+                </h:form>
             </div>
             <p:graphicImage library="images" name="hotel_sys_transp.png" styleClass="logo"/>
         </header>
@@ -41,7 +45,7 @@
                 <p:outputLabel value="#{msg.TeamSignature}" style="float: right;"/>
             </div>
         </footer>
-        
+
         <h:form>
             <p:confirmDialog global="true">
                 <p:commandButton value="#{msg.no}" type="button" styleClass="ui-confirmdialog-no" 

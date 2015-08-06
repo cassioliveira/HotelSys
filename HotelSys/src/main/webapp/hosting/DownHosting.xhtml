@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/HeadFootTemplate.xhtml"> 
+
+    <f:metadata>
+        <f:viewParam name="hosting" value="#{hostingBean.hosting}"/>
+    </f:metadata>
+
+    <ui:define name="content">
+
+        <h:form id="formCadastreHosting">
+            <p:growl autoUpdate="true"/>
+
+            <p:fieldset legend="#{msg.hostingDown}" >
+
+
+                <h:panelGrid columns="2" border="0">
+                    <p:outputLabel for="availableRoom" value="#{msg.roomNumber}: " style="margin-right: 27px"/>
+                    <p:selectOneMenu id="availableRoom" value="#{hostingBean.hosting.roomFK}" 
+                                     required="true" requiredMessage="Um quarto precisa ser selecionado.">
+                        <f:selectItem itemLabel="#{msg.selectIt}..." noSelectionOption="true"/>
+                        <f:selectItems value="#{hostingBean.roomChange}" var="room" 
+                                       itemLabel="#{room.number}" itemValue="#{room}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="hotelGuest" value="#{msg.hotelGuest}: " />
+                    <p:selectOneMenu id="hotelGuest" value="#{hostingBean.hosting.individualFK}" filter="true" 
+                                     filterMatchMode="contains" style="width: 270px">
+                        <f:selectItem itemLabel="#{msg.selectIt}..." noSelectionOption="true"/>
+                        <f:selectItems value="#{hostingBean.individuals}" var="client" itemValue="#{client}" itemLabel="#{client.name}"/>
+                    </p:selectOneMenu>
+
+                </h:panelGrid>
+
+                <p:toolbar id="panelButtonsConsult" style="margin-top: 10px;">
+                    <f:facet name="left">
+                        <p:commandButton style="font-size: 13px;" value="#{msg.save}" action="#{hostingBean.save}"  
+                                         id="saveButton" update="@form" icon="ui-icon ui-icon-disk"/>
+                    </f:facet>
+
+                    <f:facet name="right">
+                        <p:button value="#{msg.search}" id="searchButton" outcome="/hosting/SearchHosting.xhtml" 
+                                  icon="ui-icon ui-icon-pencil"/>
+                    </f:facet>
+                </p:toolbar> 
+
+            </p:fieldset>
+            <p:blockUI block="formCadastreHosting" trigger="saveButton">
+                <p:graphicImage library="images" name="loading.gif"/>
+                <br/>
+                #{msg.wait}...
+            </p:blockUI>
+        </h:form>
+    </ui:define>
+</ui:composition>

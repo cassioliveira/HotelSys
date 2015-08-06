@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?> 
+<?xml version="1.0" encoding="UTF-8"?> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:p="http://primefaces.org/ui"
@@ -25,40 +25,39 @@
 
                 <f:facet name="header">
                     <p:outputPanel>
-                        <p:outputLabel id="globalFilterMsg" value="#{msg.searchAllFieldsMsg}: "/>
-                        <p:inputText id="globalFilter" size="80" onkeyup="PF('hostingSearch').filter()" style="width:150px"/>
+                        <p:inputText id="globalFilter" onkeyup="PF('hostingSearch').filter()" style="width:300px" placeholder="#{msg.searchAnyField}"/>
                     </p:outputPanel>
                 </f:facet>
 
                 <p:column headerText="#{msg.room}" style="text-align: center" width="3" filterStyle="max-width:30px; display:none"
-                          sortBy="#{hosting.roomFK}" filterBy="#{hosting.roomFK}" filterMatchMode="exact">
+                          filterBy="#{hosting.roomFK}" filterMatchMode="exact">
                     <h:outputText value="#{hosting.roomFK.number}"/>
                 </p:column>
 
-                <p:column headerText="#{msg.hotelGuest}" style="text-align: center" width="120" filterStyle="display:none"
-                          sortBy="#{hosting.individualFK}" filterBy="#{hosting.individualFK}" filterMatchMode="exact">
+                <p:column headerText="#{msg.hotelGuest}" width="120" filterStyle="display:none"
+                          filterBy="#{hosting.individualFK.name}" filterMatchMode="exact">
                     <h:outputText value="#{hosting.individualFK.name}"/>
                 </p:column>
 
-                <p:column headerText="#{msg.checkout}" sortBy="#{hosting.checkout}" filterMatchMode="contains" 
+                <p:column headerText="#{msg.checkout}" filterMatchMode="contains"  style="text-align: center"
                           filterBy="#{hosting.checkout}" width="20" filterStyle="max-width:40px; display:none">
-                    <h:outputText value="#{hosting.checkout}"  style="text-align: center"/>
+                    <h:outputText value="#{hosting.checkout ? 'Sim':'Não'}"  />
                 </p:column>
 
-                <p:column headerText="#{msg.wantFood}" sortBy="#{hosting.food}" filterMatchMode="contains" 
+                <p:column headerText="#{msg.wantFood}" filterMatchMode="contains" style="text-align: center" 
                           filterBy="#{hosting.food}" width="40" filterStyle="max-width:40px; display:none">
-                    <h:outputText value="#{hosting.food}"  style="text-align: center"/>
+                    <h:outputText value="#{hosting.food ? 'Sim':'Não'}"  />
                 </p:column>
 
-                <p:column headerText="#{msg.dateInput}" style="text-align: center" width="60"
-                          sortBy="#{hosting.dateTime}"  >
+                <p:column headerText="#{msg.dateInput}" style="text-align: center" width="60" filterBy="#{hosting.dateTime}"
+                          filterStyle="max-width:40px; display:none">
                     <h:outputText value="#{hosting.dateTime}">
                         <f:convertDateTime type="both" locale="pt_BR" timeZone="#{initParam.timezone}"/>
                     </h:outputText>
                 </p:column>
 
-                <p:column headerText="#{msg.forecastOutput}" style="text-align: center" width="65"
-                          sortBy="#{hosting.forecastOutput}" >
+                <p:column headerText="#{msg.forecastOutput}" style="text-align: center" width="65" filterBy="#{hosting.forecastOutput}"
+                          filterStyle="max-width:40px; display:none">
                     <h:outputText value="#{hosting.forecastOutput}">
                         <f:convertDateTime type="both" locale="pt_BR" timeZone="#{initParam.timezone}"/>
                     </h:outputText>

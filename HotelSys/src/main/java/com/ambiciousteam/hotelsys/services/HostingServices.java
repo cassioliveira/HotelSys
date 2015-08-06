@@ -19,6 +19,9 @@ public class HostingServices {
     @Inject
     private HostingDao hostingDao;
 
+    @Inject
+    private RoomServices roomServices;
+
     //AQUI MUDAR PARA O SERVICE AO INVES DO DAO MAS TERÁ QUE ALTERAR O SERVICE DE QUARTO PARA NÃO SETAR LIVRE ANTES DE SALVAR A MENOS QUE SEJA UM NOVO QUARTO
     @Inject
     private RoomDao roomDao;
@@ -26,7 +29,6 @@ public class HostingServices {
     @Transactional
     public void save(Hosting hosting) throws HotelSysException {
         Room room = hosting.getRoomFK();
-        System.out.println("QUARTOS OCUPADOS: " + hosting.getRoomFK());
         room.setStatus("OCUPADO");
         this.roomDao.save(room);
         this.hostingDao.save(hosting);
@@ -46,26 +48,46 @@ public class HostingServices {
         return hostingDao.findAll();
     }
 
+    /**
+     * Método que pega todas as hospedagens do banco e retorna apenas as que
+     * estão ativas.
+     *
+     * @return
+     */
+    public List<Hosting> activeHostings() {
+        List<Hosting> activeHostings = new ArrayList<>();
+        for (Hosting activeHosting : hostingDao.findAll()) {
+            if (activeHosting.isCheckout() == false) {
+                activeHostings.add(activeHosting);
+            }
+        }
+        return activeHostings;
+    }
+
     @Transactional
-    public void getHostingDown(Hosting hosting) {
+    public void hostingDown(Hosting hosting) {
         Room room = hosting.getRoomFK();
-        System.out.println("QUARTOS OCUPADOS: " + hosting.getId());
-        System.out.println("QUARTOS OCUPADOS: " + hosting.getRoomFK());
         room.setStatus("LIVRE");
         this.roomDao.save(room);
         this.hostingDao.save(hosting);
     }
 
+    /**
+     * Retorna uma lista com todos os quartos disponíveis junto com o quarto
+     * selecionado durante uma edição de hospedagem. Este método permite que, ao
+     * editar uma hospedagem, o usuário possa transferir uma hospedagem de um
+     * quarto para outro que esteja disponível, caso seja necessário.
+     *
+     * @param hosting
+     * @return
+     */
     public List<Room> roomChange(Hosting hosting) {
         List<Room> roomsEdit = new ArrayList<>();
         Room room = hosting.getRoomFK();
         roomsEdit.add(room);
-        for (Room filteredRoom : roomDao.freeRooms()) {
+        for (Room filteredRoom : roomServices.getFreeRooms()) {
             roomsEdit.add(filteredRoom);
         }
-        System.out.println("QUARTOS NA EDIÇÃO: " + roomsEdit);
-
         return roomsEdit;
     }
-
 }
