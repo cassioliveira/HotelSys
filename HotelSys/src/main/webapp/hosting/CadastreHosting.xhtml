@@ -24,7 +24,7 @@
                         <p:outputLabel for="availableRoom" value="#{msg.roomNumber}: " style="margin-right: 27px"/>
                         <h:panelGroup>
                             <p:selectOneMenu id="availableRoom" value="#{hostingBean.hosting.roomFK}" 
-                                             required="true" requiredMessage="Um quarto precisa ser selecionado.">
+                                             required="true" requiredMessage="#{msg.aRoomRequired}">
                                 <f:selectItem itemLabel="#{msg.selectIt}..." noSelectionOption="true"/>
                                 <f:selectItems value="#{hostingBean.roomChange}" var="room" 
                                                itemLabel="#{room.number}" itemValue="#{room}"/>
@@ -37,7 +37,7 @@
 
                         <p:outputLabel for="hotelGuest" value="#{msg.hotelGuest}: " />
                         <p:selectOneMenu id="hotelGuest" value="#{hostingBean.hosting.individualFK}" filter="true" 
-                                         filterMatchMode="contains" style="width: 270px">
+                                         filterMatchMode="contains" style="width: 270px" required="true" requiredMessage="#{msg.aHotelGuestRequired}">
                             <f:selectItem itemLabel="#{msg.selectIt}..." noSelectionOption="true"/>
                             <f:selectItems value="#{hostingBean.individuals}" var="client" itemValue="#{client}" itemLabel="#{client.name}"/>
                         </p:selectOneMenu>

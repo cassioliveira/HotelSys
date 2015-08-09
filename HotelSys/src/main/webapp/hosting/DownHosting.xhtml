@@ -20,26 +20,65 @@
 
 
                 <h:panelGrid columns="2" border="0">
-                    <p:outputLabel for="availableRoom" value="#{msg.roomNumber}: " style="margin-right: 27px"/>
-                    <p:selectOneMenu id="availableRoom" value="#{hostingBean.hosting.roomFK}" 
-                                     required="true" requiredMessage="Um quarto precisa ser selecionado.">
-                        <f:selectItem itemLabel="#{msg.selectIt}..." noSelectionOption="true"/>
-                        <f:selectItems value="#{hostingBean.roomChange}" var="room" 
-                                       itemLabel="#{room.number}" itemValue="#{room}"/>
-                    </p:selectOneMenu>
+                    <h:panelGrid columns="2" border="0">
 
-                    <p:outputLabel for="hotelGuest" value="#{msg.hotelGuest}: " />
-                    <p:selectOneMenu id="hotelGuest" value="#{hostingBean.hosting.individualFK}" filter="true" 
-                                     filterMatchMode="contains" style="width: 270px">
-                        <f:selectItem itemLabel="#{msg.selectIt}..." noSelectionOption="true"/>
-                        <f:selectItems value="#{hostingBean.individuals}" var="client" itemValue="#{client}" itemLabel="#{client.name}"/>
-                    </p:selectOneMenu>
+                        <p:outputLabel for="availableRoom" value="#{msg.roomNumber}: " style="margin-right: 27px"/>
+                        <p:outputLabel id="availableRoom" value="#{hostingBean.hosting.roomFK.number}" style="margin-right: 27px; font-weight: bold"/>
 
+                        <p:outputLabel for="hotelGuest" value="#{msg.hotelGuest}: " />
+                        <p:outputLabel id="hotelGuest" value="#{hostingBean.hosting.individualFK.name}" style="font-weight: bold"/>
+
+                        <p:outputLabel for="missingItem" value="#{msg.missingItem}: " />
+                        <p:inputText id="missingItem" value="#{hostingBean.hosting.missingItem}" title="Informe o(s) item(s) em falta."/>
+
+                        <p:outputLabel for="increase" value="#{msg.increase}: " />
+                        <p:inputText id="increase" value="#{hostingBean.hosting.increase}" styleClass="money" maxlength="8">
+                            <f:convertNumber type="currency" locale="pt_BR"/>
+                        </p:inputText>
+
+                        <p:outputLabel for="discount" value="#{msg.discount}: " />
+                        <p:inputText id="discount" value="#{hostingBean.hosting.discount}" styleClass="money" maxlength="8">
+                            <f:convertNumber type="currency" locale="pt_BR"/>
+                        </p:inputText>
+
+                        <p:outputLabel for="price" value="#{msg.value}: " />
+                        <p:inputText id="price" value="#{hostingBean.hosting.price}" styleClass="money" maxlength="8">
+                            <f:convertNumber type="currency" locale="pt_BR"/>
+                        </p:inputText>
+
+                        <p:outputLabel for="payed" value="#{msg.isPayed}" />
+                        <p:selectBooleanCheckbox id="payed" itemLabel="#{hostingBean.hosting.payed ? 'Sim' : 'Não'}" 
+                                                 value="#{hostingBean.hosting.payed}">
+                            <f:ajax execute="payed" render="payed"/>
+                        </p:selectBooleanCheckbox>
+
+                    </h:panelGrid>
+
+                    <p:panel id="panelInfoHosting" header="Dados da hospedagem" style="width: 500px">
+                        <h:panelGrid columns="2" border="0">
+                            <p:outputLabel for="forecastOutput" value="#{msg.forecastOutput}: " style="margin-right: 27px"/>
+                            <p:outputLabel id="forecastOutput" value="#{hostingBean.hosting.forecastOutput}" style="font-weight: bold">
+                                <f:convertDateTime type="both" locale="pt_BR" timeZone="#{initParam.timezone}"/>
+                            </p:outputLabel>
+
+                            <p:outputLabel for="wantFood" value="#{msg.wantFood}: "/>
+                            <p:outputLabel id="wantFood" value="#{hostingBean.hosting.food ? 'Sim' : 'Não'}" style="font-weight: bold"/>
+                            
+                            <p:outputLabel for="adultDependents" value="#{msg.adultDependents}: "/>
+                            <p:outputLabel id="adultDependents" value="#{hostingBean.hosting.quantityDependent}" style="font-weight: bold"/>
+                            
+                            <p:outputLabel for="childrenDependents" value="#{msg.childrenDependents}: "/>
+                            <p:outputLabel id="childrenDependents" value="#{hostingBean.hosting.quantityChild}" style="font-weight: bold"/>
+                            
+                            <p:outputLabel for="observations" value="#{msg.observations}: "/>
+                            <p:outputLabel id="observations" value="#{hostingBean.hosting.observations}" style="font-weight: bold"/>
+                        </h:panelGrid>
+                    </p:panel>
                 </h:panelGrid>
 
                 <p:toolbar id="panelButtonsConsult" style="margin-top: 10px;">
                     <f:facet name="left">
-                        <p:commandButton style="font-size: 13px;" value="#{msg.save}" action="#{hostingBean.save}"  
+                        <p:commandButton style="font-size: 13px;" value="#{msg.save}" action="#{hostingBean.hostingDown}"  
                                          id="saveButton" update="@form" icon="ui-icon ui-icon-disk"/>
                     </f:facet>
 

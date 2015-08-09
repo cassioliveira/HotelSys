@@ -89,6 +89,9 @@ public class Hosting implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateOutput;
 
+    /**
+     * Atributo referente ao armazenamento da data em que o registro foi criado/alterado.
+     */
     @Column(name = "hosting_date_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateTime;

@@ -68,6 +68,7 @@ public class HostingServices {
     public void hostingDown(Hosting hosting) {
         Room room = hosting.getRoomFK();
         room.setStatus("LIVRE");
+        hosting.setCheckout(true);
         this.roomDao.save(room);
         this.hostingDao.save(hosting);
     }

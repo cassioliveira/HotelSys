@@ -87,6 +87,7 @@ public class HostingBean implements Serializable {
         transports = Arrays.asList(Transports.values());
         reasonsTravel = Arrays.asList(ReasonTravel.values());
     }
+    
 
     @PostConstruct
     public void init() {
@@ -122,8 +123,10 @@ public class HostingBean implements Serializable {
         return this.hosting.getId() != null;
     }
 
-    public void hostingDown() {
+    public void hostingDown(){
         this.hostingServices.hostingDown(hosting);
+        FacesUtil.sucessMessage("Baixa efetuada com sucesso!");
+        this.hosting = new Hosting();
     }
 
     public List<Hosting> getActiveHostings() {

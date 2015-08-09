@@ -63,15 +63,16 @@
                             <p:graphicImage id="calendarIcon" library="images/icon" name="calendar.png">
                                 <p:tooltip for="calendarIcon" value="Previsão de saída"/>
                             </p:graphicImage>
-                            <p:outputLabel value="#{statusRoomsRed.forecastOutput}" style="margin-left: 2px"/>
+                            <p:outputLabel value="#{statusRoomsRed.forecastOutput}" style="margin-left: 2px">
+                                <f:convertDateTime type="both" locale="pt_BR" timeZone="#{initParam.timezone}"/>
+                            </p:outputLabel>
                         </div>
 
                         <div class="buttonHomeRoomRed">
                             <p:commandButton id="hostingDetails" icon="ui-icon-extlink" style="font-size: 10px" onclick="PF('hostingDetails').show()">
                                 <p:tooltip for="hostingDetails" value="Detalhes da hospedagem"/>
                             </p:commandButton>
-                            <p:button id="shutdownHosting" icon="ui-icon-arrowstop-1-s" style="font-size: 10px" outcome="/hosting/CadastreHosting">
-                                <f:param name="hosting" value="#{hostingBean.hosting.id}"/>
+                            <p:button id="shutdownHosting" icon="ui-icon-arrowstop-1-s" style="font-size: 10px" outcome="/hosting/SearchHosting">
                                 <p:tooltip for="shutdownHosting" value="Dar baixa na hospedagem"/>
                             </p:button>
                         </div>

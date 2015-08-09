@@ -18,7 +18,7 @@
 
             <p:dataTable id="datatableSearchHosting" var="hosting" value="#{hostingBean.hostings}"
                          paginatorAlwaysVisible="false" style="margin-top: 1px; " rows="10" paginatorPosition="bottom"
-                         emptyMessage="#{msg.noRegistersFound}" paginator="true" widgetVar="hostingSearch"
+                         emptyMessage="#{msg.noActiveHosting}" paginator="true" widgetVar="hostingSearch"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
                          {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,20,50,100"
                          scrollable="true" scrollRows="10" scrollHeight="210">
@@ -64,7 +64,7 @@
                 </p:column>
 
 
-                <p:column headerText="#{msg.actions}" style="text-align: center" width="30">
+                <p:column headerText="#{msg.actions}" style="text-align: center" width="50">
                     <p:commandButton id="viewButton" title="#{msg.view}" icon="ui-icon ui-icon-extlink" style="font-size: 10px">
                         <p:tooltip for="viewButton" value="Visualiza detalhes da linha selecionada"/>
                     </p:commandButton>           
@@ -72,6 +72,11 @@
                     <p:button id="editButton" title="#{msg.edit}" icon="ui-icon ui-icon-pencil" style="font-size: 10px" outcome="/hosting/CadastreHosting">
                         <f:param  name="hosting" value="#{hosting.id}"/>
                         <p:tooltip for="editButton" value="Edita dados da linha selecionada"/>
+                    </p:button>
+                    
+                    <p:button id="downButton" title="#{msg.edit}" icon="fa fa-download" style="font-size: 10px" outcome="/hosting/DownHosting">
+                        <f:param  name="hosting" value="#{hosting.id}"/>
+                        <p:tooltip for="downButton" value="Dar baixa na hospedagem"/>
                     </p:button>
 
                     <p:commandButton id="deleteButton" title="#{msg.delete}" icon="ui-icon ui-icon-trash" 
