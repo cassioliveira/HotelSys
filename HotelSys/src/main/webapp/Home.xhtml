@@ -24,6 +24,20 @@
             </p:panel>
         </div>
 
+        <p:toolbar id="hostingHome" style="margin-left: 510px; height: 25px; margin-top: -5px; margin-bottom: 4px;" styleClass="toolbar">
+            <f:facet name="left">
+                <p:button id="hosting" icon="ui-icon-play" outcome="/hosting/CadastreHosting" value="Iniciar hospedagem">
+                    <p:tooltip for="hosting" value="Iniciar hospedagem"/>
+                </p:button>
+            </f:facet>
+
+            <f:facet name="left">
+                <p:button id="shutdownHosting" icon="ui-icon-arrowstop-1-s" outcome="/hosting/SearchHosting" value="Finalizar hospedagem">
+                    <p:tooltip for="shutdownHosting" value="Dar baixa na hospedagem"/>
+                </p:button>    
+            </f:facet>
+        </p:toolbar>
+
         <div class="home-rooms-border-main">
             <h:form>
                 <ui:repeat var="statusRoomsGreen" value="#{roomBean.freeRooms}">
@@ -41,9 +55,6 @@
                             <p:commandButton id="roomDetails" icon="ui-icon-extlink" >
                                 <p:tooltip for="roomDetails" value="Detalhes do quarto"/>
                             </p:commandButton>
-                            <p:button id="hosting" icon="ui-icon-play" outcome="/hosting/CadastreHosting">
-                                <p:tooltip for="hosting" value="Iniciar hospedagem"/>
-                            </p:button>
                         </div>
                     </div>
                 </ui:repeat>
@@ -72,9 +83,6 @@
                             <p:commandButton id="hostingDetails" icon="ui-icon-extlink" style="font-size: 10px" onclick="PF('hostingDetails').show()">
                                 <p:tooltip for="hostingDetails" value="Detalhes da hospedagem"/>
                             </p:commandButton>
-                            <p:button id="shutdownHosting" icon="ui-icon-arrowstop-1-s" style="font-size: 10px" outcome="/hosting/SearchHosting">
-                                <p:tooltip for="shutdownHosting" value="Dar baixa na hospedagem"/>
-                            </p:button>
                         </div>
                     </div>
                 </ui:repeat>

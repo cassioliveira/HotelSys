@@ -130,6 +130,6 @@ public class LoginBean implements Serializable {
      */
     public String logout() {
         SecurityUtils.getSubject().logout();
-        return "/Login.xhtml";
+        return "/Login.xhtml?faces-redirect=true";
     }
 }

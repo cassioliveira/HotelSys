@@ -13,44 +13,42 @@
         <title><ui:insert name="title">HotelSys - Login</ui:insert></title>
     </h:head>
 
-    <h:body>
+    <h:body style="padding: 0px; margin: 0px; position: fixed; font-size: 14px">
 
-        <div style="padding-top: 50px; text-align: center">
-            <h:graphicImage library="images" name="logo200x145.png"/>
+        <div style="position: relative">
+            <h:graphicImage library="images" name="test.jpg" width="1320" height="700"/>
         </div>
 
-        <p:dialog header="Login HotelSys" closable="false" visible="true" resizable="false" 
-                  draggable="false" id="loginDialog">
+        <div style="position: absolute; top: 20px; left: 50%">
+            <h:graphicImage library="images" name="logo200x145.png" style="float: top"/>
+        </div>
+
+        <p:dialog closable="false" visible="true" resizable="false" styleClass="transparent-dialog-login" 
+                  draggable="false" id="loginDialog" position="left" style="margin-left: 20px">
             <h:form id="loginForm">
                 <p:growl id="loginMessages" autoUpdate="true"/>
 
-                <h:panelGrid columns="2" cellpadding="4" id="loginPanelGrid">
+                <h:panelGrid id="loginPanelGrid" columns="2" cellpadding="4">
+
+
+                    <p:outputLabel for="username" value="#{msg.user}: " style="color: white; text-shadow: 2px 2px 2px black"/>
+                    <p:inputText id="username" required="true" requiredMessage="Nome de usuário é obrigatório" 
+                                 size="20" value="#{loginBean.login.userName}" style="color: whitesmoke;  text-shadow: 1px 1px 1px black">
+                        <p:tooltip for="username" value="Informe o nome de usuário"/>
+                    </p:inputText>
+
+                    <p:outputLabel for="password" value="#{msg.password}: " style="color: whitesmoke;  text-shadow: 2px 2px 2px black"/>
                     <h:panelGroup>
+                        <p:password id="password" required="true" requiredMessage="Senha é obrigatória"
+                                    size="20" value="#{loginBean.login.password}" style="color: whitesmoke;  text-shadow: 1px 1px 1px black">
+                            <p:tooltip for="password" value="Informe a senha para o usuário"/>
+                        </p:password>
 
-                        <h:graphicImage library="images" name="Login.png"/>
-                        <h:outputLabel/>
-                    </h:panelGroup>
+                        <p:commandButton id="loginEnterButton" icon="fa fa-sign-in" style="font-size: 20px; color: whitesmoke"
+                                         action="#{loginBean.login}" update="@form">
+                            <p:tooltip for="loginEnterButton" value="Clique para entrar ou pressione ENTER"/>
+                        </p:commandButton>
 
-                    <h:panelGroup>
-
-                        <h:panelGrid columns="2" cellpadding="4">
-
-
-                            <p:outputLabel for="username" value="#{msg.user}: "/>
-                            <p:inputText id="username" required="true" requiredMessage="Nome de usuário é obrigatório" 
-                                         size="20" value="#{loginBean.login.userName}"/>
-
-                            <p:outputLabel for="password" value="#{msg.password}: "/>
-                            <p:password id="password" required="true" requiredMessage="Senha é obrigatória"
-                                        size="20" value="#{loginBean.login.password}"/>
-
-                            <p:commandButton value="Entrar" id="loginEnterButton" icon="ui-icon ui-icon-key"
-                                             action="#{loginBean.login}" update="@form"/>
-                            <p:commandButton id="lostPasswordLink" onclick="PF('loginPasswordRecover').show();
-                                    return false;" icon="ui-icon ui-icon-help" style="float: right;"/>
-
-                            <p:tooltip for="lostPasswordLink" value="Ajuda para recuperar senha." showEffect="fade"/>
-                        </h:panelGrid>
                     </h:panelGroup>
 
                 </h:panelGrid>
@@ -58,8 +56,9 @@
             </h:form>
         </p:dialog>
 
-        <div id="credits" style="float: right; right: 0px; bottom: 0px; padding: 10px; position: absolute;">
-            <a href="http://www.ambiciousteam.com.br" target="_blank">
+        <div id="credits" style="position: absolute; top: 97%; left: 89%">
+            <!--<div id="credits" style="float: right; right: 0px; bottom: 0px; padding-right: 10px; padding-bottom: 0px; position: absolute">-->
+            <a href="http://www.ambiciousteam.com" target="_blank">
                 <h:graphicImage id="imgCredits" library="images" name="at-mini.png"/>
             </a>
             <p:tooltip for="imgCredits" value="Cássio Oliveira[cassio@cassioliveira.com.br] | 
@@ -91,6 +90,11 @@
                 <p:commandButton id="okButton" value="Ok" onclick="PF('msgEmailConfirm').hide();"/>
             </h:form>
         </p:dialog>
-
     </h:body>
+
+    <!--                            <p:commandButton id="lostPasswordLink" onclick="PF('loginPasswordRecover').show();
+                                                                return false;" icon="ui-icon ui-icon-help" style="float: right;"/>
+                            
+                                                        <p:tooltip for="lostPasswordLink" value="Ajuda para recuperar senha." showEffect="fade"/>-->
+
 </html>

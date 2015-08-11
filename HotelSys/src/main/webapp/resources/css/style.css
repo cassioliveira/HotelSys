@@ -93,12 +93,45 @@ footer {
     font-size: 10px;
 }
 
-.grid-login{
+/*Dialog login*/
+.transparent-dialog-login{
+    background: rgba(255,255,255,0.0);
+    border: 0px;
+}
+
+/*Campos input Dialog login*/
+.transparent-dialog-login .ui-inputfield {
+    background: none;
+}
+
+/*Botao Dialog login*/
+.transparent-dialog-login .ui-button{
+    background: none;
+    border: 0px;
+}
+
+/*Texto do botão Dialog login*/
+.transparent-dialog-login .ui-button-text{
+    display: none;
+    /*padding: 0px !important;*/
+    margin-bottom: 8px;
+}
+
+/*Barra de título Dialog login*/
+.transparent-dialog-login .ui-dialog-titlebar{
+    background: none;
+}
+
+.toolbar .ui-panel{
+    background: rgba(255,255,255,0.0);
+}
+
+/*.grid-login{
     background-color: #f4f4f4;
     border-radius: 8px;
     border: 1px solid #ccc;
     margin-top: 8px;
-}
+}*/
 
 #lostPassword{
     font-size: 11px;
@@ -208,16 +241,16 @@ footer {
 
 .home-rooms-border-main{
     border: 1px solid; 
-    margin-top: -5px;
+    /*margin-top: -5px;*/
     margin-left: 510px;
     padding: 2px; 
-    height: 508px; 
+    height: 470px; 
     float: right;
     border-radius:10px; 
     color: #dddddd;
     position: fixed;
     left: auto;
-    margin-right: 15px;
+    margin-right: 23px;
     overflow: auto;
     -moz-border-radius:10px; 
     -webkit-border-radius:10px; 
