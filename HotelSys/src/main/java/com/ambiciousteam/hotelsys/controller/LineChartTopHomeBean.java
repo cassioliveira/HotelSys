@@ -29,18 +29,18 @@ public class LineChartTopHomeBean {
     private void addSerie(String label) {
         LineChartSeries series = new LineChartSeries(label);
 
-        series.set("Jan", Math.random() * 1000);
-        series.set("Fev", Math.random() * 1000);
-        series.set("Mar", Math.random() * 1000);
-        series.set("Abr", Math.random() * 1000);
-        series.set("Mai", Math.random() * 1000);
-        series.set("Jun", Math.random() * 1000);
-        series.set("Jul", Math.random() * 1000);
-        series.set("Ago", Math.random() * 1000);
-        series.set("Set", Math.random() * 1000);
-        series.set("Out", Math.random() * 1000);
-        series.set("Nov", Math.random() * 1000);
-        series.set("Dez", Math.random() * 1000);
+        series.set("Jan", Math.random() * 500);
+        series.set("Fev", Math.random() * 500);
+        series.set("Mar", Math.random() * 500);
+        series.set("Abr", Math.random() * 500);
+        series.set("Mai", Math.random() * 500);
+        series.set("Jun", Math.random() * 500);
+        series.set("Jul", Math.random() * 500);
+        series.set("Ago", Math.random() * 500);
+        series.set("Set", Math.random() * 500);
+        series.set("Out", Math.random() * 500);
+        series.set("Nov", Math.random() * 500);
+        series.set("Dez", Math.random() * 500);
 
         this.model.addSeries(series);
     }

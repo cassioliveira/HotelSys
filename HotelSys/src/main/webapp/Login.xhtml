@@ -31,16 +31,16 @@
                 <h:panelGrid id="loginPanelGrid" columns="2" cellpadding="4">
 
 
-                    <p:outputLabel for="username" value="#{msg.user}: " style="color: white; text-shadow: 2px 2px 2px black"/>
+                    <p:outputLabel for="username" value="#{msg.user}: "/>
                     <p:inputText id="username" required="true" requiredMessage="Nome de usuário é obrigatório" 
-                                 size="20" value="#{loginBean.login.userName}" style="color: whitesmoke;  text-shadow: 1px 1px 1px black">
+                                 size="20" value="#{loginBean.login.userName}">
                         <p:tooltip for="username" value="Informe o nome de usuário"/>
                     </p:inputText>
 
-                    <p:outputLabel for="password" value="#{msg.password}: " style="color: whitesmoke;  text-shadow: 2px 2px 2px black"/>
+                    <p:outputLabel for="password" value="#{msg.password}: "/>
                     <h:panelGroup>
                         <p:password id="password" required="true" requiredMessage="Senha é obrigatória"
-                                    size="20" value="#{loginBean.login.password}" style="color: whitesmoke;  text-shadow: 1px 1px 1px black">
+                                    size="20" value="#{loginBean.login.password}">
                             <p:tooltip for="password" value="Informe a senha para o usuário"/>
                         </p:password>
 

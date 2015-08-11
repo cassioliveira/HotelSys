@@ -41,7 +41,7 @@ public class CPFValidator implements Validator {
     @SuppressWarnings({"UnnecessaryBoxing", "UnnecessaryUnboxing"})
     private String calcularDigitoVerificador(String num) {
         //if condicional para verificar se o CPF tem números iguais nos nove primeiros digitos. 
-        if (!(num.substring(0, 3).equals(num.substring(3, 6)))) {
+        if (!(num.substring(0, 3).equals(num.substring(3, 6).equals(num.substring(6, 9))))) {
 //            
             //Calculo do 1º dígito
             Integer primDig, segDig;

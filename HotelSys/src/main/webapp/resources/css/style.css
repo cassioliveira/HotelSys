@@ -1,5 +1,10 @@
 html, body{height: 95%;}
 
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
 body {
     font-size: 12px;
     background-color: #F7F7F7;
@@ -31,10 +36,6 @@ a:link:hover, a:visited:hover  {
     margin-top: 5px;
 }
 
-.upper{
-    ;
-}
-
 .lower{
     text-transform: lowercase;
 }
@@ -42,12 +43,13 @@ a:link:hover, a:visited:hover  {
 header{
     position: relative;
     color: white;
-    padding-right: 10px;
-    padding-top: 5px;
+    /*    padding-right: 10px;
+        padding-top: 5px;*/
     height: 70px;
-    margin: 1px;
+    width: 100%;
+    /*margin: 1px;*/
     margin-bottom: 10px;
-    border-radius: 15px;
+    border-radius: 5px;
     background: #347235;
     box-shadow: 0px 3px 3px slategray;
 }
@@ -75,11 +77,11 @@ header{
 footer {
     position: fixed;
     padding: 0px;
-    margin: 1px;
+    /*margin: 1px;*/
     color: white;
     height: 20px;
-    width: 98.7%;
-    /*width: 100%;*/
+    /*width: 98.7%;*/
+    width: 100%;
     bottom: 0;
     border: 1px;
     border-radius: 5px;
@@ -101,7 +103,14 @@ footer {
 
 /*Campos input Dialog login*/
 .transparent-dialog-login .ui-inputfield {
+    color: white;  
+    text-shadow: 1px 1px 1px black;
     background: none;
+}
+/*Campos output Dialog login*/
+.transparent-dialog-login .ui-outputlabel {
+    color: whitesmoke;  
+    text-shadow: 1px 1px 1px black;
 }
 
 /*Botao Dialog login*/
@@ -120,10 +129,6 @@ footer {
 /*Barra de título Dialog login*/
 .transparent-dialog-login .ui-dialog-titlebar{
     background: none;
-}
-
-.toolbar .ui-panel{
-    background: rgba(255,255,255,0.0);
 }
 
 /*.grid-login{
@@ -246,14 +251,14 @@ footer {
     padding: 2px; 
     height: 470px; 
     float: right;
-    border-radius:10px; 
-    color: #dddddd;
+    border-radius:7px; 
+    color: #AED0EA;
     position: fixed;
     left: auto;
-    margin-right: 23px;
+    margin-right: 15px;
     overflow: auto;
-    -moz-border-radius:10px; 
-    -webkit-border-radius:10px; 
+    -moz-border-radius:7px; 
+    -webkit-border-radius:7px; 
 }
 
 /*Botões quartos livres na Home*/
@@ -268,8 +273,9 @@ footer {
 .buttonHomeRoomRed{
     font-size: 10px; 
     position: relative; 
-    margin-top: 20px;
+    margin-top: 1px;
     text-align: center;
+    padding: 0px;
 }
 
 /*Número dos quartos na Home*/
@@ -281,6 +287,8 @@ footer {
     margin-top: 2px;
     margin-bottom: 10px;
     color: white;
+    text-shadow: 1px 1px 1px black;
+    border: 1px solid #4AA02C
 }
 
 .descriptionRoomsHomeGreen{
@@ -291,13 +299,16 @@ footer {
 .descriptionRoomsHomeRed{
     font-weight: bold; 
     font-size: 10px; 
+    height: 40px;
+    padding-left: 2px;
+    padding-right: 2px;
 }
 
 .home-rooms-green{
     background-color: #398E38;
-    width: 178px; 
+    width: 184px; 
     height: 100px; 
-    margin: 4px 4px 4px 3px;
+    margin: 3px 3px 4px 3px;
     padding: 1px; 
     border-radius:10px; 
     box-shadow: 0px 3px 3px slategray;
@@ -309,9 +320,9 @@ footer {
 
 .home-rooms-red{
     background-color: #F1363C;
-    width: 178px; 
+    width: 184px; 
     height: 100px; 
-    margin: 4px 4px 4px 3px;
+    margin: 3px 3px 4px 3px;
     padding: 1px; 
     border-radius:10px; 
     box-shadow: 0px 3px 3px slategray;
@@ -322,15 +333,13 @@ footer {
 }
 
 /* Field to put charts in home.xhtml */
-#charts{
-    border: 0px solid;  
-    padding: 5px; 
-    width: 515px; 
-    height: 50px; 
+.charts{
+    border: 1px solid #AED0EA;  
+    width: 500px; 
+    height: 505px; 
     position: relative; 
     float: left;
-    margin-top: -10px;
-    margin-left: -10px;
+    margin-top: -5px;
 }
 
 .ui-icon-logoReceita{
@@ -344,10 +353,10 @@ footer {
 
 /*Deixa o datatable com uma cor diferente em cada linha entre duas cores e intercalando entre elas.*/
 .ui-datatable .ui-datatable-data .ui-datatable-odd td{  
-	background-color: #FFFFFF;
+    background-color: #FFFFFF;
 }
 
 .ui-datatable .ui-datatable-data .ui-datatable-even td{  
-	background-color: #F2F5F9;
+    background-color: #F2F5F9;
 }
 /***/
