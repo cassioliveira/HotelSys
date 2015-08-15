@@ -14,24 +14,40 @@
 
     <ui:define name="content">
 
-        <!--<div id="main" style="position: relative; border: 0px solid; width: 100%;">-->
+        <div id="main" class="home-left-area">
 
-        <p:panel styleClass="charts">
-            <p:chart type="line" model="#{lineChartTopHomeBean.model}" style="height: 220px; width: 485px;" />
-            <p:chart type="bar" model="#{barChartBottomHomeBean.model}" style="height: 210px; width: 485px; margin-top: 35px"/>
-            <!--title="Hospedagens de  #{dateTimeUtilBean.currentMonthAsString} "-->
-        </p:panel>
-        <!--</div>-->
+            <p:panel styleClass="notifications" header="Notificações">
+                <div id="birthDays" class="notify-buttons"/>
+            </p:panel>
 
-        <p:toolbar id="hostingHome" style="margin-left: 510px; height: 25px; margin-top: -5px; margin-bottom: 4px; background: none">
+
+            <p:panel styleClass="chart " header="Gráfico de hospedagens">
+                <p:chart style="height: 210px; width: 485px; margin-left: -5px; margin-top: 5px"
+                         type="bar" model="#{barChartBottomHomeBean.model}" />
+            </p:panel>
+        </div>
+
+        <p:toolbar id="hostingHome" style="margin-left: 497px; height: 25px; margin-top: -10px; margin-bottom: 5px; background: none; margin-right: -10px">
             <f:facet name="left">
-                <p:button id="hosting" icon="fa fa-play" outcome="/hosting/CadastreHosting" value="Iniciar hospedagem">
+                <p:button id="hosting" icon="fa fa-play" outcome="/hosting/CadastreHosting" value="Iniciar hospedagem" style="margin-top: -10px">
                     <p:tooltip for="hosting" value="Iniciar hospedagem"/>
                 </p:button>
             </f:facet>
 
             <f:facet name="left">
-                <p:button id="shutdownHosting" icon="fa fa-download" outcome="/hosting/SearchHosting" value="Finalizar hospedagem">
+                <p:button id="roomDetails" icon="fa fa-external-link" outcome="/room/SearchRoom" value="Detalhes do quarto" style="margin-top: -10px">
+                    <p:tooltip for="roomDetails" value="Detalhes do quarto"/>
+                </p:button>
+            </f:facet>
+
+            <f:facet name="left">
+                <p:button id="hostingDetails" icon="fa fa-external-link" outcome="/hosting/SearchHosting" value="Detalhes da hospedagem" style="margin-top: -10px">
+                    <p:tooltip for="hostingDetails" value="Detalhes da hospedagem"/>
+                </p:button>
+            </f:facet>
+
+            <f:facet name="left">
+                <p:button id="shutdownHosting" icon="fa fa-download" outcome="/hosting/SearchHosting" value="Finalizar hospedagem" style="margin-top: -10px">
                     <p:tooltip for="shutdownHosting" value="Dar baixa na hospedagem"/>
                 </p:button>    
             </f:facet>
@@ -51,10 +67,7 @@
                         </div>
 
                         <div class="buttonHomeRoomGreen">
-                            <p:commandButton id="roomDetails" icon="fa fa-external-link" 
-                                             style="font-size: 16px; background: none; border: 0px; color: whitesmoke; text-shadow: 1px 1px 1px black">
-                                <p:tooltip for="roomDetails" value="Detalhes do quarto"/>
-                            </p:commandButton>
+
                         </div>
                     </div>
                 </ui:repeat>
@@ -80,11 +93,11 @@
                         </div>
 
                         <div class="buttonHomeRoomRed">
-                            <p:commandButton id="hostingDetails" icon="fa fa-external-link" onclick="PF('hostingDetails').show();" 
-                                             style="font-size: 16px; background: none; border: 0px; color: whitesmoke; 
-                                             text-shadow: 1px 1px 1px black">
-                                <p:tooltip for="hostingDetails" value="Detalhes da hospedagem"/>
-                            </p:commandButton>
+                            <!--                            <p:commandButton id="hostingDetails" icon="fa fa-external-link" onclick="PF('hostingDetails').show();" 
+                                                                         style="font-size: 16px; background: none; border: 0px; color: whitesmoke; 
+                                                                         text-shadow: 1px 1px 1px black">
+                                                            <p:tooltip for="hostingDetails" value="Detalhes da hospedagem"/>
+                                                        </p:commandButton>-->
                         </div>
                     </div>
                 </ui:repeat>
