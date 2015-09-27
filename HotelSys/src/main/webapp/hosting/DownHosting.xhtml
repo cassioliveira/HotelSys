@@ -33,24 +33,30 @@
 
                         <p:outputLabel for="increase" value="#{msg.increase}: " />
                         <p:inputText id="increase" value="#{hostingBean.hosting.increase}" styleClass="money" maxlength="8">
-                            <f:convertNumber type="currency" locale="pt_BR"/>
+                            <f:convertNumber type="currency" locale="ptBR"/>
                         </p:inputText>
 
                         <p:outputLabel for="discount" value="#{msg.discount}: " />
                         <p:inputText id="discount" value="#{hostingBean.hosting.discount}" styleClass="money" maxlength="8">
-                            <f:convertNumber type="currency" locale="pt_BR"/>
+                            <f:convertNumber type="currency" locale="ptBR"/>
                         </p:inputText>
 
                         <p:outputLabel for="price" value="#{msg.value}: " />
                         <p:inputText id="price" value="#{hostingBean.hosting.price}" styleClass="money" maxlength="8">
-                            <f:convertNumber type="currency" locale="pt_BR"/>
+                            <f:convertNumber type="currency" locale="ptBR" currencySymbol="R$" currencyCode="BRL"/>
                         </p:inputText>
 
-                        <p:outputLabel for="payed" value="#{msg.isPayed}" />
+                        <p:selectOneMenu id="uf" value="#{individualBean.individual.uf}" >
+                            <f:selectItem itemLabel="#{msg.selectIt}..." noSelectionOption="true"/>
+                            <f:selectItems value="#{personBean.states}" itemValue="#{uf}" itemLabel="#{uf.description}" var="uf"/>
+                            <p:ajax process="@this" event="change" update="city" listener="#{individualBean.loadCities}"/>
+                        </p:selectOneMenu>
+
+<!--                        <p:outputLabel for="payed" value="#{msg.isPayed}" />
                         <p:selectBooleanCheckbox id="payed" itemLabel="#{hostingBean.hosting.payed ? 'Sim' : 'Não'}" 
                                                  value="#{hostingBean.hosting.payed}">
                             <f:ajax execute="payed" render="payed"/>
-                        </p:selectBooleanCheckbox>
+                        </p:selectBooleanCheckbox>-->
 
                     </h:panelGrid>
 
@@ -63,13 +69,13 @@
 
                             <p:outputLabel for="wantFood" value="#{msg.wantFood}: "/>
                             <p:outputLabel id="wantFood" value="#{hostingBean.hosting.food ? 'Sim' : 'Não'}" style="font-weight: bold"/>
-                            
+
                             <p:outputLabel for="adultDependents" value="#{msg.adultDependents}: "/>
                             <p:outputLabel id="adultDependents" value="#{hostingBean.hosting.quantityDependent}" style="font-weight: bold"/>
-                            
+
                             <p:outputLabel for="childrenDependents" value="#{msg.childrenDependents}: "/>
                             <p:outputLabel id="childrenDependents" value="#{hostingBean.hosting.quantityChild}" style="font-weight: bold"/>
-                            
+
                             <p:outputLabel for="observations" value="#{msg.observations}: "/>
                             <p:outputLabel id="observations" value="#{hostingBean.hosting.observations}" style="font-weight: bold"/>
                         </h:panelGrid>

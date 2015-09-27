@@ -19,7 +19,7 @@
         <h:panelGrid columns="4" cellpadding="1">
             <p:outputLabel for="street" value="#{msg.street}: "/>
             <p:inputText id="street" value="#{cc.attrs.street}" 
-                         maxlength="100" size="34" style="margin-left: 7px"/>
+                         maxlength="100" size="34" />
 
             <p:inputText id="number" value="#{cc.attrs.number}"
                          maxlength="6" size="10"  placeholder="Nº"/>
@@ -27,22 +27,22 @@
 
             <p:outputLabel for="neighborhood" value="#{msg.neighborhood}: " />
             <p:inputText id="neighborhood" value="#{cc.attrs.neighborhood}"
-                         maxlength="30" size="34" style="margin-left: 7px"/>
+                         maxlength="30" size="34" />
 
             <p:inputMask id="postalCode" value="#{cc.attrs.postalCode}"
                          maxlength="8" size="10" mask="99999-999" placeholder="CEP"/>
             <h:outputLabel/>
 
             <p:outputLabel for="country" value="#{msg.country}: "/>
-            <p:selectOneMenu id="country" value="#{cc.attrs.country}" style="width: 270px; margin-left: 7px">
+            <p:selectOneMenu id="country" value="#{cc.attrs.country}" style="width: 230px">
                 <f:selectItem itemLabel="#{msg.selectIt}..."/>
                 <f:selectItems value="#{personBean.returnCountries}" 
                                itemLabel="#{countries}" 
                                itemValue="#{countries}" var="countries"/>
             </p:selectOneMenu>
-            
+
 <!--            <p:inputText id="country" value="#{cc.attrs.country}" 
-                         maxlength="50" size="34"/>-->
+             maxlength="50" size="34"/>-->
         </h:panelGrid>
 
     </composite:implementation>

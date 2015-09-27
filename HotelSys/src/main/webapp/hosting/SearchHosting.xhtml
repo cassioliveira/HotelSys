@@ -73,7 +73,7 @@
                         <f:param  name="hosting" value="#{hosting.id}"/>
                         <p:tooltip for="editButton" value="Edita dados da linha selecionada"/>
                     </p:button>
-                    
+
                     <p:button id="downButton" title="#{msg.edit}" icon="fa fa-download" style="font-size: 10px" outcome="/hosting/DownHosting">
                         <f:param  name="hosting" value="#{hosting.id}"/>
                         <p:tooltip for="downButton" value="Dar baixa na hospedagem"/>
@@ -89,13 +89,6 @@
 
         </p:fieldset>
 
-        <p:blockUI block="datatableSearchHosting" trigger="datatableSearchHosting">
-            <p:graphicImage library="images" name="loading.gif"/>
-            <br/>
-            #{msg.wait}...
-        </p:blockUI>
-
-        <!--        <ui:include src="Hostings.xhtml"/>-->
     </ui:define>
 
 </ui:composition>

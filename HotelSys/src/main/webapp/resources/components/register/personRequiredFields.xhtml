@@ -13,10 +13,10 @@
     </composite:interface>
 
     <composite:implementation>
-        
+
         <h:panelGrid columns="2" cellpadding="1" id="formIndividual">
-            <p:outputLabel for="cpf" value="#{msg.cpf}: " />
-            <h:panelGroup id="panelGroupCPF">
+            <p:outputLabel for="cpf" value="#{msg.cpf}: " style="margin-left: 20px"/>
+            <h:panelGroup id="panelGroupCPF" >
                 <p:inputMask id="cpf" mask="999.999.999-99" size="15" required="true"
                              requiredMessage="Um número de CPF deve ser informado.  "
                              value="#{cc.attrs.cpf}" converter="cpfConverter" validator="cpfValidator"/>
@@ -26,12 +26,12 @@
                 </p:graphicImage>
             </h:panelGroup>
 
-            <p:outputLabel for="phone1" value="#{msg.phone1}: " />
+            <p:outputLabel for="phone1" value="#{msg.phone1}: " style="margin-left: 20px"/>
             <p:inputText id="phone1"  styleClass="phone" required="true"
                          requiredMessage="Um número de telefone deve ser informado."
                          value="#{cc.attrs.phone1}" size="15"/>
 
-            <p:outputLabel for="Name" value="#{msg.name}: "/>
+            <p:outputLabel for="Name" value="#{msg.name}: " style="margin-left: 20px"/>
             <p:inputText id="Name" value="#{cc.attrs.name}"
                          maxlength="100" size="45"  required="true" 
                          validatorMessage="Nome deve conter apenas letras, letras  e/ou espaços"

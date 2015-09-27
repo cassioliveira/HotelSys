@@ -8,7 +8,7 @@
 
     <ui:define name="content">
 
-        
+
         <h:form>
             <p:inputText id="insertText" value="#{genericBean.text}" size="15"/>
             <p:commandButton id="hashNow" value="Criptografar!" action="#{genericBean.getHashText(text)}" update="outTextHashed"/>

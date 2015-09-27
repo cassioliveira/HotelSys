@@ -6,25 +6,25 @@
  *  Made by Diego Plentz
  *  Under MIT License (https://raw.github.com/plentz/jquery-maskmoney/master/LICENSE)
  */
-!function($) {
+!function ($) {
     "use strict";
     $.browser || ($.browser = {}, $.browser.mozilla = /mozilla/.test(navigator.userAgent.toLowerCase()) && !/webkit/.test(navigator.userAgent.toLowerCase()), $.browser.webkit = /webkit/.test(navigator.userAgent.toLowerCase()), $.browser.opera = /opera/.test(navigator.userAgent.toLowerCase()), $.browser.msie = /msie/.test(navigator.userAgent.toLowerCase()));
-    var a = {destroy: function() {
+    var a = {destroy: function () {
             return $(this).unbind(".maskMoney"), $.browser.msie && (this.onpaste = null), this
-        }, mask: function(a) {
-            return this.each(function() {
+        }, mask: function (a) {
+            return this.each(function () {
                 var b, c = $(this);
                 return"number" == typeof a && (c.trigger("mask"), b = $(c.val().split(/\D/)).last()[0].length, a = a.toFixed(b), c.val(a)), c.trigger("mask")
             })
-        }, unmasked: function() {
-            return this.map(function() {
+        }, unmasked: function () {
+            return this.map(function () {
                 var a, b = $(this).val() || "0", c = -1 !== b.indexOf("-");
-                return $(b.split(/\D/).reverse()).each(function(b, c) {
+                return $(b.split(/\D/).reverse()).each(function (b, c) {
                     return c ? (a = c, !1) : void 0
                 }), b = b.replace(/\D/g, ""), b = b.replace(new RegExp(a + "$"), "." + a), c && (b = "-" + b), parseFloat(b)
             })
-        }, init: function(a) {
-            return a = $.extend({prefix: "", suffix: "", affixesStay: !0, thousands: ",", decimal: ".", precision: 2, allowZero: !1, allowNegative: !1}, a), this.each(function() {
+        }, init: function (a) {
+            return a = $.extend({prefix: "", suffix: "", affixesStay: !0, thousands: ",", decimal: ".", precision: 2, allowZero: !1, allowNegative: !1}, a), this.each(function () {
                 function b() {
                     var a, b, c, d, e, f = s.get(0), g = 0, h = 0;
                     return"number" == typeof f.selectionStart && "number" == typeof f.selectionEnd ? (g = f.selectionStart, h = f.selectionEnd) : (b = document.selection.createRange(), b && b.parentElement() === f && (d = f.value.length, a = f.value.replace(/\r\n/g, "\n"), c = f.createTextRange(), c.moveToBookmark(b.getBookmark()), e = f.createTextRange(), e.collapse(!1), c.compareEndPoints("StartToEnd", e) > -1 ? g = h = d : (g = -c.moveStart("character", -d), g += a.slice(0, g).split("\n").length - 1, c.compareEndPoints("EndToEnd", e) > -1 ? h = d : (h = -c.moveEnd("character", -d), h += a.slice(0, h).split("\n").length - 1)))), {start: g, end: h}
@@ -34,7 +34,7 @@
                     return a || f || g
                 }
                 function d(a) {
-                    s.each(function(b, c) {
+                    s.each(function (b, c) {
                         if (c.setSelectionRange)
                             c.focus(), c.setSelectionRange(a, a);
                         else if (c.createTextRange) {
@@ -82,7 +82,7 @@
                     b.createTextRange && (a = b.createTextRange(), a.collapse(!1), a.select())
                 }
                 function n() {
-                    setTimeout(function() {
+                    setTimeout(function () {
                         h()
                     }, 0)
                 }
@@ -107,7 +107,7 @@
                 a = $.extend(a, s.data()), s.unbind(".maskMoney"), s.bind("keypress.maskMoney", k), s.bind("keydown.maskMoney", l), s.bind("blur.maskMoney", p), s.bind("focus.maskMoney", m), s.bind("click.maskMoney", q), s.bind("cut.maskMoney", n), s.bind("paste.maskMoney", n), s.bind("mask.maskMoney", h)
             })
         }};
-    $.fn.maskMoney = function(b) {
+    $.fn.maskMoney = function (b) {
         return a[b] ? a[b].apply(this, Array.prototype.slice.call(arguments, 1)) : "object" != typeof b && b ? ($.error("Method " + b + " does not exist on jQuery.maskMoney"), void 0) : a.init.apply(this, arguments)
     }
 }(window.jQuery || window.Zepto);

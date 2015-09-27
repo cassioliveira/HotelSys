@@ -126,7 +126,8 @@ public class HostingBean implements Serializable {
     public void hostingDown(){
         this.hostingServices.hostingDown(hosting);
         FacesUtil.sucessMessage("Baixa efetuada com sucesso!");
-        this.hosting = new Hosting();
+        FacesUtil.redirectTo("/HotelSys/Home.xhtml");
+//        this.hosting = new Hosting();
     }
 
     public List<Hosting> getActiveHostings() {

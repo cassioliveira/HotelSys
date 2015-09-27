@@ -17,7 +17,7 @@
             <p:menuitem value="#{msg.hosting}" outcome="/hosting/CadastreHosting.xhtml" icon="fa fa-edit"/>
 
             <p:menuitem value="#{msg.user}s" outcome="/login/CadastreLogin.xhtml" icon="fa fa-unlock"/>
-            
+
             <p:menuitem value="Criptografar senha" outcome="/HashText.xhtml" icon="fa fa-lock"/>
 
             <!--<p:menuitem value="#{msg.reports}" url="/provider/SearchProvider.xhtml" icon="ui-icon-search"/>-->
@@ -45,40 +45,40 @@
             <p:clock pattern="dd/MM/yyyy HH:mm:ss"/>
         </div>-->
 
-<!--     Dialog informing about the software 
-    <p:dialog widgetVar="about" header="#{msg.appName} - #{msg.appSlogan}" modal="true" 
-              resizable="false" draggable="false" id="aboutSystem">
-        <h:form>
+    <!--     Dialog informing about the software 
+        <p:dialog widgetVar="about" header="#{msg.appName} - #{msg.appSlogan}" modal="true" 
+                  resizable="false" draggable="false" id="aboutSystem">
+            <h:form>
+    
+            </h:form>
+        </p:dialog>
+    
+         Dialog informing about the developers and credits  
+        <p:dialog widgetVar="developers" header="#{msg.appName} - #{msg.credits}" modal="true"  resizable="false" 
+                  draggable="false" id="developersInformation" width="500px" height="180px">
+            <h:form>
+                <h1 align="center" style="padding-bottom: 10px">#{msg.developersGroup}</h1>
+    
+                <div style="float: left; text-align: center; padding: 25px 25px 50px 25px; ">
+                    <p:graphicImage library="images" name="at-mini.png"/>
+                </div>
+    
+                <div style="text-align: center;">
+                    <p:outputLabel value="#{msg.developers}:"/>
+                </div>
+    
+                <div style="text-align: center; padding-top: 10px;">
+                    <p:outputLabel value="Cássio Oliveira"  style="font-weight: bold"/>
+                    <br/>
+                    <p:outputLabel value="cassio@cassioliveira.com.br"/>
+                </div>
+    
+                <div style="text-align: center; padding-top: 10px;">
+                    <p:outputLabel value="Wilde Arruda"  style="font-weight: bold"/>
+                    <br/>
+                    <p:outputLabel value="wildearruda@gmail.com"/>
+                </div>-->
 
-        </h:form>
-    </p:dialog>
-
-     Dialog informing about the developers and credits  
-    <p:dialog widgetVar="developers" header="#{msg.appName} - #{msg.credits}" modal="true"  resizable="false" 
-              draggable="false" id="developersInformation" width="500px" height="180px">
-        <h:form>
-            <h1 align="center" style="padding-bottom: 10px">#{msg.developersGroup}</h1>
-
-            <div style="float: left; text-align: center; padding: 25px 25px 50px 25px; ">
-                <p:graphicImage library="images" name="at-mini.png"/>
-            </div>
-
-            <div style="text-align: center;">
-                <p:outputLabel value="#{msg.developers}:"/>
-            </div>
-
-            <div style="text-align: center; padding-top: 10px;">
-                <p:outputLabel value="Cássio Oliveira"  style="font-weight: bold"/>
-                <br/>
-                <p:outputLabel value="cassio@cassioliveira.com.br"/>
-            </div>
-
-            <div style="text-align: center; padding-top: 10px;">
-                <p:outputLabel value="Wilde Arruda"  style="font-weight: bold"/>
-                <br/>
-                <p:outputLabel value="wildearruda@gmail.com"/>
-            </div>-->
-
-        <!--</h:form>-->
+    <!--</h:form>-->
     <!--</p:dialog>-->
 </html>

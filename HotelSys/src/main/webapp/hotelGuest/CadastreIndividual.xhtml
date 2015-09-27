@@ -22,13 +22,18 @@
 
                 <h:panelGrid columns="2">
 
-                    <p:graphicImage library="images" name="avatar.png" style="height: 100px; margin-bottom: 5px"/>
-
                     <hotelsys:personRequiredFields cpf="#{individualBean.individual.cpfIndividual}" 
                                                    name="#{individualBean.individual.name}" 
                                                    phone1="#{individualBean.individual.phone1}"/>
 
                 </h:panelGrid>
+
+<!--                <div style="border: 0px solid red; width: 115px; position: relative">
+                    <p:graphicImage library="images" name="avatar.png" style="height: 100px; margin-bottom: 5px; text-align: center"/>
+                    <p:fileUpload id="photoUpload" cancelLabel="#{msg.cancel}" dragDropSupport="true" fileLimit="1" label="Selecione..." 
+                                  mode="simple" uploadLabel="Enviar..." skinSimple="true"/>
+                </div>-->
+
                 <p:tabView id="complementaryCadastreData">
 
                     <p:tab id="tabComplementaryPersonal" title="Pessoal" >
@@ -52,7 +57,7 @@
                                 <p:ajax process="@this" event="change" update="city" listener="#{individualBean.loadCities}"/>
                             </p:selectOneMenu>
 
-                            <p:outputLabel for="city" value="#{msg.city}:" style="margin-left: 32px"/>
+                            <p:outputLabel for="city" value="#{msg.city}:" style="margin-left: 15px"/>
                             <p:selectOneMenu id="city" value="#{individualBean.individual.city}" filter="true" 
                                              filterMatchMode="startsWith" style="width: 100px" disabled="#{individualBean.individual.uf eq null}">
                                 <f:selectItem itemLabel="#{msg.selectIt}..." noSelectionOption="true"/>

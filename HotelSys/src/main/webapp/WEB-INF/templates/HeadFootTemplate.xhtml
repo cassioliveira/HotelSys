@@ -19,12 +19,12 @@
         <header>
             <div id="logged-user-top-message" >
                 <h:form>
-                <h:outputLabel value="#{msg.welcome} "/>  
-                <!--<h:link title="Editar configurações do usuário" style="color: #ffffff;">-->
-                <p:menuButton value="#{loginBean.loggedUser}" styleClass="logged-user">
-                    <p:menuitem id="menuItemSettings" value="#{msg.settings}" icon="fa fa-gear"/>
-                </p:menuButton>
-                <!--</h:link>-->
+                    <h:outputLabel value="#{msg.welcome} "/>  
+                    <!--<h:link title="Editar configurações do usuário" style="color: #ffffff;">-->
+                    <p:menuButton value="#{loginBean.loggedUser}" styleClass="logged-user">
+                        <p:menuitem id="menuItemSettings" value="#{msg.settings}" icon="fa fa-gear"/>
+                    </p:menuButton>
+                    <!--</h:link>-->
                 </h:form>
             </div>
             <p:graphicImage library="images" name="hotel_sys_transp.png" styleClass="logo"/>
