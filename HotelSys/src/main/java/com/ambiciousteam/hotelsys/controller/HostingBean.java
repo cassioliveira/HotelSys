@@ -1,5 +1,6 @@
 package com.ambiciousteam.hotelsys.controller;
 
+import com.ambiciousteam.hotelsys.enumerations.PaymentWay;
 import com.ambiciousteam.hotelsys.services.HostingServices;
 import com.ambiciousteam.hotelsys.enumerations.ReasonTravel;
 import com.ambiciousteam.hotelsys.enumerations.RoomStatus;
@@ -7,6 +8,7 @@ import com.ambiciousteam.hotelsys.enumerations.Transports;
 import com.ambiciousteam.hotelsys.exceptions.HotelSysException;
 import com.ambiciousteam.hotelsys.model.Hosting;
 import com.ambiciousteam.hotelsys.model.Individual;
+import com.ambiciousteam.hotelsys.model.Payment;
 import com.ambiciousteam.hotelsys.model.Room;
 import com.ambiciousteam.hotelsys.services.IndividualServices;
 import com.ambiciousteam.hotelsys.services.RoomServices;
@@ -81,11 +83,15 @@ public class HostingBean implements Serializable {
 
     @Getter
     private final List<ReasonTravel> reasonsTravel;
+    
+    @Getter
+    private final List<PaymentWay> paymentWays;
 
     public HostingBean() {
         statusRooms = Arrays.asList(RoomStatus.values());
         transports = Arrays.asList(Transports.values());
         reasonsTravel = Arrays.asList(ReasonTravel.values());
+        paymentWays = Arrays.asList(PaymentWay.values());
     }
     
 

@@ -70,7 +70,7 @@ public class Individual extends Person implements Serializable {
 //    private Hosting hostingFK;
     /**
      * Este método anotado com @PostConstruct é executado na inicialização da
-     * entidade e seta o país padrão para o Brasil.
+     * entidade e seta um valor padrão para o(s) atributo(s).
      */
     @PostConstruct
     public void init() {

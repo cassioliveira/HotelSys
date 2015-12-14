@@ -28,28 +28,30 @@
                         <p:outputLabel for="hotelGuest" value="#{msg.hotelGuest}: " />
                         <p:outputLabel id="hotelGuest" value="#{hostingBean.hosting.individualFK.name}" style="font-weight: bold"/>
 
-                        <p:outputLabel for="missingItem" value="#{msg.missingItem}: " />
-                        <p:inputText id="missingItem" value="#{hostingBean.hosting.missingItem}" title="Informe o(s) item(s) em falta."/>
+<!--                        <p:outputLabel for="missingItem" value="#{msg.missingItem}: " />
+                        <p:inputText id="missingItem" value="#{hostingBean.hosting.missingItem}" title="Informe o(s) item(s) em falta."/>-->
 
                         <p:outputLabel for="increase" value="#{msg.increase}: " />
-                        <p:inputText id="increase" value="#{hostingBean.hosting.increase}" styleClass="money" maxlength="8">
-                            <f:convertNumber type="currency" locale="ptBR"/>
+                        <p:inputText id="increase" value="#{hostingBean.hosting.paymentFK}" styleClass="money" maxlength="8">
+                            <!--<f:convertNumber type="currency" locale="ptBR" currencySymbol="R$" currencyCode="BRL"/>-->
                         </p:inputText>
 
                         <p:outputLabel for="discount" value="#{msg.discount}: " />
-                        <p:inputText id="discount" value="#{hostingBean.hosting.discount}" styleClass="money" maxlength="8">
-                            <f:convertNumber type="currency" locale="ptBR"/>
+                        <p:inputText id="discount" value="#{hostingBean.hosting.paymentFK}" styleClass="money" maxlength="8">
+                            <!--<f:convertNumber type="currency" locale="ptBR" currencySymbol="R$" currencyCode="BRL"/>-->
                         </p:inputText>
 
                         <p:outputLabel for="price" value="#{msg.value}: " />
-                        <p:inputText id="price" value="#{hostingBean.hosting.price}" styleClass="money" maxlength="8">
-                            <f:convertNumber type="currency" locale="ptBR" currencySymbol="R$" currencyCode="BRL"/>
+                        <p:inputText id="price" value="#{hostingBean.hosting.paymentFK}" styleClass="money" maxlength="8">
+                            <!--<f:convertNumber type="currency" locale="ptBR" currencySymbol="R$" currencyCode="BRL"/>-->
                         </p:inputText>
 
-                        <p:selectOneMenu id="uf" value="#{individualBean.individual.uf}" >
+                        <p:outputLabel for="paymentWay" value="#{msg.paymentWay}: " />
+                        <p:selectOneMenu id="paymentWay"  >
+                            <!--value="#{hostingBean.hosting.paymentFK}"-->
                             <f:selectItem itemLabel="#{msg.selectIt}..." noSelectionOption="true"/>
-                            <f:selectItems value="#{personBean.states}" itemValue="#{uf}" itemLabel="#{uf.description}" var="uf"/>
-                            <p:ajax process="@this" event="change" update="city" listener="#{individualBean.loadCities}"/>
+                            <f:selectItems value="#{hostingBean.paymentWays}" var="paymentWay" itemValue="#{paymentWay}" 
+                                           itemLabel="#{paymentWay.description}" />
                         </p:selectOneMenu>
 
 <!--                        <p:outputLabel for="payed" value="#{msg.isPayed}" />

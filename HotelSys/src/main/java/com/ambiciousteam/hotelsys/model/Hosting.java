@@ -41,21 +41,12 @@ public class Hosting implements Serializable {
     @Column(name = "hosting_missing_item", length = 255)
     private String missingItem;
 
-    @Column(name = "hosting_increase", length = 10)
-    private Double increase;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "hosting_transport")
     private Transports transport;
 
     @Column(name = "hosting_food", length = 1)
     private boolean food;
-
-    @Column(name = "hosting_discount", length = 10)
-    private Double discount;
-
-    @Column(name = "hosting_price", length = 10)
-    private Double price;
 
     @Column(name = "hosting_source", length = 50)
     private String source;
@@ -90,7 +81,8 @@ public class Hosting implements Serializable {
     private Date dateOutput;
 
     /**
-     * Atributo referente ao armazenamento da data em que o registro foi criado/alterado.
+     * Atributo referente ao armazenamento da data em que o registro foi
+     * criado/alterado.
      */
     @Column(name = "hosting_date_time")
     @Temporal(TemporalType.TIMESTAMP)
@@ -110,6 +102,10 @@ public class Hosting implements Serializable {
     @OneToOne
     @JoinColumn(name = "individualfk_id", nullable = false)
     private Individual individualFK;
+
+    @OneToOne
+    @JoinColumn(name = "paymentfk_id")
+    private Payment paymentFK;
 
 //    @ManyToOne
 //    @JoinColumn(name = "employee_fk", referencedColumnName = "id") //TEM QUE FAZER QUE PEGUE O USUÁRIO LOGADO E NÃO O FUNCIONÁRIO!!

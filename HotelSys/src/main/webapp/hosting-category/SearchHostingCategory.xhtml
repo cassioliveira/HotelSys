@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="/WEB-INF/templates/HeadFootTemplate.xhtml"> 
+
+    <ui:define name="content">
+
+        <h:form id="searchHostingCategory">
+
+            <p:fieldset legend="#{(msg.searchCadastre).concat(msg.hostingCategory)}" >
+                <p:toolbar>
+                    <f:facet name="right">
+                        <p:button outcome="/hosting-category/CadastreHostingCategory" value="#{msg.newRegisterButton}" style="text-align: right"/>
+                    </f:facet>
+                </p:toolbar>    
+
+                <p:dataTable id="datatableHostingCategory" var="hostingCategory" value="#{hostingCategoryBean.hostingCategories}"
+                             paginatorAlwaysVisible="false" style="margin-top: 1px; " lazy="true" 
+                             rows="10" paginatorPosition="bottom" emptyMessage="#{msg.noRegistersFound}" 
+                             paginator="true" widgetVar="hostingCategorySearch" rowsPerPageTemplate="5,10,20,50,100"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+                             {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" >
+
+                    <f:facet name="header">
+                        <p:outputPanel>
+                            <p:inputText id="globalFilter" onkeyup="PF('hostingCategorySearch').filter()" style="width:300px" placeholder="#{msg.searchAnyField}"/>
+                        </p:outputPanel>
+                    </f:facet>
+                    
+                    <p:column headerText="#{msg.id}" style="text-align: center" width="0.3%" filterStyle="display:none"
+                              filterBy="#{hostingCategory.id}" filterMatchMode="exact">
+                        <h:outputText value="#{hostingCategory.id}"/>
+                    </p:column>
+
+                    <p:column headerText="#{msg.hostingCategory}" width="1.3%" filterStyle="display:none"
+                              filterBy="#{hostingCategory.name}" filterMatchMode="exact">
+                        <h:outputText value="#{hostingCategory.name}"/>
+                    </p:column>
+                    
+                    <p:column headerText="#{msg.value}" width="1.3%" filterStyle="display:none"
+                              filterBy="#{hostingCategory.price}" filterMatchMode="exact">
+                        <h:outputText value="#{hostingCategory.price}"/>
+                    </p:column>
+                    
+                    <p:column headerText="#{msg.description}" width="1.3%" filterStyle="display:none"
+                              filterBy="#{hostingCategory.description}" filterMatchMode="exact">
+                        <h:outputText value="#{hostingCategory.description}"/>
+                    </p:column>
+
+                    <p:column headerText="#{msg.actions}" style="text-align: center" width="0.7%">
+
+                        <p:button id="editButton" title="#{msg.edit}" icon="ui-icon ui-icon-pencil" style="font-size: 10px" outcome="/hosting-category/CadastreHostingCategory">
+                            <f:param  name="hostingCategory" value="#{hostingCategory.id}"/>
+                            <p:tooltip for="editButton" value="Edita dados da linha selecionada"/>
+                        </p:button>
+
+                        <p:commandButton id="deleteButton" title="#{msg.delete}" icon="ui-icon ui-icon-trash" style="font-size: 10px" 
+                                         action="#{hostingCategoryBean.remove}" process="@this" update="datatableHostingCategory">
+                            <f:setPropertyActionListener target="#{hostingCategoryBean.selectedHostingCategory}" value="#{hostingCategory}"/>
+                            <p:tooltip for="deleteButton" value="Excluir a linha selecionada"/>
+                            <p:confirm icon="ui-icon-alert" header="#{msg.exclusionConfirmHeader}" message="#{msg.realyExclude}?"/>
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </p:fieldset>
+        </h:form>
+    </ui:define>
+</ui:composition>
