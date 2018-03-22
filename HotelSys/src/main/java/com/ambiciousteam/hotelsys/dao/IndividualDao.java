@@ -40,5 +40,6 @@ public class IndividualDao extends AbstractDao<Individual> implements Serializab
      */
 //    public String hasCPF(String cpf){
 //        return getEntityManager().createNamedQuery("Individual.cpf", Individual.class).setParameter(cpf, cpf).getSingleResult().toString();
+    // SELECT i.client_cpf_client FROM individual i WHERE i.client_cpf_client = '01404526480' Consulta sql para busca de cpf
 //    }
 }
