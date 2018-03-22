@@ -51,7 +51,7 @@ public class Hosting implements Serializable {
     @Column(name = "hosting_source", length = 50)
     private String source;
 
-    @Lob
+    
     @Column(name = "hosting_observations")
     private String observations;
 

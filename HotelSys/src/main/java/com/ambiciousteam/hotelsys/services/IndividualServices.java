@@ -42,4 +42,8 @@ public class IndividualServices implements Serializable {
     public List<Individual> hostedNames(){
         return individualDao.hostedNames();
     }
+    
+//    public String hasCPF(String cpf){
+//        return individualDao.hasCPF(cpf);
+//    }
 }

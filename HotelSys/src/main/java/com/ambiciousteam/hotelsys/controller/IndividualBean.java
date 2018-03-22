@@ -42,6 +42,9 @@ public class IndividualBean implements Serializable {
     private List<Individual> individuals;
 
     public void save() throws HotelSysException {
+//        if (individualServices.hasCPF(individual.getCpfIndividual()) != null) {
+//            FacesUtil.errorMessage("CPF já cadastrado! Informe outro CPF.");
+//        }
         this.individualServices.save(individual);
         if (getEditing()) {
             FacesUtil.sucessMessage("Cadastro de '" + individual.getName() + "' atualizado com sucesso!");

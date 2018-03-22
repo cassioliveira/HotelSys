@@ -32,4 +32,13 @@ public class IndividualDao extends AbstractDao<Individual> implements Serializab
 //        }
         return createQuery.getResultList();
     }
+    
+    /**
+     * Retorna consulta que verifica se CPF já existe no banco
+     * @param cpf
+     * @return 
+     */
+//    public String hasCPF(String cpf){
+//        return getEntityManager().createNamedQuery("Individual.cpf", Individual.class).setParameter(cpf, cpf).getSingleResult().toString();
+//    }
 }

@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Pattern;
@@ -21,6 +22,7 @@ import lombok.Setter;
  * @author cassio
  */
 @Entity
+//@NamedQuery(name = "Individual.cpf", query = "SELECT i.cpfIndividual FROM Individual AS i WHERE i.cpfIndividual = :cpf")
 public class Individual extends Person implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -16,7 +16,7 @@
     <composite:implementation>
 
         <h:panelGrid columns="2" cellpadding="1">
-            <p:outputLabel for="gender" value="#{msg.gender}: "/>
+            <p:outputLabel for="gender" value="Sexo: "/>
             <p:selectOneMenu id="gender" value="#{cc.attrs.gender}">
                 <f:selectItem itemLabel="Selecione"/>
                 <f:selectItems value="#{personBean.genders}" itemLabel="#{gender.description}"

@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import lombok.Data;
@@ -40,7 +39,6 @@ public class Room implements Serializable {
     @Column(name = "card_key", length = 50, unique = true)
     private String cardKey;
 
-    @Lob
     @Column(name = "room_description")
     private String description;
 
